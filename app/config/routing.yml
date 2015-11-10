@@ -1,0 +1,11 @@
+education_calendar:
+    resource: "@EducationCalendarBundle/Resources/config/routing.yml"
+    prefix:   /
+
+class:
+    resource: "@SubjectBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
