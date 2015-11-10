@@ -1,3 +1,7 @@
 education_calendar_homepage:
     path:     /hello/{name}
     defaults: { _controller: EducationCalendarBundle:Default:index }
+
+start_route:
+    path:     /
+    defaults: { _controller: EducationCalendarBundle:Default:start }
