@@ -5,3 +5,7 @@ education_calendar_homepage:
 start_route:
     path:     /
     defaults: { _controller: EducationCalendarBundle:Default:start }
+
+end_route:
+    path:     /end/
+    defaults: { _controller: EducationCalendarBundle:Default:end }

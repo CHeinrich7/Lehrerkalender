@@ -15,4 +15,9 @@ class DefaultController extends Controller
     {
         return $this->render('EducationCalendarBundle:Default:start.html.php');
     }
+
+    public function endAction()
+    {
+        return $this->render('EducationCalendarBundle:Default:end.html.php');
+    }
 }
