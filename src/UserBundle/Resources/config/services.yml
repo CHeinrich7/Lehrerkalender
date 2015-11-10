@@ -2,3 +2,6 @@ services:
 #    user.example:
 #        class: UserBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+    security.access_denied.handler:
+        class: UserBundle\Services\Security\AccessDeniedHandler

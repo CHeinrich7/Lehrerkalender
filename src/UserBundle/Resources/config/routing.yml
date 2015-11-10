@@ -1,0 +1,37 @@
+user_login:
+    path:     /login
+    defaults: { _controller: UserBundle:Default:login }
+
+user_check:
+    path:     /user_check
+
+redirect_to_user_login:
+    path:     /
+    defaults:
+        _controller:  FrameworkBundle:Redirect:redirect
+        route:        user_login
+        permanent:    true
+
+user_index:
+    path:     /in/user
+    defaults: { _controller: UserBundle:User:index }
+
+user_create_user:
+    path:     /in/user/create
+    defaults: { _controller: UserBundle:User:new }
+
+user_edit_user:
+    path:     /in/user/edit/{id}
+    defaults: { _controller: UserBundle:User:edit, id: -1 }
+    requirements:
+        id:  \d+
+
+user_profile:
+    path:     /in/userprofile
+    defaults: { _controller: UserBundle:Profile:index }
+
+user_edit_profile:
+    path:     /in/userprofile/edit/{id}
+    defaults: { _controller: UserBundle:Profile:edit, id: -1 }
+    requirements:
+        id:  \d+
