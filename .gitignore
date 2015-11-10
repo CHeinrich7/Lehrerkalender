@@ -88,5 +88,3 @@ crashlytics-build.properties
 ### Symfony Patch ###
 /web/bundles/
 /web/uploads/
-/web/css/
-/web/js/
