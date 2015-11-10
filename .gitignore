@@ -85,9 +85,6 @@ crashlytics-build.properties
 # Build data
 /build/
 
-# Composer PHAR
-/composer.phar
-
 ### Symfony Patch ###
 /web/bundles/
 /web/uploads/
