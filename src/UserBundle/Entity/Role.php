@@ -16,8 +16,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class Role
 {
     const ROLE_APPLICANT    = 'ROLE_APPLICANT';
-    const ROLE_STAFF        = 'ROLE_STAFF';
-    const ROLE_CHARGER      = 'ROLE_CHARGER';
     const ROLE_ADMIN        = 'ROLE_ADMIN';
     const ROLE_SUPER_ADMIN  = 'ROLE_SUPER_ADMIN';
 

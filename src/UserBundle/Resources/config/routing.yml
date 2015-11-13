@@ -25,13 +25,3 @@ user_edit_user:
     defaults: { _controller: UserBundle:User:edit, id: -1 }
     requirements:
         id:  \d+
-
-user_profile:
-    path:     /in/userprofile
-    defaults: { _controller: UserBundle:Profile:index }
-
-user_edit_profile:
-    path:     /in/userprofile/edit/{id}
-    defaults: { _controller: UserBundle:Profile:edit, id: -1 }
-    requirements:
-        id:  \d+

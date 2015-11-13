@@ -89,6 +89,7 @@ class LoadUserDummyData extends LoadUserBaseData implements OrderedFixtureInterf
      */
     public function load(ObjectManager $objectManager)
     {
+        return;
         $content = $this->getFileContent($this->filename);
 
         if($content === false) {

@@ -59,26 +59,26 @@ class LoadUserBaseData extends UserDataLoader implements OrderedFixtureInterface
     {
         $users = json_decode($content);
 
-        $entityProfile = new Profile();
+        #$entityProfile = new Profile();
         $entityUser = new User();
 
         foreach($users as $entityName => $entityData)
         {
             switch($entityName) {
-                case 'profile':
-                    $this->fillEntity($entityProfile, $entityData);
-                    break;
+                #case 'profile':
+                #    $this->fillEntity($entityProfile, $entityData);
+                #    break;
                 case 'user':
-                    $this->getRole($entityData, $objectManager);
+                    $this->getRole($entityData);
                     $this->fillEntity($entityUser, $entityData);
                     break;
             }
         }
 
-        $entityUser->setProfile($entityProfile);
+        #$entityUser->setProfile($entityProfile);
 
         $objectManager->persist($entityUser);
-        $objectManager->persist($entityProfile);
+        #$objectManager->persist($entityProfile);
     }
 
     /**

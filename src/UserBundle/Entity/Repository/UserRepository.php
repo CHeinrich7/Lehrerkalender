@@ -28,20 +28,9 @@ class UserRepository extends EntityRepository  implements UserProviderInterface 
      */
     public function loadUserByUsername($username)
     {
-        $q = $this
-            ->createQueryBuilder('u')
-            ->select('u, p')
-            ->leftJoin('u.profile', 'p')
-            ->where('(u.username = :username OR p.email = :email) AND u.isDeleted = :isDeleted')
-            ->setParameter('username', $username)
-            ->setParameter('email', $username)
-            ->setParameter('isDeleted', 0)
-            ->getQuery();
 
         try {
-            // The Query::getSingleResult() method throws an exception
-            // if there is no record matching the criteria.
-            $user = $q->getSingleResult();
+            $user = $this->findOneBy(['username' => $username]);
         } catch (NoResultException $e) {
             $message = sprintf(
                 'Unable to find an active admin AcmeUserBundle:User object identified by "%s".',

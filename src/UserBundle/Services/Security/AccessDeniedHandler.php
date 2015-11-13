@@ -10,7 +10,8 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class AccessDeniedHandler implements AccessDeniedHandlerInterface{
 
-    public function handle(Request $request, AccessDeniedException $accessDeniedException){
+    public function handle(Request $request, AccessDeniedException $accessDeniedException)
+    {
         if ($request->isXmlHttpRequest()) {
             return new JsonResponse(array('success' => false, 'message' => $accessDeniedException->getMessage()));
         }

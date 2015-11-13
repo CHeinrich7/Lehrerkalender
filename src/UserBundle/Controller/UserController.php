@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use UserBundle\Entity\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
 
 class UserController extends Controller
@@ -41,7 +40,7 @@ class UserController extends Controller
     {
         $authChecker = $this->get('security.authorization_checker');
 
-        if(!$authChecker->isGranted(Role::ROLE_CHARGER)) {
+        if(!$authChecker->isGranted(Role::ROLE_ADMIN)) {
             throw new \Exception('Unerlaubtes Territorium');
         }
 
@@ -62,7 +61,7 @@ class UserController extends Controller
 
         if($submitted) {
             if($form->isValid()) {
-                $user = new ControllerReference('UserBundle:Default:getUser');
+                #$user = new ControllerReference('UserBundle:Default:getUser');
 
                 $this->em->persist($user);
                 $this->em->flush();
@@ -74,7 +73,7 @@ class UserController extends Controller
         }
 
         $data = array(
-            'userForm' => $form,
+            'userForm'  => $form,
             'error'     => $message,
             'user'      => $user,
             'newUser'   => true,
@@ -100,7 +99,7 @@ class UserController extends Controller
 
         $currentUser = $this->getUser();
 
-        if($authChecker->isGranted(Role::ROLE_CHARGER)) {
+        if($authChecker->isGranted(Role::ROLE_ADMIN)) {
             if($id > 0) {
                 $user = $this->userRepo->find($id);
             } else {
@@ -137,7 +136,7 @@ class UserController extends Controller
         }
 
         $data = array(
-            'userForm' => $form,
+            'userForm'  => $form,
             'error'     => $message,
             'user'      => $user,
             'currentUser' => $currentUser

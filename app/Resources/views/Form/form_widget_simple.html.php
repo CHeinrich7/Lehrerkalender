@@ -14,4 +14,12 @@ $realType   = isset($type) ? $view->escape($type) : 'text';
 $finalType  = (isset($attr['force_type'])) ? $attr['force_type'] : $realType;
 
 ?>
-<input type="<?php echo $finalType; ?>" class="<?php echo $widgetClass; ?>" value="<?php echo $view->escape($value); ?>" <?php echo $formHelper->block($form, 'widget_attributes'); ?> />
+
+<?php if(isset($attr['icon-widget'])): ?>
+    <div class="input-group">
+    <span class="input-group-addon"><span class="glyphicon glyphicon-<?php echo $attr['icon-widget']; ?>"></span></span>
+<?php endif; ?>
+    <input type="<?php echo $finalType; ?>" class="<?php echo $widgetClass; ?>" value="<?php echo $view->escape($value); ?>" <?php echo $formHelper->block($form, 'widget_attributes'); ?> />
+<?php if(isset($attr['icon-widget'])): ?>
+    </div>
+<?php endif; ?>

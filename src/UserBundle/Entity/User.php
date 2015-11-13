@@ -6,13 +6,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 
 /**
  * @ORM\Entity(repositoryClass="UserBundle\Entity\Repository\UserRepository")
  * @ORM\Table(name="user")
  *
- * @UniqueEntity(fields="role", message="There can not be one Role twice in Database!")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt")
+ *
+ * @UniqueEntity(fields="username", message="There can not be one User twice in Database!")
  */
 class User implements UserInterface
 {
@@ -46,22 +49,22 @@ class User implements UserInterface
     protected $password;
 
     /**
-     * @ORM\Column(name="is_superuser", type="boolean", options={"default"=0})
+     * @ORM\Column(name="is_superuser", type="boolean", options={"default" = 0})
      */
     protected $isSuperUser = false;
 
     /**
-     * @ORM\Column(name="is_active", type="boolean")
+     * @ORM\Column(name="is_active", type="boolean", options={"default" = 1})
      */
     protected $isActive  = true;
 
     /**
-     * @ORM\Column(name="is_deleted", type="boolean")
+     * @ORM\Column(name="is_deleted", type="boolean", options={"default" = 0})
      */
     protected $isDeleted = false;
 
     /**
-     * @ORM\Column(name="is_deletable", type="boolean")
+     * @ORM\Column(name="is_deletable", type="boolean", options={"default" = 1})
      */
     protected $isDeletable = true;
 
@@ -70,11 +73,11 @@ class User implements UserInterface
      */
     protected $plainPassword = null;
 
-    /**
-     * @ORM\OneToOne(targetEntity="Profile", cascade={"persist", "remove"})
-     * @Constraints\Valid
-     */
-    protected $profile;
+//    /**
+//     * @ORM\OneToOne(targetEntity="Profile", cascade={"persist", "remove"})
+//     * @Constraints\Valid
+//     */
+//    protected $profile;
 
     /**
      * @ORM\ManyToOne(targetEntity="Role")
@@ -83,6 +86,25 @@ class User implements UserInterface
      * @var Role
      */
     protected $role;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    protected $createdAt;
+
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(name="modified_at", type="datetime")
+     */
+    protected $modifiedAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(referencedColumnName="id")
+     * @Gedmo\Blameable(on="update")
+     */
+    protected $changedBy;
 
     /**
      * @param integer $id
@@ -235,24 +257,24 @@ class User implements UserInterface
         return $this->plainPassword;
     }
 
-    /**
-     * @param Profile $profile
-     *
-     * @return User
-     */
-    public function setProfile ( Profile $profile )
-    {
-        $this->profile = $profile;
-        return $this;
-    }
-
-    /**
-     * @return Profile
-     */
-    public function getProfile ()
-    {
-        return $this->profile;
-    }
+//    /**
+//     * @param Profile $profile
+//     *
+//     * @return User
+//     */
+//    public function setProfile ( Profile $profile )
+//    {
+//        $this->profile = $profile;
+//        return $this;
+//    }
+//
+//    /**
+//     * @return Profile
+//     */
+//    public function getProfile ()
+//    {
+//        return $this->profile;
+//    }
 
     /**
      * @param string $username
@@ -314,5 +336,29 @@ class User implements UserInterface
     public function eraseCredentials ()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getModifiedAt()
+    {
+        return $this->modifiedAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChangedBy()
+    {
+        return $this->changedBy;
     }
 }

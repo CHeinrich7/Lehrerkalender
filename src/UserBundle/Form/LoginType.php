@@ -16,7 +16,7 @@ class LoginType extends AbstractType
     {
         $inputAttr = array(
             'class-label'   => 'col-md-offset-2 col-md-3 col-sm-offset-1 col-sm-4',
-            'class'         => 'col-md-3 col-sm-4'
+            'class'         => 'col-sm-offset-4 col-md-4 col-sm-5'
         );
 
         $buttonAttr = array(
@@ -24,8 +24,8 @@ class LoginType extends AbstractType
         );
 
         $builder
-            ->add('_username', 'text', array('label' => 'Username', 'attr' => $inputAttr))
-            ->add('_password', 'password', array('label' => 'Passwort', 'attr' => $inputAttr))
+            ->add('_username', 'text', array('label' => false, 'attr' => array_merge($inputAttr, ['placeholder' => 'Username', 'icon-widget' => 'user'])))
+            ->add('_password', 'password', array('label' => false, 'attr' => array_merge($inputAttr, ['placeholder' => 'Passwort', 'icon-widget' => 'lock'])))
             ->add('save', 'submit', array('label' => 'Einloggen', 'attr' => $buttonAttr))
         ;
     }

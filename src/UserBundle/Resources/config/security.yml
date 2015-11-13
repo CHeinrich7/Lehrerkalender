@@ -8,9 +8,7 @@ security:
         strategy: unanimous
 
     role_hierarchy:
-        ROLE_STAFF:       [ROLE_APPLICANT]
-        ROLE_CHARGER:     [ROLE_STAFF]
-        ROLE_ADMIN:       [ROLE_CHARGER]
+        ROLE_ADMIN:       [ROLE_APPLICANT]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN]
 
     providers:
@@ -27,9 +25,9 @@ security:
                 default_target_path: /in
                 username_parameter: user_logintype[_username]
                 password_parameter: user_logintype[_password]
-            access_denied_handler: security.access_denied.handler
+            access_denied_handler:  security.access_denied.handler
             logout:
-                path:   /logout
+                path:   /in/logout
                 target: /login
                 invalidate_session: true
                 delete_cookies:
@@ -38,5 +36,3 @@ security:
 
     access_control:
         - { path: ^/in,               roles: [ ROLE_APPLICANT ] }
-#        - { path: ^/in/staffcontrol,  roles: [ ROLE_CHARGER ] }
-#        - { path: ^/in/admin,         roles: [ ROLE_ADMIN ] }

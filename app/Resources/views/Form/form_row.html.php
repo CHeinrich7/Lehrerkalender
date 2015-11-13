@@ -7,7 +7,9 @@ $class = (!isset($attr['class'])) ? 'col-sm-6' : $attr['class'];
 $formHelper = $view['form'];
 ?>
 <div class="form-group">
-    <?php echo $formHelper->label($form, $label) ?>
+    <?php if($form->vars['label'] !== false): ?>
+        <?php echo $formHelper->label($form, $label) ?>
+    <?php endif; ?>
     <div class="<?php echo $class; ?>">
         <div class="clearfix">
             <?php echo $formHelper->widget($form) ?>
