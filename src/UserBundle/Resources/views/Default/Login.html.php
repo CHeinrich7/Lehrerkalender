@@ -51,15 +51,6 @@ $formHelper->setTheme($loginFormView, ':Form');
             </div>
         <?php endif; ?>
 
-        <?php
-        echo $formHelper->start( $loginFormView );
-
-        echo $formHelper->row( $loginFormView->children['_username'] );
-        echo $formHelper->row( $loginFormView->children['_password'] );
-
-        echo $formHelper->row( $loginFormView->children['save'] );
-
-        echo $formHelper->end( $loginFormView );
-        ?>
+        <?php echo $formHelper->form( $loginFormView ); ?>
     </div>
 <?php $slotsHelper->stop(); ?>

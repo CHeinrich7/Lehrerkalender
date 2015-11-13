@@ -19,7 +19,7 @@ $slotsHelper = $view['slots']; /* @var $slotsHelper SlotsHelper */
     <script type="text/javascript"></script>
 </head>
 <body>
-<div class="container" id="header">
+<div class="container-fluid" id="header">
     <div class="page-header">
         <?php $slotsHelper->output('header', ''); ?>
     </div>
@@ -33,9 +33,11 @@ $slotsHelper = $view['slots']; /* @var $slotsHelper SlotsHelper */
 <script src="/js/bootstrap.js"></script>
 
 <script type="text/javascript">
-    $( document ).ready(function() {
-        <?php $slotsHelper->output('jQuery', ''); ?>
-    });
+    (function(document, $) {
+        $( document ).ready(function() {
+            <?php $slotsHelper->output('jQuery', ''); ?>
+        });
+    })(document, jQuery);
 </script>
 </body>
 </html>
