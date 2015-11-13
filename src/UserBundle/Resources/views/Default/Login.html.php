@@ -1,19 +1,20 @@
 <?php
-use Symfony\Component\Templating\Helper\SlotsHelper;
-use Symfony\Bundle\FrameworkBundle\Templating\Helper\RouterHelper;
-use Symfony\Component\Security\Core\Exception\AuthenticationServiceException;
-use Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper;
+/**
+ * @var $view           Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine
+ * @var $slotsHelper    Symfony\Component\Templating\Helper\SlotsHelper
+ * @var $routerHelper   Symfony\Bundle\FrameworkBundle\Templating\Helper\RouterHelper
+ * @var $formHelper     Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper
+ *
+ * @var $error          Symfony\Component\Security\Core\Exception\AuthenticationServiceException
+ *
+ * @var $username       string
+ * @var $loginForm      Symfony\Component\Form\Form
+ * @var $loginFormView  Symfony\Component\Form\FormView
+ */
 
-/* @var $error AuthenticationServiceException */
-/* @var $username string */
-/* @var $view Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine  */
-
-/* @var $loginForm      Symfony\Component\Form\Form */
-/* @var $loginFormView  Symfony\Component\Form\FormView */
-
-$slotsHelper = $view['slots']; /* @var $slotsHelper SlotsHelper */
-$routerHelper = $view['router']; /* @var $routerHelper RouterHelper */
-$formHelper = $view['form']; /* @var $formHelper FormHelper */
+$slotsHelper = $view['slots'];
+$routerHelper = $view['router'];
+$formHelper = $view['form'];
 
 $loginFormView = $loginForm->createView();
 
@@ -22,14 +23,14 @@ $formHelper->setTheme($loginFormView, ':Form');
 
 ?>
 
-<?php $slotsHelper->start('title') ?>Login<?php $slotsHelper->stop('title') ?>
+<?php $slotsHelper->start('title'); ?>Login<?php $slotsHelper->stop(); ?>
 
-<?php $slotsHelper->start('header') ?>
-    <h1 style="margin: 6px 0 7px;" class="text-center">Lehrerkalender - Login</h1>
-<?php $slotsHelper->stop('header') ?>
+<?php $slotsHelper->start('header'); ?>
+    <h1 class="text-center">Lehrerkalender - Login</h1>
+<?php $slotsHelper->stop(); ?>
 
 
-<?php $slotsHelper->start('content') ?>
+<?php $slotsHelper->start('content'); ?>
     <div class="container">
         <?php if($error): ?>
             <div class="row">
@@ -61,4 +62,4 @@ $formHelper->setTheme($loginFormView, ':Form');
         echo $formHelper->end( $loginFormView );
         ?>
     </div>
-<?php $slotsHelper->stop('content') ?>
+<?php $slotsHelper->stop(); ?>
