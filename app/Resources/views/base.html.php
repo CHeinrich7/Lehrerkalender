@@ -17,10 +17,24 @@ $slotsHelper = $view['slots']; /* @var $slotsHelper SlotsHelper */
     <?php $slotsHelper->output('styles', ''); ?>
 
     <script type="text/javascript"></script>
+
+    <style>
+        #header a {
+            text-decoration: none;
+            color:           #337ab7;
+            display:inline-block;
+            width: 100%;
+            height: 100%;
+        }
+
+        #header a:hover {
+            background: #eee;
+        }
+    </style>
 </head>
 <body>
-<div class="container-fluid" id="header">
-    <div class="page-header">
+<div class="container" id="header">
+    <div class="row" style="border-bottom: 1px solid #eee;margin-bottom:20px;">
         <?php $slotsHelper->output('header', ''); ?>
     </div>
 </div>

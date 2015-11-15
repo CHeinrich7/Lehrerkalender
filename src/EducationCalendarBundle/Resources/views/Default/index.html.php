@@ -18,6 +18,19 @@ $view->extend('::base.html.php');
 
 ?>
 
+<?php $slotsHelper->start('title'); ?>
+test
+<?php $slotsHelper->stop(); ?>
+
+<?php $slotsHelper->start('header'); ?>
+<div class="col-xs-6">
+    <a href=""><h1 class="text-center">Kalender</h1></a>
+</div>
+<div class="col-xs-6">
+    <a href=""><h1 class="text-center">Benotung</h1></a>
+</div>
+<?php $slotsHelper->stop(); ?>
+
 <?php $slotsHelper->start('content'); ?>
 <style>
     .date {
@@ -71,6 +84,10 @@ $view->extend('::base.html.php');
         background-color: #eee;
     }
 
+    .marked-form {
+        background-color: #ddd;
+    }
+
     .special {
         background-color: rgba(51, 204, 119, 0.5);
     }
@@ -83,7 +100,7 @@ $view->extend('::base.html.php');
         background-color: #5cb85c;
     }
 
-    #table-marks td:hover {
+    #table-marks td:hover > span {
         background-color: #b4b4b4;
         border-radius: 10px;
         cursor: pointer;
@@ -258,14 +275,18 @@ $view->extend('::base.html.php');
 
             that.values
                 .on('click', {marks: that}, that.loadMarkForm)
-                .on('mouseenter', {marks: that}, this.setColors);
+                .on('click', {marks: that, 'class': 'marked-form'}, that.setColors)
+                .on('mouseenter', {marks: that, 'class': 'marked'}, this.setColors);
 
             that.setFormEvents();
         },
 
         hideForm: function(event)
         {
-            var that = event.data.marks;
+            var that    = event.data.marks,
+                cssClass= 'marked-form';
+
+            $('.'+cssClass).removeClass(cssClass);
 
             that.formWrapper.fadeOut();
         },
@@ -275,6 +296,19 @@ $view->extend('::base.html.php');
             var that = this;
             that.formWrapper.find('[data-abort]').on('click', {marks: that}, that.hideForm);
             that.formWrapper.on('click', function(event) { event.stopImmediatePropagation(); });
+
+            that.tableStudents.find('tr').on('mouseenter', function() {
+                var $td,
+                    $tr     = $(this),
+                    $tbody  = that.tableStudents.find('tbody'),
+
+                    x = 0,
+                    y = $tbody.find('tr').index($tr[0]);
+
+                $td = that.tableMarks.find('tbody tr').eq(y).find('td').eq(x);
+
+                $td.trigger('mouseenter');
+            });
         },
 
         loadMarkForm: function(event)
@@ -350,16 +384,20 @@ $view->extend('::base.html.php');
         {
             var that = event.data.marks,
 
+                cssClass  = event.data['class'],
+
                 position  = that.getPosition(this, that),
 
                 ySelector = 'tbody tr:nth-of-type('+ (position.y+1) +') td',
                 xSelector = 'td:nth-of-type('+ (position.x+1) +')';
 
-            $('.marked').removeClass('marked');
+            that.log(this);
 
-            that.tableStudents.find(ySelector).addClass('marked');
-            that.tableMarks.find(ySelector).addClass('marked');
-            that.tableMarks.find(xSelector).addClass('marked');
+            $('.'+cssClass).removeClass(cssClass);
+
+            that.tableStudents.find(ySelector).addClass(cssClass);
+            that.tableMarks.find(ySelector).addClass(cssClass);
+            that.tableMarks.find(xSelector).addClass(cssClass);
         }
     };
 
