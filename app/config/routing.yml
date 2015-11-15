@@ -1,3 +1,7 @@
+example:
+    resource: "@ExampleBundle/Resources/config/routing.yml"
+    prefix:   /
+
 education_calendar:
     resource: "@EducationCalendarBundle/Resources/config/routing.yml"
     prefix:   /
