@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new SubjectBundle\SubjectBundle(),
             new EducationCalendarBundle\EducationCalendarBundle(),
             new ExampleBundle\ExampleBundle(),
+            new MarkBundle\MarkBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

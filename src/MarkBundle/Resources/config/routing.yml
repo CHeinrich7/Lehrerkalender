@@ -1,0 +1,3 @@
+mark_overview:
+    path:     /in/marks
+    defaults: { _controller: MarkBundle:Mark:index, subject: -1 }
