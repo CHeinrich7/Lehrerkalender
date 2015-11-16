@@ -127,15 +127,6 @@ Kalender
                 </div>
             </div>
         </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker({
-                    viewMode        : 'days',
-                    format          : 'DD.MM.YYYY',
-                    calendarWeeks   : true
-                });
-            });
-        </script>
     </div>
 </div>
 <div class="container">
@@ -1612,6 +1603,13 @@ Kalender
         // run once window has loaded
         panelinit();
 
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                viewMode        : 'days',
+                format          : 'DD.MM.YYYY',
+                calendarWeeks   : true
+            });
+        });
     });
 
     <?php $slotsHelper->stop(); ?>
