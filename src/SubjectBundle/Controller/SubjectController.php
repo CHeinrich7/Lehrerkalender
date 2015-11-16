@@ -4,10 +4,10 @@ namespace SubjectBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+class SubjectController extends Controller
 {
     public function indexAction($name)
     {
-        return $this->render('SubjectBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('SubjectBundle:Subject:index.html.php', array('name' => $name));
     }
 }

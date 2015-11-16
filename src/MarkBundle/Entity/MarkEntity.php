@@ -41,4 +41,52 @@ class MarkEntity
      * @ORM\Column(type="integer")
      */
     protected $type;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMark()
+    {
+        return $this->mark;
+    }
+
+    /**
+     * @param string $mark
+     *
+     * @return $this
+     */
+    public function setMark($mark)
+    {
+        $this->mark = $mark;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param integer $type
+     *
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
 }

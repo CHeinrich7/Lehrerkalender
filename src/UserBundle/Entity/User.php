@@ -3,6 +3,8 @@
 namespace UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\SoftDeleteable\SoftDeleteable;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -17,7 +19,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @UniqueEntity(fields="username", message="There can not be one User twice in Database!")
  */
-class User implements UserInterface
+class User  implements UserInterface
 {
     /**
      * @ORM\Column(type="integer")

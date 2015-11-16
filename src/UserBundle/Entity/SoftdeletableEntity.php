@@ -26,7 +26,9 @@ class SoftdeletableEntity
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(name="created_at", type="datetime")
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     * @Constraints\NotBlank()
+     * @Constraints\DateTime
      */
     protected $createdAt;
 
@@ -34,8 +36,9 @@ class SoftdeletableEntity
      * @var UserInterface
      *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
-     * @ORM\JoinColumn(referencedColumnName="id")
+     * @ORM\JoinColumn(referencedColumnName="id", nullable=false)
      * @Gedmo\Blameable(on="create")
+     * @Constraints\NotBlank()
      */
     protected $createdBy;
 
@@ -43,7 +46,8 @@ class SoftdeletableEntity
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(name="modified_at", type="datetime")
+     * @ORM\Column(name="modified_at", type="datetime", nullable=true)
+     * @Constraints\DateTime
      */
     protected $modifiedAt;
 
@@ -51,7 +55,7 @@ class SoftdeletableEntity
      * @var UserInterface
      *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
-     * @ORM\JoinColumn(referencedColumnName="id")
+     * @ORM\JoinColumn(referencedColumnName="id", nullable=true)
      * @Gedmo\Blameable(on="update")
      */
     protected $modifiedBy;
@@ -59,7 +63,8 @@ class SoftdeletableEntity
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="deleted_at", type="datetime")
+     * @ORM\Column(name="deleted_at", type="datetime", nullable=true)
+     * @Constraints\DateTime
      */
     protected $deletedAt;
 
@@ -67,7 +72,7 @@ class SoftdeletableEntity
      * @var UserInterface
      *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
-     * @ORM\JoinColumn(referencedColumnName="id")
+     * @ORM\JoinColumn(referencedColumnName="id", nullable=true)
      */
     protected $deletedBy;
 
