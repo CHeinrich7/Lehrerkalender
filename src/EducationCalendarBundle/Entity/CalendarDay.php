@@ -27,7 +27,7 @@ class CalendarDay
     protected $id;
 
     /**
-     * @OMR\Clolumn(type="date")
+     * @OMR\Column(type="date")
      * @ORM\Date
      *
      * @var \DateTime
