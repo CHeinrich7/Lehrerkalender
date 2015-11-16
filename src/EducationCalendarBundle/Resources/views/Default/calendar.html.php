@@ -27,7 +27,7 @@ Kalender
     <a href="/in/calendar"><h1 class="text-center">Kalender</h1></a>
 </div>
 <div class="col-xs-6">
-    <a href="/in/benotung"><h1 class="text-center">Benotung</h1></a>
+    <a href="/in/select"><h1 class="text-center">Benotung</h1></a>
 </div>
 <?php $slotsHelper->stop(); ?>
 
