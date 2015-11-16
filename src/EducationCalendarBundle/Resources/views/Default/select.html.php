@@ -6,11 +6,11 @@
  * Time: 11:18
  */
 
-//$slotsHelper = $view['slots'];
-//$routerHelper = $view['router'];
-//$formHelper = $view['form'];
+$slotsHelper = $view['slots'];
+$routerHelper = $view['router'];
+$formHelper = $view['form'];
 
-//$view->extend('::base.html.php');
+$view->extend('::base.html.php');
 
 ?>
 
@@ -23,6 +23,13 @@
         <a href=""><h1 class="text-center">Kalender</h1></a>
     </div>
     <div class="col-xs-6">
-        <a href=""><h1 class="text-center">Benotung</h1></a>
+        <a href="/in/select"><h1 class="text-center">Benotung</h1></a>
     </div>
 <?php $slotsHelper->stop(); ?>
+
+
+
+<?php $slotsHelper->start('content'); ?>
+
+<?php $slotsHelper->stop(); ?>
+

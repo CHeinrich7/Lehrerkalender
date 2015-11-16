@@ -1,5 +1,5 @@
 education_calendar_homepage:
-    path:     /in/{name}
+    path:     /in/benotung
     defaults: { _controller: EducationCalendarBundle:Default:index }
 
 education_calendar_select:
