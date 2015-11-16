@@ -71,7 +71,7 @@ Kalender
         line-height:20px;
     }
     .expandable-panel-content {
-        padding:0 15px 0 15px;
+        padding: 0 0px 0 0px;
         margin-top:-999px;
     }
     .expandable-panel-content p {
@@ -90,6 +90,29 @@ Kalender
         background-image:url(http://i.imgur.com/Ir4S1H7.png);
         right:15px;
     }
+    .customTableStyle td {
+        text-align: center;
+    }
+    .customTableStyle {
+        margin-bottom: 0px;
+    }
+    .smallInput {
+        width : 50px;
+        border:none;
+    }
+    .smallTD {
+        padding: 5px 5px 5px 5px !important;
+        vertical-align: inherit !important;
+    }
+    .tableTextArea {
+        border: none;
+        margin: 0px;
+        height: 100%;
+        width: 100%;
+    }
+    .tableTextAreaTD {
+        padding: 5px 5px 5px 5px;
+    }
 </style>
 
 <div class="container">
@@ -98,19 +121,222 @@ Kalender
             <h2>Montag<span class="icon-close-open"></span></h2>
         </div>
         <div class="expandable-panel-content">
-            <table class="table table-hover">
+            <table class="table-bordered table table-hover customTableStyle">
                 <thead>
                 <tr>
-                    <th>Stunde</th>
-                    <th>Raum</th>
-                    <th>Klasse</th>
-                    <th>Fach</th>
-                    <th>Notiz</th>
+                    <th width="5%">Stunde</th>
+                    <th width="5%">Raum</th>
+                    <th width="5%">Klasse</th>
+                    <th width="5%">Fach</th>
+                    <th width="40%">Inhalt</th>
+                    <th width="40%">Notiz</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>1</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="expandable-panel" id="cp-1">
+        <div class="expandable-panel-heading">
+            <h2>Dienstag<span class="icon-close-open"></span></h2>
+        </div>
+        <div class="expandable-panel-content">
+            <table class="table-bordered table table-hover customTableStyle">
+                <thead>
+                <tr>
+                    <th width="5%">Stunde</th>
+                    <th width="5%">Raum</th>
+                    <th width="5%">Klasse</th>
+                    <th width="5%">Fach</th>
+                    <th width="40%">Inhalt</th>
+                    <th width="40%">Notiz</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -122,9 +348,11 @@ Kalender
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>3</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -136,9 +364,11 @@ Kalender
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>5</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -150,9 +380,35 @@ Kalender
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>7</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -161,48 +417,565 @@ Kalender
                 </tbody>
             </table>
         </div>
-    </div>
-    <div class="expandable-panel" id="cp-1">
-        <div class="expandable-panel-heading">
-            <h2>Dienstag<span class="icon-close-open"></span></h2>
-        </div>
-        <div class="expandable-panel-content">
-            <p>First Panel HTML...</p>
-        </div>
     </div><div class="expandable-panel" id="cp-1">
         <div class="expandable-panel-heading">
             <h2>Mittwoch<span class="icon-close-open"></span></h2>
         </div>
         <div class="expandable-panel-content">
-            <p>First Panel HTML...</p>
+            <table class="table-bordered table table-hover customTableStyle">
+                <thead>
+                <tr>
+                    <th width="5%">Stunde</th>
+                    <th width="5%">Raum</th>
+                    <th width="5%">Klasse</th>
+                    <th width="5%">Fach</th>
+                    <th width="40%">Inhalt</th>
+                    <th width="40%">Notiz</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div><div class="expandable-panel" id="cp-1">
         <div class="expandable-panel-heading">
             <h2>Donnerstag<span class="icon-close-open"></span></h2>
         </div>
         <div class="expandable-panel-content">
-            <p>First Panel HTML...</p>
+            <table class="table-bordered table table-hover customTableStyle">
+                <thead>
+                <tr>
+                    <th width="5%">Stunde</th>
+                    <th width="5%">Raum</th>
+                    <th width="5%">Klasse</th>
+                    <th width="5%">Fach</th>
+                    <th width="40%">Inhalt</th>
+                    <th width="40%">Notiz</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div><div class="expandable-panel" id="cp-1">
         <div class="expandable-panel-heading">
             <h2>Freitag<span class="icon-close-open"></span></h2>
         </div>
         <div class="expandable-panel-content">
-            <p>First Panel HTML...</p>
+            <table class="table-bordered table table-hover customTableStyle">
+                <thead>
+                <tr>
+                    <th width="5%">Stunde</th>
+                    <th width="5%">Raum</th>
+                    <th width="5%">Klasse</th>
+                    <th width="5%">Fach</th>
+                    <th width="40%">Inhalt</th>
+                    <th width="40%">Notiz</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div><div class="expandable-panel" id="cp-1">
         <div class="expandable-panel-heading">
             <h2>Samstag<span class="icon-close-open"></span></h2>
         </div>
         <div class="expandable-panel-content">
-            <p>First Panel HTML...</p>
+            <table class="table-bordered table table-hover customTableStyle">
+                <thead>
+                <tr>
+                    <th width="5%">Stunde</th>
+                    <th width="5%">Raum</th>
+                    <th width="5%">Klasse</th>
+                    <th width="5%">Fach</th>
+                    <th width="40%">Inhalt</th>
+                    <th width="40%">Notiz</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div><div class="expandable-panel" id="cp-1">
         <div class="expandable-panel-heading">
             <h2>Sonntag<span class="icon-close-open"></span></h2>
         </div>
         <div class="expandable-panel-content">
-            <p>First Panel HTML...</p>
+            <table class="table-bordered table table-hover customTableStyle">
+                <thead>
+                <tr>
+                    <th width="5%">Stunde</th>
+                    <th width="5%">Raum</th>
+                    <th width="5%">Klasse</th>
+                    <th width="5%">Fach</th>
+                    <th width="40%">Inhalt</th>
+                    <th width="40%">Notiz</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
