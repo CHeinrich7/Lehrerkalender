@@ -16,4 +16,9 @@ class DefaultController extends Controller
         var_dump($this->getUser()->getRoles()[0]);
         return $this->render('EducationCalendarBundle:Default:end.html.php');
     }
+
+    public function selectAction()
+    {
+        return $this->render('EducationCalendarBundle:Default:select.html.php');
+    }
 }
