@@ -27,7 +27,7 @@ Kalender
     <a href="/in/calendar"><h1 class="text-center">Kalender</h1></a>
 </div>
 <div class="col-xs-6">
-    <a href=""><h1 class="text-center">Benotung</h1></a>
+    <a href="/in/benotung"><h1 class="text-center">Benotung</h1></a>
 </div>
 <?php $slotsHelper->stop(); ?>
 
@@ -102,27 +102,61 @@ Kalender
                 <thead>
                 <tr>
                     <th>Stunde</th>
-                    <th>Fach</th>
+                    <th>Raum</th>
                     <th>Klasse</th>
                     <th>Fach</th>
-                    <th>Klasse</th>
+                    <th>Notiz</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>1</td>
-                    <td>ANW</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>Mary</td>
-                    <td>Moe</td>
-                    <td>mary@example.com</td>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td>July</td>
-                    <td>Dooley</td>
-                    <td>july@example.com</td>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 </tbody>
             </table>
