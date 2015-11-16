@@ -9,3 +9,7 @@ education_calendar_select:
 end_route:
     path:     /in
     defaults: { _controller: EducationCalendarBundle:Default:end }
+
+calendar_route:
+    path:     /in/calendar
+    defaults: { _controller: EducationCalendarBundle:Default:calendar }

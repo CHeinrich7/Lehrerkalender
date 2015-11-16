@@ -21,4 +21,7 @@ class DefaultController extends Controller
     {
         return $this->render('EducationCalendarBundle:Default:select.html.php');
     }
+    public function calendarAction() {
+        return $this->render('EducationCalendarBundle:Default:calendar.html.php');
+    }
 }
