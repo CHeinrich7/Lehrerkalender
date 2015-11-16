@@ -6,9 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    public function indexAction($name)
+    public function indexAction()
     {
-        return $this->render('EducationCalendarBundle:Default:index.html.php', array('name' => $name));
+        return $this->render('EducationCalendarBundle:Default:index.html.php');
     }
 
     public function endAction()

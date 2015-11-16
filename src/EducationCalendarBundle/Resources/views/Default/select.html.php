@@ -27,9 +27,25 @@ $view->extend('::base.html.php');
     </div>
 <?php $slotsHelper->stop(); ?>
 
-
-
 <?php $slotsHelper->start('content'); ?>
+
+<style>
+    .margin-top-30 {
+        margin-top: 30px;
+    }
+</style>
+
+<div class="container">
+    <button type="button">Klasse hinzufügen --> durch Panel zu ersetzen</button>
+</div>
+
+<div class="container margin-top-30">
+    <div class="list-group">
+        <a href="#" class="list-group-item">FIA32 - ANW</a>
+        <a href="#" class="list-group-item">FIA32 - ITK</a>
+    </div>
+</div>
+
 
 <?php $slotsHelper->stop(); ?>
 
