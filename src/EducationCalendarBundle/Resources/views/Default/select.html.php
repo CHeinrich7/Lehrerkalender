@@ -97,35 +97,6 @@ Klasse auswaehlen
         background-image: url(http://i.imgur.com/Ir4S1H7.png);
         right: 15px;
     }
-
-    .customTableStyle td {
-        text-align: center;
-    }
-
-    .customTableStyle {
-        margin-bottom: 0px;
-    }
-
-    .smallInput {
-        width: 50px;
-        border: none;
-    }
-
-    .smallTD {
-        padding: 5px 5px 5px 5px !important;
-        vertical-align: inherit !important;
-    }
-
-    .tableTextArea {
-        border: none;
-        margin: 0px;
-        height: 100%;
-        width: 100%;
-    }
-
-    .tableTextAreaTD {
-        padding: 5px 5px 5px 5px;
-    }
 </style>
 
 
@@ -135,8 +106,8 @@ Klasse auswaehlen
             <h2> Klasse hinzufügen<span class="icon-close-open"></span></h2>
         </div>
         <div class="expandable-panel-content">
-                <p><input type="text" class="form-control" placeholder="Klasse" aria-describedby="basic-addon1"></p>
-                <p><input type="text" class="form-control" placeholder="Fach" aria-describedby="basic-addon1"></p>
+                <p><input type="text" class="form-control" placeholder="Klasse" ></p>
+                <p><input type="text" class="form-control" placeholder="Fach"></p>
                 <p><button type="button" class="btn btn-default">Anlegen</button></p>
         </div>
     </div>
