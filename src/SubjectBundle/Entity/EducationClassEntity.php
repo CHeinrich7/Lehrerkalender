@@ -73,6 +73,8 @@ class EducationClassEntity extends SoftdeletableEntity
     public function setSubjects(Collection $subjects)
     {
         $this->subjects = $subjects;
+
+        return $this;
     }
 
     /**
@@ -91,6 +93,8 @@ class EducationClassEntity extends SoftdeletableEntity
     public function setStudents(Collection $students)
     {
         $this->students = $students;
+
+        return $this;
     }
 
     /**
@@ -109,5 +113,7 @@ class EducationClassEntity extends SoftdeletableEntity
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 }
