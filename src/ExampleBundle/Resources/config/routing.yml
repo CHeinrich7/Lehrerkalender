@@ -2,5 +2,9 @@ example_homepage:
     path:     /hello2/{name}
     defaults: { _controller: ExampleBundle:Default:index }
 
+example_calendar:
+    path:     /in/example/calendar
+    defaults: { _controller: ExampleBundle:Default:calendar}
+
 
 

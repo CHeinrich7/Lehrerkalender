@@ -10,7 +10,12 @@ class DefaultController extends Controller
     {
         return $this->render('ExampleBundle:Default:index.html.php', array('name' => $name));
     }
+
+    public function calendarAction() {
+        return $this->render('ExampleBundle:Default:calendar.html.php');
+    }
 }
+
 
 
 

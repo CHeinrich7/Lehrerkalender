@@ -19,12 +19,12 @@ $view->extend('::base.html.php');
 ?>
 
 <?php $slotsHelper->start('title'); ?>
-test
+Benotung
 <?php $slotsHelper->stop(); ?>
 
 <?php $slotsHelper->start('header'); ?>
 <div class="col-xs-6">
-    <a href=""><h1 class="text-center">Kalender</h1></a>
+    <a href="/in/calendar"><h1 class="text-center">Kalender</h1></a>
 </div>
 <div class="col-xs-6">
     <a href=""><h1 class="text-center">Benotung</h1></a>

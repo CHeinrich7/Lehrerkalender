@@ -1,7 +1,11 @@
 education_calendar_homepage:
-    path:     /in/{name}
+    path:     /in/benotung
     defaults: { _controller: EducationCalendarBundle:Default:index }
 
 end_route:
     path:     /in
     defaults: { _controller: EducationCalendarBundle:Default:end }
+
+calendar_route:
+    path:     /in/calendar
+    defaults: { _controller: EducationCalendarBundle:Default:calendar }
