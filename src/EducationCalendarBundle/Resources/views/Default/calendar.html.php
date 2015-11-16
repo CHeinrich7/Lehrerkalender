@@ -113,26 +113,30 @@ Kalender
     .tableTextAreaTD {
         padding: 5px 5px 5px 5px;
     }
+
 </style>
 <div class="container">
-    <div class="col-sm-6" style="height:130px;">
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker9'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar">
+    <div class="row">
+        <div class='col-sm-6 col-sm-offset-3'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" style="text-align: center"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
                     </span>
-                </span>
+                </div>
             </div>
         </div>
-    </div>
-    <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker9').datetimepicker({
-                viewMode: 'years'
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker({
+                    viewMode        : 'days',
+                    format          : 'DD.MM.YYYY',
+                    calendarWeeks   : true
+                });
             });
-        });
-    </script>
+        </script>
+    </div>
 </div>
 <div class="container">
     <div class="expandable-panel" id="cp-1">
@@ -1609,6 +1613,7 @@ Kalender
         panelinit();
 
     });
+
     <?php $slotsHelper->stop(); ?>
 
 </script>
