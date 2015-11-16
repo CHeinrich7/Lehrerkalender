@@ -113,8 +113,22 @@ Kalender
     .tableTextAreaTD {
         padding: 5px 5px 5px 5px;
     }
-</style>
 
+</style>
+<div class="container">
+    <div class="row">
+        <div class='col-sm-6 col-sm-offset-3'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" style="text-align: center"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="expandable-panel" id="cp-1">
         <div class="expandable-panel-heading">
@@ -336,83 +350,183 @@ Kalender
                 <tbody>
                 <tr>
                     <td>1</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>6</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>7</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>8</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>9</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -445,8 +559,12 @@ Kalender
                     <td class="smallTD">
                         <input type="text" class="smallInput"/>
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>2</td>
@@ -459,8 +577,12 @@ Kalender
                     <td class="smallTD">
                         <input type="text" class="smallInput"/>
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>3</td>
@@ -473,8 +595,12 @@ Kalender
                     <td class="smallTD">
                         <input type="text" class="smallInput"/>
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>4</td>
@@ -487,8 +613,12 @@ Kalender
                     <td class="smallTD">
                         <input type="text" class="smallInput"/>
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>5</td>
@@ -501,8 +631,12 @@ Kalender
                     <td class="smallTD">
                         <input type="text" class="smallInput"/>
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>6</td>
@@ -515,8 +649,12 @@ Kalender
                     <td class="smallTD">
                         <input type="text" class="smallInput"/>
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>7</td>
@@ -529,8 +667,12 @@ Kalender
                     <td class="smallTD">
                         <input type="text" class="smallInput"/>
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>8</td>
@@ -543,8 +685,12 @@ Kalender
                     <td class="smallTD">
                         <input type="text" class="smallInput"/>
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>9</td>
@@ -557,8 +703,12 @@ Kalender
                     <td class="smallTD">
                         <input type="text" class="smallInput"/>
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>10</td>
@@ -571,8 +721,12 @@ Kalender
                     <td class="smallTD">
                         <input type="text" class="smallInput"/>
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -596,85 +750,186 @@ Kalender
                 <tbody>
                 <tr>
                     <td>1</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>6</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>7</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>8</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>9</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 </tbody>
+            </table>
             </table>
         </div>
     </div><div class="expandable-panel" id="cp-1">
@@ -696,83 +951,183 @@ Kalender
                 <tbody>
                 <tr>
                     <td>1</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>6</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>7</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>8</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>9</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -796,83 +1151,183 @@ Kalender
                 <tbody>
                 <tr>
                     <td>1</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>6</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>7</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>8</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>9</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -896,83 +1351,183 @@ Kalender
                 <tbody>
                 <tr>
                     <td>1</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>6</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>7</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>8</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>9</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td>10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="smallTD">
+                        <input type="text" class="smallInput"/>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
+                    <td class="tableTextAreaTD">
+                        <textarea class="tableTextArea" rows="1"></textarea>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -1048,7 +1603,15 @@ Kalender
         // run once window has loaded
         panelinit();
 
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                viewMode        : 'days',
+                format          : 'DD.MM.YYYY',
+                calendarWeeks   : true
+            });
+        });
     });
+
     <?php $slotsHelper->stop(); ?>
 
 </script>
