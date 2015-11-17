@@ -18,6 +18,7 @@ $slotsHelper = $view['slots']; /* @var $slotsHelper SlotsHelper */
 
     <title><?php $slotsHelper->output('title') ?> - Lehrerkalender</title>
 
+    <link href="/css/style.css" rel="stylesheet">
     <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/bootstrap-datetimepicker.css" rel="stylesheet">
     <link href="/css/chosen.css" rel="stylesheet">
