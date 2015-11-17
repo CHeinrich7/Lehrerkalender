@@ -11,8 +11,9 @@ class CalendarController extends Controller
         $em = $this->get('doctrine.orm.default_entity_manager');
 
         $subjectEntities = $em->getRepository('SubjectBundle:SubjectEntity')->findAll();
+        $classEntities = $em->getRepository('SubjectBundle:EducationClassEntity')->findAll();
 
-        return $this->render('EducationCalendarBundle:Calendar:selectClass.html.php', array('subjectEntities' => $subjectEntities));
+        return $this->render('EducationCalendarBundle:Calendar:selectClass.html.php', array('subjectEntities' => $subjectEntities, 'classEntities' => $classEntities));
     }
     public function calendarAction()
     {
