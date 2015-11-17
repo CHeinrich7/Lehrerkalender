@@ -96,17 +96,34 @@ Klasse auswaehlen
     }
 </style>
 
-
 <div class="container">
-    <div class="expandable-panel" id="cp-1">
-        <div class="expandable-panel-heading">
-            <h2> Klasse hinzufügen<span class="icon-close-open"></span></h2>
-        </div>
-        <div class="expandable-panel-content">
-                <p><input type="text" class="form-control" placeholder="Klasse" ></p>
-                <p><input type="text" class="form-control" placeholder="Fach"></p>
-                <p><button type="button" class="btn btn-default">Anlegen</button></p>
-        </div>
+    <div class="panel-group accordion" id="accordion" role="tablist" aria-multiselectable="true">
+        <?php
+        $datas = [
+            [
+                'title' => 'Klasse anlegen',
+                'content' => '<p><input type="text" class="form-control" placeholder="Klasse" ></p>
+                            <p><input type="text" class="form-control" placeholder="Fach"></p>
+                            <p><button type="button" class="btn btn-default">Anlegen</button></p>'
+            ],
+        ];
+        ?>
+        <?php foreach ($datas as $key => $data): ?>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading<?php echo $key; ?>">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>"
+                       aria-expanded="false" aria-controls="collapse<?php echo $key; ?>">
+                        <h4 class="panel-title"><?php echo $data['title']; ?></h4>
+                    </a>
+                </div>
+                <div id="collapse<?php echo $key; ?>" class="panel-collapse collapse" role="tabpanel"
+                     aria-labelledby="heading<?php echo $key; ?>">
+                    <div class="panel-body">
+                        <?php echo $data['content']; ?>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
 
 
@@ -125,77 +142,4 @@ Klasse auswaehlen
 
 
 <?php $slotsHelper->stop(); ?>
-
-
-<script type="text/javascript">
-    <?php $slotsHelper->start('jQuery'); ?>
-    $(function () {
-        /*-------------------- EXPANDABLE PANELS ----------------------*/
-        var panelspeed = 500; //panel animate speed in milliseconds
-        var totalpanels = 3; //total number of collapsible panels
-        var defaultopenpanel = 0; //leave 0 for no panel open
-        var accordian = false; //set panels to behave like an accordian, with one panel only ever open at once
-
-        var panelheight = new Array();
-        var currentpanel = defaultopenpanel;
-        var iconheight = parseInt($('.icon-close-open').css('height'));
-
-        //Initialise collapsible panels
-        function panelinit() {
-            var $elm;
-            for (var i = 1; i <= totalpanels; i++) {
-                $elm = $('#cp-' + i);
-                panelheight[i] = parseInt($elm.find('.expandable-panel-content').css('height'));
-                $elm.find('.expandable-panel-content').css('margin-top', -panelheight[i]);
-                if (defaultopenpanel == i) {
-                    $elm.find('.icon-close-open').css('background-position', '0px -' + iconheight + 'px');
-                    $elm.find('.expandable-panel-content').css('margin-top', 0);
-                }
-            }
-        }
-
-
-        $('.expandable-panel-heading').click(function () {
-            var obj = $(this).next();
-            var objid = parseInt($(this).parent().attr('ID').substr(3, 2));
-            currentpanel = objid;
-            if (accordian == true) {
-                resetpanels();
-            }
-
-            if (parseInt(obj.css('margin-top')) <= (panelheight[objid] * -1)) {
-                obj.clearQueue();
-                obj.stop();
-                obj.prev().find('.icon-close-open').css('background-position', '0px -' + iconheight + 'px');
-                obj.animate({
-                    'margin-top': 0
-                }, panelspeed);
-            } else {
-                obj.clearQueue();
-                obj.stop();
-                obj.prev().find('.icon-close-open').css('background-position', '0px 0px');
-                obj.animate({
-                    'margin-top': (panelheight[objid] * -1)
-                }, panelspeed);
-            }
-        });
-
-        function resetpanels() {
-            for (var i = 1; i <= totalpanels; i++) {
-                if (currentpanel != i) {
-                    $('#cp-' + i).find('.icon-close-open').css('background-position', '0px 0px');
-                    $('#cp-' + i).find('.expandable-panel-content').animate({
-                        'margin-top': -panelheight[i]
-                    }, panelspeed);
-                }
-            }
-        }
-
-        // run once window has loaded
-        panelinit();
-
-    });
-    <?php $slotsHelper->stop(); ?>
-
-</script>
 
