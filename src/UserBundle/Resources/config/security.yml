@@ -22,7 +22,7 @@ security:
             form_login:
                 login_path:  user_login
                 check_path:  user_check
-                default_target_path: /in/admin
+                default_target_path: education_calendar_overview
                 username_parameter: user_logintype[_username]
                 password_parameter: user_logintype[_password]
             access_denied_handler:  security.access_denied.handler
