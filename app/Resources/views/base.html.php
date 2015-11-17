@@ -66,7 +66,8 @@ $slotsHelper = $view['slots']; /* @var $slotsHelper SlotsHelper */
         $( document ).ready(function() {
             var options = {
                     max_selected_options:       1,
-                    disable_search_threshold:   10
+                    disable_search_threshold:   10,
+                    width:                      '100%'
                 },
                 $inputs = $('.chosen');
 
