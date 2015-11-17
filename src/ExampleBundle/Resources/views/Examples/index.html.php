@@ -1,3 +1,118 @@
 <?php
-    echo 'Hello ' . $name;
+/**
+ * @var $app            Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables
+ * @var $view           Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine
+ * @var $slotsHelper    Symfony\Component\Templating\Helper\SlotsHelper
+ * @var $routerHelper   Symfony\Bundle\FrameworkBundle\Templating\Helper\RouterHelper
+ *
+ * @var $error          Symfony\Component\Security\Core\Exception\AuthenticationServiceException
+ *
+ * @var $name           string
+ */
+
+$slotsHelper = $view['slots'];
+$routerHelper = $view['router'];
+$formHelper = $view['form'];
+
+$view->extend('::loggedIn.html.php');
 ?>
+
+<?php $slotsHelper->start('title'); ?>
+Kalender
+<?php $slotsHelper->stop(); ?>
+
+
+<?php $slotsHelper->start('content'); ?>
+
+<div class="container">
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-12"><h2><?php echo 'Hello ' . $name; ?></h2></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <form class="form-horizontal">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="MyFancyInput" class="control-label col-sm-3">MyFancyInput</label>
+                        <div class="col-sm-9">
+                            <select name="MyFancyInput" id="MyFancyInput" class="form-control" autocomplete="off">
+                                <option value="1">Köln</option>
+                                <option value="2">Kiel</option>
+                                <option value="3">Düsseldorf</option>
+                                <option value="4">Berlin</option>
+                                <option value="5">München</option>
+                                <option value="6">Stuttgart</option>
+                                <option value="7">Hamburg</option>
+                                <option value="8">Bremen</option>
+                                <option value="9">Hürth</option>
+                                <option value="10">Öskirschen</option>
+                                <option value="11">Öskirschen</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel-group accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                <?php
+                    $datas = [
+                        [
+                            'title'     => 'My Title1',
+                            'content'   => 'My Content1'
+                        ], [
+                            'title'     => 'My Title2',
+                            'content'   => 'My Content2'
+                        ], [
+                            'title'     => 'My Title3',
+                            'content'   => 'My Content3'
+                        ],
+                    ];
+                ?>
+                <?php foreach($datas as $key => $data): ?>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading<?php echo $key; ?>">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>" aria-expanded="false" aria-controls="collapse<?php echo $key; ?>">
+                            <h4 class="panel-title"><?php echo $data['title']; ?></h4>
+                        </a>
+                    </div>
+                    <div id="collapse<?php echo $key; ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<?php echo $key; ?>">
+                        <div class="panel-body">
+                            <?php echo $data['content']; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php $slotsHelper->stop(); ?>
+
+<script>
+    <?php $slotsHelper->start('jQuery'); ?>
+    var options = {
+            max_selected_options:       1,
+            disable_search_threshold:   10
+        },
+        $input = $('#MyFancyInput');
+
+    $input
+        .chosen(options)
+        .parent()
+        .on('keydown', function(event) {
+            if(event.keyCode === 13) {
+                var $defaultInput = $(this).find('input');
+
+                $input.find('.optional').remove();
+
+                $input.append('<option value="" class="optional" selected="selected">'+ $defaultInput.val() +'</option>');
+
+                $input.trigger('chosen:updated');
+            }
+        });
+    <?php $slotsHelper->stop(); ?>
+</script>

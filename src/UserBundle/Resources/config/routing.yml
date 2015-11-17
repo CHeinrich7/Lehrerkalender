@@ -1,6 +1,6 @@
 user_login:
     path:     /login
-    defaults: { _controller: UserBundle:Default:login }
+    defaults: { _controller: UserBundle:Register:login }
 
 user_check:
     path:     /user_check

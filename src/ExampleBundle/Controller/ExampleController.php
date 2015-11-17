@@ -11,7 +11,8 @@ class ExampleController extends Controller
         return $this->render('ExampleBundle:Examples:index.html.php', array('name' => $name));
     }
 
-    public function calendarAction() {
+    public function calendarAction()
+    {
         return $this->render('ExampleBundle:Examples:calendar.html.php');
     }
 }

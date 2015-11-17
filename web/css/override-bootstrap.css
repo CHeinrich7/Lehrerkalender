@@ -1,0 +1,12 @@
+.accordion .panel-heading {
+    padding: 0;
+}
+
+.accordion .panel-heading .panel-title {
+    padding:10px 15px;
+}
+
+.accordion .panel-heading a {
+    color: black;
+    text-decoration: none;
+}

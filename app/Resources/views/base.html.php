@@ -13,13 +13,16 @@ $slotsHelper = $view['slots']; /* @var $slotsHelper SlotsHelper */
     <script src="/js/bootstrap.js"></script>
     <script src="/js/moment.js"></script>
     <script src="/js/bootstrap-datetimepicker.js"></script>
+    <script src="/js/chosen.js"></script>
 
 
     <title><?php $slotsHelper->output('title') ?> - Lehrerkalender</title>
 
     <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="/css/chosen.css" rel="stylesheet">
 
+    <link href="/css/override-bootstrap.css" rel="stylesheet">
     <link href="/css/helper.css" rel="stylesheet">
     <?php $slotsHelper->output('styles', ''); ?>
 

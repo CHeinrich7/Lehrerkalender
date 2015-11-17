@@ -1,30 +1,27 @@
 <?php
 /**
- * Created by PhpStorm.
  * User: Daniel
  * Date: 16.11.2015
  * Time: 11:18
+ */
+
+/**
+ * @var $app            Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables
+ * @var $view           Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine
+ * @var $slotsHelper    Symfony\Component\Templating\Helper\SlotsHelper
+ * @var $routerHelper   Symfony\Bundle\FrameworkBundle\Templating\Helper\RouterHelper
  */
 
 $slotsHelper = $view['slots'];
 $routerHelper = $view['router'];
 $formHelper = $view['form'];
 
-$view->extend('::base.html.php');
+$view->extend('::loggedIn.html.php');
 
 ?>
 
 <?php $slotsHelper->start('title'); ?>
 Klasse auswaehlen
-<?php $slotsHelper->stop(); ?>
-
-<?php $slotsHelper->start('header'); ?>
-<div class="col-xs-6">
-    <a href="/in/calendar"><h1 class="text-center">Kalender</h1></a>
-</div>
-<div class="col-xs-6">
-    <a href="/in/select"><h1 class="text-center">Benotung</h1></a>
-</div>
 <?php $slotsHelper->stop(); ?>
 
 <?php $slotsHelper->start('content'); ?>
@@ -128,6 +125,12 @@ Klasse auswaehlen
             </div>
         <?php endforeach; ?>
     </div>
+
+
+
+
+
+
 </div>
 
 <div class="container margin-top-30">

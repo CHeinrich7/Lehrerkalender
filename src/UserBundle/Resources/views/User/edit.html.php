@@ -15,7 +15,7 @@ $formHelper = $view['form'];
 
 $userFormView = $userForm->createView();
 
-$view->extend('::base.html.php');
+$view->extend('::loggedIn.html.php');
 $formHelper->setTheme($userFormView, ':Form');
 
 ?>

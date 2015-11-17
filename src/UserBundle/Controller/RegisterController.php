@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use UserBundle\Entity\User;
 
-class DefaultController extends Controller
+class RegisterController extends Controller
 {
 
     public function loginAction(Request $request)
@@ -31,7 +31,7 @@ class DefaultController extends Controller
 //            'csrf_protection' => false
         ));
 
-        return $this->render('UserBundle:Default:Login.html.php', array(
+        return $this->render('UserBundle:Register:Login.html.php', array(
             // last username entered by the user
             'last_username' => $helper->getLastUsername(),
             'error'         => $helper->getLastAuthenticationError(),
