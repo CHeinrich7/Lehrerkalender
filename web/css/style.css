@@ -1,0 +1,28 @@
+.calendarViewCustomTable td {
+    text-align: center;
+}
+
+.calendarViewCustomTable {
+    margin-bottom: 0px;
+}
+
+.calendarViewSmallInput {
+    width: 50px;
+    border: none;
+}
+
+.calendarViewSmallTD {
+    padding: 5px 5px 5px 5px !important;
+    vertical-align: inherit !important;
+}
+
+.calendarViewTableTextArea {
+    border: none;
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+.calendarViewTableTextAreaTD {
+    padding: 5px 5px 5px 5px;
+}
