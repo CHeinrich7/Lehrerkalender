@@ -65,7 +65,8 @@ $slotsHelper = $view['slots']; /* @var $slotsHelper SlotsHelper */
             var options = {
                     max_selected_options:       1,
                     disable_search_threshold:   0,
-                    width:                      '100%'
+                    width:                      '100%',
+                    no_results_text: "[Enter] für neuen Eintrag"
                 },
 
             $input = $(this);
