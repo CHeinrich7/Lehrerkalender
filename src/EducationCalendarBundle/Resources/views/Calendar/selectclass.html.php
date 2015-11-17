@@ -107,7 +107,7 @@ Klasse auswaehlen
 <p><div class="container">
     <div class="row">
         <div class="col-xs-4">
-            <select name="MyFancyInput" id="MyFancyInput" class="form-control" autocomplete="off">
+            <select name="MyFancyInput" id="MyFancyInput" class="form-control chosen" autocomplete="off">
                 <option value="1">Köln</option>
                 <option value="2">Kiel</option>
                 <option value="3">Düsseldorf</option>
@@ -122,7 +122,7 @@ Klasse auswaehlen
             </select>
         </div>
         <div class="col-xs-4">
-            <select name="MyFancyInput" id="MyFancyInput2" class="form-control" autocomplete="off">
+            <select name="MyFancyInput" id="MyFancyInput2" class="form-control chosen" autocomplete="off">
                 <option value="1">Köln</option>
                 <option value="2">Kiel</option>
                 <option value="3">Düsseldorf</option>
