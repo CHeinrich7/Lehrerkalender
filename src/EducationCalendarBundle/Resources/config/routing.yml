@@ -1,3 +1,15 @@
+education_calendar_homepage:
+    path:     /in/benotung
+    defaults: { _controller: EducationCalendarBundle:Default:index }
+
+education_calendar_select:
+    path:     /in/select
+    defaults: { _controller: EducationCalendarBundle:Default:select }
+
 end_route:
     path:     /in
     defaults: { _controller: EducationCalendarBundle:Default:end }
+
+calendar_route:
+    path:     /in/calendar
+    defaults: { _controller: EducationCalendarBundle:Default:calendar }
