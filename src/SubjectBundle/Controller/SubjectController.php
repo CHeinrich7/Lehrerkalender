@@ -17,17 +17,10 @@ class SubjectController extends Controller
 
         $em = $this->get('doctrine.orm.default_entity_manager');
 
-        $subjectEntity = null;
+        $subjectEntity = new SubjectEntity();
+        $subjectEntity->setName($subject['key']);
+
         $edClassEntity = null;
-
-        if(!empty($subject['val'])) {
-            $subjectEntity = $em->getRepository('SubjectBundle:SubjectEntity')->find($subject['val']);
-        }
-
-        if($subjectEntity instanceof SubjectEntity !== true) {
-            $subjectEntity = new SubjectEntity();
-            $subjectEntity->setName($subject['key']);
-        }
 
         if(!empty($edClass['val'])) {
             $edClassEntity = $em->getRepository('SubjectBundle:EducationClassEntity')->find($edClass['val']);
