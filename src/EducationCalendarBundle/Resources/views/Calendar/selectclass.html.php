@@ -64,8 +64,6 @@ Klasse auswaehlen
             <div id="collapseNew" class="panel-collapse collapse" role="tabpanel"
                  aria-labelledby="headingNew">
                 <div class="panel-body">
-                    <div class="container">
-                        <div class="row">
                             <form id="newClassForm" action="#" class="form-horizontal">
                                 <div class="col-xs-4">
                                     <select id="educationClass" name="education_class" class="form-control chosen"
@@ -91,8 +89,6 @@ Klasse auswaehlen
                                     <button type="submit" class="btn btn-default">Anlegen</button>
                                 </div>
                             </form>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
