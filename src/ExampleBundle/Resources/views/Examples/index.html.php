@@ -91,28 +91,3 @@ Kalender
     </div>
 </div>
 <?php $slotsHelper->stop(); ?>
-
-<script>
-    <?php $slotsHelper->start('jQuery'); ?>
-    var options = {
-            max_selected_options:       1,
-            disable_search_threshold:   10
-        },
-        $input = $('#MyFancyInput');
-
-    $input
-        .chosen(options)
-        .parent()
-        .on('keydown', function(event) {
-            if(event.keyCode === 13) {
-                var $defaultInput = $(this).find('input');
-
-                $input.find('.optional').remove();
-
-                $input.append('<option value="" class="optional" selected="selected">'+ $defaultInput.val() +'</option>');
-
-                $input.trigger('chosen:updated');
-            }
-        });
-    <?php $slotsHelper->stop(); ?>
-</script>
