@@ -27,8 +27,8 @@ Kalender
     <div class="row">
         <div class='col-sm-6 col-sm-offset-3'>
             <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" style="text-align: center"/>
+                <div class='input-group date' id='calendarViewDatePicker'>
+                    <input id='calendarViewDatePicker'type='text' class="form-control" style="text-align: center"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -100,11 +100,14 @@ Kalender
 
 <?php $slotsHelper->start('jQuery'); ?>
     $(function () {
-        $('#datetimepicker1').datetimepicker({
+        $('#calendarViewDatePicker').datetimepicker({
             format          : 'DD.MM.YYYY',
             useCurrent      : true,
             calendarWeeks   : true,
             viewMode        : 'days'
+        });
+        $('#calendarViewDatePicker').on("dp.change",function(e){
+            console.log(e.date._d);
         });
     });
 <?php $slotsHelper->stop(); ?>
