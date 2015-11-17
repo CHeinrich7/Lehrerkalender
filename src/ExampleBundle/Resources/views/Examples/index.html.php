@@ -26,7 +26,7 @@ Kalender
 
 <div class="container">
     <div class="row" style="margin-bottom: 20px;">
-        <div class="col-sm-12"><h2><?php echo 'Hello ' . $name; ?></h2></div>
+        <div class="col-sm-12"><?php echo 'Hello ' . $name; ?></div>
     </div>
     <div class="row">
         <div class="col-xs-6">
@@ -35,7 +35,7 @@ Kalender
                     <div class="form-group">
                         <label for="MyFancyInput" class="control-label col-sm-3">MyFancyInput</label>
                         <div class="col-sm-9">
-                            <select name="MyFancyInput" id="MyFancyInput" class="form-control" autocomplete="off">
+                            <select name="MyFancyInput" id="MyFancyInput" class="form-control chosen" autocomplete="off">
                                 <option value="1">Köln</option>
                                 <option value="2">Kiel</option>
                                 <option value="3">Düsseldorf</option>
@@ -70,7 +70,7 @@ Kalender
                             'title'     => 'My Title3',
                             'content'   => 'My Content3'
                         ],
-                    ];
+                    ]
                 ?>
                 <?php foreach($datas as $key => $data): ?>
                 <div class="panel panel-default">
@@ -91,28 +91,3 @@ Kalender
     </div>
 </div>
 <?php $slotsHelper->stop(); ?>
-
-<script>
-    <?php $slotsHelper->start('jQuery'); ?>
-    var options = {
-            max_selected_options:       1,
-            disable_search_threshold:   10
-        },
-        $input = $('#MyFancyInput');
-
-    $input
-        .chosen(options)
-        .parent()
-        .on('keydown', function(event) {
-            if(event.keyCode === 13) {
-                var $defaultInput = $(this).find('input');
-
-                $input.find('.optional').remove();
-
-                $input.append('<option value="" class="optional" selected="selected">'+ $defaultInput.val() +'</option>');
-
-                $input.trigger('chosen:updated');
-            }
-        });
-    <?php $slotsHelper->stop(); ?>
-</script>

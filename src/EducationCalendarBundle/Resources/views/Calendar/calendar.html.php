@@ -15,6 +15,7 @@ $routerHelper = $view['router'];
 $formHelper = $view['form'];
 
 $view->extend('::loggedIn.html.php');
+
 ?>
 
 <?php $slotsHelper->start('title'); ?>

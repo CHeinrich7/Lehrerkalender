@@ -62,5 +62,35 @@ $slotsHelper = $view['slots']; /* @var $slotsHelper SlotsHelper */
         });
     })(document, jQuery);
 </script>
+<script>
+    (function(document, $) {
+        $( document ).ready(function() {
+            var options = {
+                    max_selected_options:       1,
+                    disable_search_threshold:   10,
+                    width:                      '100%'
+                },
+                $inputs = $('.chosen');
+
+            $inputs.each(function() {
+                $input = $(this);
+
+                $input.chosen(options)
+                    .parent()
+                    .on('keydown', function(event) {
+                        if(event.keyCode === 13) {
+                            var $defaultInput = $(this).find('input');
+
+                            $input.find('.optional').remove();
+
+                            $input.append('<option value="" class="optional" selected="selected">'+ $defaultInput.val() +'</option>');
+
+                            $input.trigger('chosen:updated');
+                        }
+                    });
+            });
+        });
+    })(document, jQuery);
+</script>
 </body>
 </html>
