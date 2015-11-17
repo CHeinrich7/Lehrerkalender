@@ -15,7 +15,13 @@ use UserBundle\Entity\SoftdeletableEntity;
 /**
  * @ORM\Entity(repositoryClass="SubjectBundle\Entity\Repository\SubjectRepository")
  *
- * @ORM\Table(name="subject")
+ * @ORM\Table(
+ *     name="subject",
+ *     uniqueConstraints={@ORM\UniqueConstraint(
+ *          name="user_class_subject",
+ *          columns={"name", "education_class_id", "created_by_id"}
+ *      )}
+ * )
  */
 class SubjectEntity extends SoftdeletableEntity
 {

@@ -20,6 +20,6 @@ class SubjectRepository extends EntityRepository
 
         $qb->distinct(true);
 
-        $qb->getQuery()->getResult();
+        return $qb->getQuery()->getResult();
     }
 }
