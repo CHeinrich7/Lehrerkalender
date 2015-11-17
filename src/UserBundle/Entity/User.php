@@ -19,7 +19,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @UniqueEntity(fields="username", message="There can not be one User twice in Database!")
  */
-class User  implements UserInterface
+class User implements UserInterface
 {
     /**
      * @ORM\Column(type="integer")
