@@ -9,11 +9,12 @@ services:
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
 
     gedmo.listener.blameable:
-            class: Gedmo\Blameable\BlameableListener
+            class: UserBundle\Services\BlameableListener
             tags:
                 - { name: doctrine.event_subscriber, connection: default }
             calls:
                 - [ setAnnotationReader, [ @annotation_reader ] ]
+                - [ setUserValue, [ @security.token_storage ] ]
 
     gedmo.listener.timestampable:
             class: Gedmo\Timestampable\TimestampableListener
