@@ -16,7 +16,7 @@ class SubjectRepository extends EntityRepository
     public function findAllDistinct()
     {
         /** @var QueryBuilder $qb */
-        $qb = $this->createNamedQuery('s');
+        $qb = $this->createQueryBuilder('s');
 
         $qb->distinct(true);
 
