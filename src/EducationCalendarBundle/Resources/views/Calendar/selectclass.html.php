@@ -102,10 +102,44 @@ Klasse auswaehlen
         $datas = [
             [
                 'title' => 'Klasse anlegen',
-                'content' => '<p><input type="text" class="form-control" placeholder="Klasse" ></p>
-                            <p><input type="text" class="form-control" placeholder="Fach"></p>
-                            <p><button type="button" class="btn btn-default">Anlegen</button></p>'
+                'content' => '
+
+<p><div class="container">
+    <div class="row">
+        <div class="col-xs-4">
+            <select name="MyFancyInput" id="MyFancyInput" class="form-control chosen" autocomplete="off">
+                <option value="1">Köln</option>
+                <option value="2">Kiel</option>
+                <option value="3">Düsseldorf</option>
+                <option value="4">Berlin</option>
+                <option value="5">München</option>
+                <option value="6">Stuttgart</option>
+                <option value="7">Hamburg</option>
+                <option value="8">Bremen</option>
+                <option value="9">Hürth</option>
+                <option value="10">Öskirschen</option>
+                <option value="11">Öskirschen</option>
+            </select>
+        </div>
+        <div class="col-xs-4">
+            <select name="MyFancyInput" id="MyFancyInput2" class="form-control chosen" autocomplete="off">
+                <option value="1">Köln</option>
+                <option value="2">Kiel</option>
+                <option value="3">Düsseldorf</option>
+                <option value="4">Berlin</option>
+                <option value="5">München</option>
+                <option value="6">Stuttgart</option>
+                <option value="7">Hamburg</option>
+                <option value="8">Bremen</option>
+                <option value="9">Hürth</option>
+                <option value="10">Öskirschen</option>
+                <option value="11">Öskirschen</option>
+            </select>
+        </div>
+        <div class="col-xs-4"><button type="button" class="btn btn-default">Anlegen</button></div>
+    </div></p>'
             ],
+
         ];
         ?>
         <?php foreach ($datas as $key => $data): ?>
@@ -127,13 +161,9 @@ Klasse auswaehlen
     </div>
 
 
-
-
-
-
 </div>
 
-<div class="container margin-top-30">
+<div class="container margin-top-30" style="margin-left: -15px">
     <div class="list-group">
         <a href="#" class="list-group-item">FIA32 - ANW</a>
         <a href="#" class="list-group-item">FIA32 - ITK</a>
