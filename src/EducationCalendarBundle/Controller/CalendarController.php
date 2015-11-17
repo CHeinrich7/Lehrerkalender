@@ -8,7 +8,11 @@ class CalendarController extends Controller
 {
     public function selectAction()
     {
-        return $this->render('EducationCalendarBundle:Calendar:selectClass.html.php');
+        $em = $this->get('doctrine.orm.default_entity_manager');
+
+        $subjectEntities = $em->getRepository('SubjectBundle:SubjectEntity')->findAll();
+
+        return $this->render('EducationCalendarBundle:Calendar:selectClass.html.php', array('subjectEntities' => $subjectEntities));
     }
     public function calendarAction()
     {

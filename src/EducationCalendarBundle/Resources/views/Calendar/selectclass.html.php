@@ -101,26 +101,10 @@ Klasse auswaehlen
 
 <div class="container margin-top-30">
     <div class="list-group">
-        <?php
-        $educationClasses = [
-            [
-                'class' => 'FIA32',
-                'subject' => 'ITK'
-            ],
-            [
-                'class' => 'FIS33',
-                'subject' => 'ITK'
-            ],
-            [
-                'class' => 'FIA32',
-                'subject' => 'ANW'
-            ],
-        ]
-        ?>
-        <?php foreach ($educationClasses as $class): ?>
-            <a href="<?php echo $routerHelper->generate('mark_overview', ['subject' => 1]); ?>"
+        <?php foreach ($subjectEntities as $entity): /** @var $entity \SubjectBundle\Entity\SubjectEntity */?>
+            <a href="<?php echo $routerHelper->generate('mark_overview', [ 'subject' => $entity->getId() ]); ?>"
                class="list-group-item">
-                <?php echo sprintf('%s - %s', $class['class'], $class['subject']); ?>
+                <?php echo sprintf('%s - %s', $entity->getEducationClass()->getName(), $entity->getName()); ?>
             </a>
         <?php endforeach; ?>
     </div>
