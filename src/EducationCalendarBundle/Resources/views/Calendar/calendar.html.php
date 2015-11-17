@@ -98,3 +98,13 @@ Kalender
 
 <?php $slotsHelper->stop(); ?>
 
+<?php $slotsHelper->start('jQuery'); ?>
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+            format          : 'DD.MM.YYYY',
+            useCurrent      : true,
+            calendarWeeks   : true,
+            viewMode        : 'days'
+        });
+    });
+<?php $slotsHelper->stop(); ?>

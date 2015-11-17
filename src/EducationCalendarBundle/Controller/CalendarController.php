@@ -64,6 +64,38 @@ class CalendarController extends Controller
                         'inhalt' => '',
                         'notiz' => ''
                     ],
+                    [
+                        'stunde' => '7',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '8',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '9',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '10',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ]
                 ]
             ], [
                 'title' => 'Dienstag',
@@ -110,6 +142,38 @@ class CalendarController extends Controller
                     ],
                     [
                         'stunde' => '6',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '7',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '8',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '9',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '10',
                         'raum' => '',
                         'klasse' => '',
                         'fach' => '',
@@ -167,6 +231,38 @@ class CalendarController extends Controller
                         'fach' => '',
                         'inhalt' => '',
                         'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '7',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '8',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '9',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '10',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
                     ]
                 ]
             ], [
@@ -214,6 +310,38 @@ class CalendarController extends Controller
                     ],
                     [
                         'stunde' => '6',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '7',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '8',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '9',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '10',
                         'raum' => '',
                         'klasse' => '',
                         'fach' => '',
@@ -271,6 +399,38 @@ class CalendarController extends Controller
                         'fach' => '',
                         'inhalt' => '',
                         'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '7',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '8',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '9',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '10',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
                     ]
                 ]
             ], [
@@ -323,6 +483,38 @@ class CalendarController extends Controller
                         'fach' => '',
                         'inhalt' => '',
                         'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '7',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '8',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '9',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '10',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
                     ]
                 ]
             ], [
@@ -370,6 +562,38 @@ class CalendarController extends Controller
                     ],
                     [
                         'stunde' => '6',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '7',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '8',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '9',
+                        'raum' => '',
+                        'klasse' => '',
+                        'fach' => '',
+                        'inhalt' => '',
+                        'notiz' => ''
+                    ],
+                    [
+                        'stunde' => '10',
                         'raum' => '',
                         'klasse' => '',
                         'fach' => '',
