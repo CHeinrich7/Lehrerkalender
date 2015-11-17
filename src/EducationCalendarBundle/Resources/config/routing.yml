@@ -5,8 +5,8 @@ start:
         route:        education_calendar_overview
         permanent:    true
 
-education_calendar_select:
-    path:     /in/select
+education_calendar_select_class:
+    path:     /in/classes
     defaults: { _controller: EducationCalendarBundle:Calendar:select }
 
 education_calendar_overview:

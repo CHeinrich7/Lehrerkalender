@@ -14,21 +14,11 @@ $slotsHelper = $view['slots'];
 $routerHelper = $view['router'];
 $formHelper = $view['form'];
 
-$view->extend('::base.html.php');
-
+$view->extend('::loggedIn.html.php');
 ?>
 
 <?php $slotsHelper->start('title'); ?>
 Kalender
-<?php $slotsHelper->stop(); ?>
-
-<?php $slotsHelper->start('header'); ?>
-<div class="col-xs-6">
-    <a href="/in/calendar"><h1 class="text-center">Kalender</h1></a>
-</div>
-<div class="col-xs-6">
-    <a href="/in/select"><h1 class="text-center">Benotung</h1></a>
-</div>
 <?php $slotsHelper->stop(); ?>
 
 
