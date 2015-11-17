@@ -45,8 +45,9 @@ Klasse auswaehlen
                                     <select id="educationClass" name="education_class" class="form-control chosen"
                                             autocomplete="off">
                                         <?php
-                                        foreach ($allClasses['content']['classes'] as $key => $class) {
-                                            echo sprintf('<option value="%s">%s</option>', $key, $class);
+                                        foreach ($classEntities as $class) {
+                                            /** @var $class \SubjectBundle\Entity\EducationClassEntity */
+                                            echo sprintf('<option value="%s">%s</option>', $class->getId(), $class->getName());
                                         }
                                         ?>
                                     </select>

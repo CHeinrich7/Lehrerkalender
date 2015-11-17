@@ -13,7 +13,7 @@ class CalendarController extends Controller
         $subjectEntities = $em->getRepository('SubjectBundle:SubjectEntity')->findAllDistinct();
         $classEntities = $em->getRepository('SubjectBundle:EducationClassEntity')->findAll();
 
-        return $this->render('EducationCalendarBundle:Calendar:selectClass.html.php', array('subjectEntities' => $subjectEntities));
+        return $this->render('EducationCalendarBundle:Calendar:selectClass.html.php', array('subjectEntities' => $subjectEntities, 'classEntities' => $classEntities));
     }
     public function calendarAction()
     {
