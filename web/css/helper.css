@@ -96,3 +96,7 @@
 .text-center-important {
     text-align: center !important;
 }
+
+.pointer {
+    cursor: pointer;
+}
