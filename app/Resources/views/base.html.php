@@ -11,19 +11,14 @@ $slotsHelper = $view['slots']; /* @var $slotsHelper SlotsHelper */
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.js"></script>
-    <script src="/js/moment.js"></script>
-    <script src="/js/bootstrap-datetimepicker.js"></script>
-    <script src="/js/chosen.js"></script>
+    <?php $slotsHelper->output('header-js') ?>
 
 
     <title><?php $slotsHelper->output('title') ?> - Lehrerkalender</title>
 
-    <link href="/css/style.css" rel="stylesheet">
     <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/css/bootstrap-datetimepicker.css" rel="stylesheet">
-    <link href="/css/chosen.css" rel="stylesheet">
 
-    <link href="/css/override-bootstrap.css" rel="stylesheet">
+    <?php $slotsHelper->output('header-css') ?>
     <link href="/css/helper.css" rel="stylesheet">
     <?php $slotsHelper->output('styles', ''); ?>
 
@@ -91,7 +86,7 @@ $slotsHelper = $view['slots']; /* @var $slotsHelper SlotsHelper */
         }
 
         $( document ).ready(function() {
-            $('.chosen').each(chosenOptionalValue);
+            $('.chosen, .chosen-select').each(chosenOptionalValue);
         });
     })(document, jQuery);
 </script>
