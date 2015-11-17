@@ -58,6 +58,14 @@ class EducationClassEntity extends SoftdeletableEntity
     }
 
     /**
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * @return ArrayCollection
      */
     public function getSubjects()
@@ -66,7 +74,7 @@ class EducationClassEntity extends SoftdeletableEntity
     }
 
     /**
-     * @param ArrayCollection $subjects
+     * @param Collection $subjects
      *
      * @return $this
      */
@@ -86,7 +94,7 @@ class EducationClassEntity extends SoftdeletableEntity
     }
 
     /**
-     * @param ArrayCollection $students
+     * @param Collection $students
      *
      * @return $this
      */
