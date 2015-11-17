@@ -1,0 +1,3 @@
+subject_class_new:
+    path:     /in/subject/class/new
+    defaults: { _controller: SubjectBundle:Subject:new }

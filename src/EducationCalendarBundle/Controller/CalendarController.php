@@ -8,7 +8,7 @@ class CalendarController extends Controller
 {
     public function selectAction()
     {
-        return $this->render('EducationCalendarBundle:Calendar:selectclass.html.php');
+        return $this->render('EducationCalendarBundle:Calendar:selectClass.html.php');
     }
     public function calendarAction()
     {
