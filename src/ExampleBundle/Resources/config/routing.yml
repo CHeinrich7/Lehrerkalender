@@ -1,10 +1,10 @@
-example_homepage:
+example_homepage_name:
     path:     /in/example/whoami/{name}
-    defaults: { _controller: ExampleBundle:Default:index }
+    defaults: { _controller: ExampleBundle:Example:index }
 
 example_calendar:
     path:     /in/example/calendar
-    defaults: { _controller: ExampleBundle:Default:calendar}
+    defaults: { _controller: ExampleBundle:Example:calendar}
 
 
 
