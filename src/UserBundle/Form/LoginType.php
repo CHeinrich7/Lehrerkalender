@@ -15,8 +15,8 @@ class LoginType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $inputAttr = array(
-            'class-label'   => 'col-md-offset-2 col-md-3 col-sm-offset-1 col-sm-4',
-            'class'         => 'col-sm-offset-4 col-md-4 col-sm-5'
+            //'class-label'   => 'col-md-offset-2 col-md-3 col-sm-offset-1 col-sm-4',
+            'class'         => 'col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4'
         );
 
         $buttonAttr = array(
