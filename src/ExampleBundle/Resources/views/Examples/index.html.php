@@ -26,7 +26,7 @@ Kalender
 
 <div class="container">
     <div class="row" style="margin-bottom: 20px;">
-        <div class="col-sm-12"><h2><?php echo 'Hello ' . $name; ?></h2></div>
+        <div class="col-sm-12"><?php echo 'Hello ' . $name; ?></div>
     </div>
     <div class="row">
         <div class="col-xs-6">
@@ -35,7 +35,7 @@ Kalender
                     <div class="form-group">
                         <label for="MyFancyInput" class="control-label col-sm-3">MyFancyInput</label>
                         <div class="col-sm-9">
-                            <select name="MyFancyInput" id="MyFancyInput" class="form-control" autocomplete="off">
+                            <select name="MyFancyInput" id="MyFancyInput" class="form-control chosen" autocomplete="off">
                                 <option value="1">Köln</option>
                                 <option value="2">Kiel</option>
                                 <option value="3">Düsseldorf</option>
@@ -70,7 +70,7 @@ Kalender
                             'title'     => 'My Title3',
                             'content'   => 'My Content3'
                         ],
-                    ];
+                    ]
                 ?>
                 <?php foreach($datas as $key => $data): ?>
                 <div class="panel panel-default">
