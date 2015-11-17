@@ -1,5 +1,5 @@
 example_homepage:
-    path:     /hello2/{name}
+    path:     /in/example/whoami/{name}
     defaults: { _controller: ExampleBundle:Default:index }
 
 example_calendar:
