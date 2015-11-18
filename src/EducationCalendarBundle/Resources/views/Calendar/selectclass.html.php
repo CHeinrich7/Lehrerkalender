@@ -10,6 +10,9 @@
  * @var $view           Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine
  * @var $slotsHelper    Symfony\Component\Templating\Helper\SlotsHelper
  * @var $routerHelper   Symfony\Bundle\FrameworkBundle\Templating\Helper\RouterHelper
+ *
+ * @var $classEntities      \SubjectBundle\Entity\EducationClassEntity[]
+ * @var $subjectEntities    \SubjectBundle\Entity\SubjectEntity[]
  */
 
 $slotsHelper = $view['slots'];
@@ -38,33 +41,31 @@ Klasse auswaehlen
             <div id="collapseNew" class="panel-collapse collapse" role="tabpanel"
                  aria-labelledby="headingNew">
                 <div class="panel-body">
-                            <form id="newClassForm" action="#" class="form-horizontal">
-                                <div class="col-xs-4">
-                                    <select id="educationClass" name="education_class" class="form-control chosen"
-                                            autocomplete="off">
-                                        <?php
-                                        foreach ($classEntities as $class) {
-                                            /** @var $class \SubjectBundle\Entity\EducationClassEntity */
-                                            echo sprintf('<option value="%s">%s</option>', $class->getId(), $class->getName());
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="col-xs-4">
-                                    <select id="educationSubject" name="education_subject" class="form-control chosen"
-                                            autocomplete="off">
-                                        <?php
-                                        foreach ($subjectEntities as $subject) {
-                                            /** @var $subject \SubjectBundle\Entity\SubjectEntity */
-                                            echo sprintf('<option value="%s">%s</option>', $subject->getId(), $subject->getName());
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="col-xs-4">
-                                    <button type="submit" class="btn btn-default">Anlegen</button>
-                                </div>
-                            </form>
+                    <form id="newClassForm" action="#" class="form-horizontal">
+                        <div class="col-xs-4">
+                            <select id="educationClass" name="education_class" class="form-control chosen"
+                                    autocomplete="off">
+                                <?php
+                                foreach ($classEntities as $class) {
+                                    echo sprintf('<option value="%s">%s</option>', $class->getId(), $class->getName());
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-xs-4">
+                            <select id="educationSubject" name="education_subject" class="form-control chosen"
+                                    autocomplete="off">
+                                <?php
+                                foreach ($subjectEntities as $subject) {
+                                    echo sprintf('<option value="%s">%s</option>', $subject->getId(), $subject->getName());
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-xs-4">
+                            <button type="submit" class="btn btn-default">Anlegen</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -73,10 +74,10 @@ Klasse auswaehlen
 
 <div class="container margin-top-30">
     <div class="list-group">
-        <?php foreach ($subjectEntities as $entity): /** @var $entity \SubjectBundle\Entity\SubjectEntity */ ?>
-            <a href="<?php echo $routerHelper->generate('mark_overview', ['subject' => $entity->getId()]); ?>"
+        <?php foreach ($subjectEntities as $subject): ?>
+            <a href="<?php echo $routerHelper->generate('mark_overview', ['subject' => $subject->getId()]); ?>"
                class="list-group-item">
-                <?php echo sprintf('%s - %s', $entity->getEducationClass()->getName(), $entity->getName()); ?>
+                <?php echo sprintf('%s - %s', $subject->getEducationClass()->getName(), $subject->getName()); ?>
             </a>
         <?php endforeach; ?>
     </div>

@@ -60,46 +60,6 @@ class CalendarController extends Controller
                         'fach' => '',
                         'inhalt' => '',
                         'notiz' => ''
-                    ],
-                    [
-                        'stunde' => '6',
-                        'raum' => '',
-                        'klasse' => '',
-                        'fach' => '',
-                        'inhalt' => '',
-                        'notiz' => ''
-                    ],
-                    [
-                        'stunde' => '7',
-                        'raum' => '',
-                        'klasse' => '',
-                        'fach' => '',
-                        'inhalt' => '',
-                        'notiz' => ''
-                    ],
-                    [
-                        'stunde' => '8',
-                        'raum' => '',
-                        'klasse' => '',
-                        'fach' => '',
-                        'inhalt' => '',
-                        'notiz' => ''
-                    ],
-                    [
-                        'stunde' => '9',
-                        'raum' => '',
-                        'klasse' => '',
-                        'fach' => '',
-                        'inhalt' => '',
-                        'notiz' => ''
-                    ],
-                    [
-                        'stunde' => '10',
-                        'raum' => '',
-                        'klasse' => '',
-                        'fach' => '',
-                        'inhalt' => '',
-                        'notiz' => ''
                     ]
                 ]
             ], [

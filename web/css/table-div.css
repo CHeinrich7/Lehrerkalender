@@ -1,0 +1,113 @@
+.table-div .panel-content-montag .panel-body    { background-image: url('/img/mo.png'); }
+.table-div .panel-content-dienstag .panel-body  { background-image: url('/img/di.png'); }
+.table-div .panel-content-mittwoch .panel-body  { background-image: url('/img/mi.png'); }
+.table-div .panel-content-donnerstag .panel-body{ background-image: url('/img/do.png'); }
+.table-div .panel-content-freitag .panel-body   { background-image: url('/img/fr.png'); }
+.table-div .panel-content-samstag .panel-body   { background-image: url('/img/sa.png'); }
+.table-div .panel-content-sonntag .panel-body   { background-image: url('/img/so.png'); }
+
+.table-div .panel-content {
+    position:relative;
+    z-index: 2;
+    overflow:hidden;
+    margin-bottom: 20px;
+}
+
+.table-div .cell {
+    padding: 0;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.table-div textarea.height-34 {
+    height: 34px;
+    overflow:hidden;
+}
+
+.table-div .td-div > form div > label {
+    width: 100%;
+    font-weight: normal;
+    margin: 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    display: block;
+}
+
+.table-div .td-div .form-control {
+    background: transparent;
+    box-shadow: none;
+}
+
+.table-div .td-div input.form-control {
+    text-align: center;
+    padding: 0;
+}
+
+.table-div h4.panel-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.table-div .panel-heading h4 {
+    background: #ddd;
+}
+
+.table-div .panel-heading a h4 {
+    border-radius: 5px;
+}
+
+.table-div .panel-heading a[aria-expanded="true"] h4 {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.table-div .panel-body {
+    position:relative;
+    border: 2px solid #ddd;
+    border-radius: 0 0 5px 5px;
+    /* color, image, repeat, attatchment, position */
+    background: transparent none no-repeat scroll top right;
+    overflow: hidden;
+    padding: 0;
+}
+
+.table-div .td-div form:hover {
+    background: rgba(248, 248, 248, 0.5);
+}
+
+.table-div .td-div input,
+.table-div .td-div textarea {
+    border: 0;
+}
+
+@media (max-width: 767px) {
+    .table-div .td-div textarea.form-control {
+        height: 52px;
+    }
+
+    .table-div .td-div:not(:first-of-type) {
+        border-top: 1px solid #ddd;
+    }
+
+    .table-div .td-div:not(:last-of-type) {
+        margin-bottom: 30px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table-div .panel-body {
+        background-position: bottom right;
+    }
+
+    .table-div .td-div::before {
+        position:absolute;
+        font-size: 75px;
+        z-index: -1;
+        color: #eeeeee;
+    }
+
+    .table-div .td-div-0::before { content: '1'; }
+    .table-div .td-div-1::before { content: '2'; }
+    .table-div .td-div-2::before { content: '3'; }
+    .table-div .td-div-3::before { content: '4'; }
+    .table-div .td-div-4::before { content: '5'; }
+}

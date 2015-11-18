@@ -56,8 +56,8 @@ Kalender
     </div>
 
     <div class="row">
-        <div class="col-xs-12">
-            <div class="panel-group accordion" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="col-xs-12 no-padding">
+            <div class="panel-group accordion">
                 <?php
                     $datas = [
                         [
@@ -73,18 +73,16 @@ Kalender
                     ]
                 ?>
                 <?php foreach($datas as $key => $data): ?>
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="heading<?php echo $key; ?>">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $key; ?>" aria-expanded="false" aria-controls="collapse<?php echo $key; ?>">
+                    <div class="panel-heading" role="tab">
+                        <a role="button" data-toggle="collapse" href="#collapse<?php echo $key; ?>" aria-expanded="false" aria-controls="collapse<?php echo $key; ?>">
                             <h4 class="panel-title"><?php echo $data['title']; ?></h4>
                         </a>
                     </div>
-                    <div id="collapse<?php echo $key; ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<?php echo $key; ?>">
+                    <div id="collapse<?php echo $key; ?>" class="panel-collapse collapse" role="tabpanel">
                         <div class="panel-body">
                             <?php echo $data['content']; ?>
                         </div>
                     </div>
-                </div>
                 <?php endforeach; ?>
             </div>
         </div>
