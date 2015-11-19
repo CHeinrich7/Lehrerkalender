@@ -6,6 +6,8 @@
  * @var $routerHelper   Symfony\Bundle\FrameworkBundle\Templating\Helper\RouterHelper
  *
  * @var $error          Symfony\Component\Security\Core\Exception\AuthenticationServiceException
+ *
+ * @var $tableResponse  \Symfony\Component\HttpFoundation\Response
  */
 
 $slotsHelper = $view['slots'];
@@ -41,6 +43,40 @@ $view->extend('::loggedIn.html.php');
             float: none !important;
         }
     }
+
+    .table-div .placeholder {
+        color: #999 !important;
+    }
+
+    /*
+        OVERRIDE SOME CHOSEN STYLES
+        only for .table-div
+    */
+    .table-div select.form-control + .chosen-container.chosen-container-single .chosen-single > div {
+        display: none;
+    }
+
+    .table-div select.form-control + .chosen-container.chosen-container-single .chosen-single > span {
+        margin: 0;
+    }
+
+    .table-div select.form-control + .chosen-container.chosen-container-single .chosen-single,
+    .table-div select.form-control + .chosen-container.chosen-container-single .active-result,
+    .table-div select.form-control + .chosen-container.chosen-container-single .chosen-search input {
+        padding: 6px 0;
+        text-align: center;
+        box-shadow: none;
+        background: transparent;
+    }
+
+    .table-div select.form-control + .chosen-container.chosen-container-single .chosen-single,
+    .table-div select.form-control + .chosen-container.chosen-container-single .active-result {
+        border: 0;
+    }
+
+    .table-div select.form-control + .chosen-container.chosen-container-single .active-result.highlighted {
+        color: black;
+    }
 </style>
 
 <div class="container">
@@ -69,55 +105,8 @@ $view->extend('::loggedIn.html.php');
 
     <div class="table table-div">
         <div class="row">
-            <div class="panel-group accordion">
-                <?php foreach($days as $key => $day): ?>
-                    <div class="panel-content panel-content-<?php echo strtolower($day); ?>">
-                        <div class="panel-heading" role="tab">
-                            <a class="collapsed" role="button" data-toggle="collapse" href="#collapse<?php echo $key; ?>" aria-expanded="false" aria-controls="collapse<?php echo $key; ?>">
-                                <h4 class="panel-title"><?php echo $day; ?></h4>
-                            </a>
-                        </div>
-                        <div id="collapse<?php echo $key; ?>" class="panel-collapse collapse" role="tabpanel">
-                            <div class="panel-body">
-                                <?php for($block = 0; $block < 5; $block++): ?>
-                                    <div class="col-xs-12 td-div td-div-<?php echo $block; ?>">
-                                        <form action="#" class="form-horizontal row">
-                                            <div class="col-lg-3 col-xs-4">
-                                                <div class="row">
-                                                    <div class="col-lg-4 col-sm-3 cell">
-                                                        <label>
-                                                            <input type="text" class="form-control" placeholder="<?php echo ($block+1); ?>" autocomplete="off" disabled />
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-lg-4 col-sm-3 cell">
-                                                        <label>
-                                                            <input type="text" class="form-control" placeholder="Raum" autocomplete="off" />
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-lg-4 col-sm-6 cell">
-                                                        <label>
-                                                            <input type="text" class="form-control" placeholder="Fach/Klasse" autocomplete="off" />
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5 col-sm-4 col-xs-8 cell">
-                                                <label>
-                                                    <textarea class="form-control height-34" placeholder="Inhalt" autocomplete="off"></textarea>
-                                                </label>
-                                            </div>
-                                            <div class="col-lg-4 col-md-3 col-sm-4 col-xs-8 cell">
-                                                <label>
-                                                    <textarea class="form-control height-34" placeholder="Notiz" autocomplete="off"></textarea>
-                                                </label>
-                                            </div>
-                                        </form>
-                                    </div>
-                                <?php endfor; ?>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
+            <div id="accordion" class="panel-group accordion">
+                <?php echo $tableResponse->getContent(); ?>
             </div>
         </div>
     </div>
