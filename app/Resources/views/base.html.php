@@ -64,39 +64,5 @@ $slotsHelper = $view['slots']; /* @var $slotsHelper SlotsHelper */
         });
     })(document, jQuery);
 </script>
-<script>
-    (function(document, $) {
-
-        function chosenOptionalValue()
-        {
-            var options = {
-                    max_selected_options:       1,
-                    disable_search_threshold:   0,
-                    width:                      '100%',
-                    no_results_text: "[Enter] für neuen Eintrag"
-                },
-
-                $input = $(this);
-
-            $input.chosen(options)
-                .parent()
-                .on('keydown', function(event) {
-                    if(event.keyCode === 13) {
-                        var $defaultInput = $(this).find('input');
-
-                        $input.find('.optional').remove();
-
-                        $input.append('<option value="" class="optional" selected="selected">'+ $defaultInput.val() +'</option>');
-
-                        $input.trigger('chosen:updated');
-                    }
-                });
-        }
-
-        $( document ).ready(function() {
-            $('.chosen, .chosen-select').each(chosenOptionalValue);
-        });
-    })(document, jQuery);
-</script>
 </body>
 </html>
