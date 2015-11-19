@@ -1,3 +1,7 @@
 subject_class_new:
     path:     /in/subject/class/new
     defaults: { _controller: SubjectBundle:Subject:new }
+
+subject_select_class:
+    path:     /in/classes
+    defaults: { _controller: SubjectBundle:EducationClass:select }

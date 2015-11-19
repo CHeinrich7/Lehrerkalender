@@ -29,6 +29,13 @@ Klasse auswaehlen
 
 <?php $slotsHelper->start('content'); ?>
 
+<style>
+    h4.panel-title {
+        font-size: 20px;
+        font-weight: bold;
+    }
+</style>
+
 <div class="container">
     <div class="panel-group accordion" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
@@ -42,28 +49,30 @@ Klasse auswaehlen
                  aria-labelledby="headingNew">
                 <div class="panel-body">
                     <form id="newClassForm" action="#" class="form-horizontal">
-                        <div class="col-xs-4">
-                            <select id="educationClass" name="education_class" class="form-control chosen"
-                                    autocomplete="off">
-                                <?php
-                                foreach ($classEntities as $class) {
-                                    echo sprintf('<option value="%s">%s</option>', $class->getId(), $class->getName());
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="col-xs-4">
-                            <select id="educationSubject" name="education_subject" class="form-control chosen"
-                                    autocomplete="off">
-                                <?php
-                                foreach ($subjectEntities as $subject) {
-                                    echo sprintf('<option value="%s">%s</option>', $subject->getId(), $subject->getName());
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="col-xs-4">
-                            <button type="submit" class="btn btn-default">Anlegen</button>
+                        <div class="form-group no-margin">
+                            <div class="col-xs-4">
+                                <select id="educationClass" name="education_class" class="form-control chosen-select"
+                                        autocomplete="off">
+                                    <?php
+                                    foreach ($classEntities as $class) {
+                                        echo sprintf('<option value="%s">%s</option>', $class->getId(), $class->getName());
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-xs-4">
+                                <select id="educationSubject" name="education_subject" class="form-control chosen-select"
+                                        autocomplete="off">
+                                    <?php
+                                    foreach ($subjectEntities as $subject) {
+                                        echo sprintf('<option value="%s">%s</option>', $subject->getId(), $subject->getName());
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-xs-4">
+                                <button type="submit" class="btn btn-default">Anlegen</button>
+                            </div>
                         </div>
                     </form>
                 </div>
