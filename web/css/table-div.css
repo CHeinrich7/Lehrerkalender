@@ -9,7 +9,6 @@
 .table-div .panel-content {
     position:relative;
     z-index: 2;
-    overflow:hidden;
     margin-bottom: 20px;
 }
 
@@ -36,9 +35,11 @@
 .table-div .td-div .form-control {
     background: transparent;
     box-shadow: none;
+    border: 0;
 }
 
-.table-div .td-div input.form-control {
+.table-div .td-div input.form-control,
+.table-div .td-div select.form-control {
     text-align: center;
     padding: 0;
 }
@@ -67,17 +68,11 @@
     border-radius: 0 0 5px 5px;
     /* color, image, repeat, attatchment, position */
     background: transparent none no-repeat scroll top right;
-    overflow: hidden;
     padding: 0;
 }
 
 .table-div .td-div form:hover {
     background: rgba(248, 248, 248, 0.5);
-}
-
-.table-div .td-div input,
-.table-div .td-div textarea {
-    border: 0;
 }
 
 @media (max-width: 767px) {
