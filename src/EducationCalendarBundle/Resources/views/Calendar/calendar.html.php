@@ -13,7 +13,6 @@ $routerHelper = $view['router'];
 $formHelper = $view['form'];
 
 $view->extend('::loggedIn.html.php');
-
 ?>
 
 <?php $slotsHelper->start('title'); ?>Kalender<?php $slotsHelper->stop(); ?>
@@ -26,19 +25,6 @@ $view->extend('::loggedIn.html.php');
     .week {
         font-size: 20px;
         margin-top: 6px;
-    }
-
-    .cw {
-        color: grey;
-    }
-
-    th.cw::before {
-        content: 'KW';
-    }
-
-    .datepicker {
-        min-width: 230px;
-        cursor: pointer;
     }
 
     .table-div {
@@ -67,10 +53,10 @@ $view->extend('::loggedIn.html.php');
         </div>
         <div class="col-sm-4 col-xs-6 pointer">
             <div class="input-group date" id="calendarViewDatePicker">
-                <input type="date" class="form-control text-center" autocomplete="off" value="<?php echo date('d.m.Y'); ?>" id="wasd" />
-                <span class="input-group-addon">
+                <input id="datepicker" type="date" class="form-control text-center" autocomplete="off" value="<?php echo date('d.m.Y'); ?>" />
+                <label for="datepicker" class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+                </label>
             </div>
         </div>
         <div class="col-sm-4 col-xs-3">
@@ -142,56 +128,62 @@ $view->extend('::loggedIn.html.php');
 <script>
     <?php $slotsHelper->start('jQuery'); ?>
 
-
-    var format  = 'dd.mm.yyyy',
-        $picker = $('#calendarViewDatePicker'),
-        $input  = $picker.find('input'),
-
-        prevWeek,
-        nextWeek;
-
-    function updateWeekData(mObj)
-    {
-        prevWeek = new moment(mObj).days(-6);
-        nextWeek = new moment(mObj).days(8);
-
-        $("#prevWeek").data('week', prevWeek.isoWeek()).find('.week').html( "KW " + prevWeek.isoWeek());
-        $("#nextWeek").data('week', nextWeek.isoWeek()).find('.week').html( "KW " + nextWeek.isoWeek());
-    }
-
-    $picker
-        .datepicker({
+    var
+        format  = 'dd.mm.yyyy',
+        $picker = $('#datepicker'),
+        datepickerOptions = {
             format          : format,
             calendarWeeks   : true,
             viewMode        : 'days',
             language        : 'de',
             allowInputToggle: true
-        })
+        };
+
+    /**
+     * @param mObj moment with date of #datepicker value
+     */
+    function updateWeekData(mObj)
+    {
+        // initialize new moment objects with date of previews- and next week date
+        var
+            prevWeek = new moment(mObj).days(-6),
+            nextWeek = new moment(mObj).days(8);
+
+        // '< KW 32'
+        $("#prevWeek").data('week', prevWeek.isoWeek()).find('.week').html( "KW " + prevWeek.isoWeek());
+        // 'KW 34 >'
+        $("#nextWeek").data('week', nextWeek.isoWeek()).find('.week').html( "KW " + nextWeek.isoWeek());
+    }
+
+    $picker
+        .datepicker(datepickerOptions)
         .on('changeDate', function() {
-            updateWeekData(moment($input.val(), format.toLocaleUpperCase()));
+            updateWeekData(moment($(this).val(), format.toUpperCase()));
         })
         .trigger('changeDate');
 
+    // datepicker gets update when clicking on '< KW 32' or 'KW 34 >'
     $('#prevWeek, #nextWeek').on('click', function()
     {
-        console.log(this, $(this).data('week'));
+        var mObj = new moment($picker.val(), 'DD.MM.YYYY');
 
-        var mObj = new moment($input.val(), 'DD.MM.YYYY');
+        // first day of week in moment.js is sunday, but we need monday
+        mObj
+            .isoWeekday(1)
+            .isoWeek(mObj.isoWeek()+1);
 
-        mObj.isoWeekday(1);
-        mObj.isoWeek(mObj.isoWeek()+1);
-
-        var dateString = mObj.date() + '.' + ( mObj.month() + 1 ) + '.' + mObj.year();
-
-        $picker.datepicker('update', mObj._d);
-
-        $input.val(dateString).trigger('changeDate');
+        // udpate picker and trigger that it's updated
+        $picker
+            .datepicker('update', mObj._d)
+            .trigger('changeDate');
     });
 
+    // this is for that jumpy textareas in calendar
     $('textarea.height-34').each(function() {
         $(this)
             .on('focus', function() { $(this).removeClass('height-34'); })
             .on('focusout', function() { $(this).addClass('height-34'); })
     });
+
     <?php $slotsHelper->stop(); ?>
 </script>

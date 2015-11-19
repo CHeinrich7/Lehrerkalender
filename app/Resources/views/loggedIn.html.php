@@ -21,34 +21,38 @@ $view->extend('::base.html.php');
 
 <?php $slotsHelper->start('header-js'); ?>
     <script src="/js/moment.js"></script>
-    <script src="/js/bootstrap-datetimepicker.js"></script>
     <script src="/js/bootstrap-datepicker.js"></script>
+    <!-- locale 'de_DE' for datepicker -->
     <script src="/js/bootstrap-datepicker.de.js"></script>
     <script src="/js/chosen.js"></script>
 <?php $slotsHelper->stop(); ?>
 
 <?php $slotsHelper->start('header-css'); ?>
-    <link href="/css/bootstrap-datetimepicker.css" rel="stylesheet">
     <link href="/css/chosen.css" rel="stylesheet">
+    <!-- chosen theme for bootstrap 3 -->
     <link href="/css/chosen-bootstrap.css" rel="stylesheet">
     <link href="/css/datepicker.css" rel="stylesheet">
     <link href="/css/table-div.css" rel="stylesheet">
+
+    <!-- some styles should be overwritten for this system -->
     <link href="/css/override-bootstrap.css" rel="stylesheet">
+    <link href="/css/override-datepicker.css" rel="stylesheet">
 <?php $slotsHelper->stop(); ?>
 
 <?php $slotsHelper->start('header'); ?>
-    <div class="col-xs-6" style="overflow:hidden">
+    <div class="col-xs-6">
         <a href="<?php echo $routerHelper->generate('education_calendar_overview'); ?>"><h1 class="text-center">Kalender</h1></a>
     </div>
-    <div class="col-xs-6" style="overflow:hidden">
+    <div class="col-xs-6">
         <a href="<?php echo $routerHelper->generate('subject_select_class'); ?>"><h1 class="text-center">Benotung</h1></a>
     </div>
+<?php if (in_array($app->getEnvironment(), array('dev', 'test'))): ?>
     <div class="col-xs-12 text-center">
-            <span class="visible-lg pull-left">lg&nbsp;</span>
-            <span class="visible-md pull-left">md&nbsp;</span>
-            <span class="visible-sm pull-left">sm&nbsp;</span>
-            <span class="visible-xs pull-left">xs&nbsp;</span>
-            <span id="screen-width" class="pull-left"></span>
+        <span class="visible-lg pull-left">lg&nbsp;</span>
+        <span class="visible-md pull-left">md&nbsp;</span>
+        <span class="visible-sm pull-left">sm&nbsp;</span>
+        <span class="visible-xs pull-left">xs&nbsp;</span>
+        <span id="screen-width" class="pull-left"></span>
         <script>
             $(document).on('ready', function() {
                 $(window).resize(function() {
@@ -57,4 +61,5 @@ $view->extend('::base.html.php');
             })
         </script>
     </div>
+<?php endif; ?>
 <?php $slotsHelper->stop(); ?>

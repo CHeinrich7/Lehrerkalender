@@ -25,6 +25,15 @@ $slotsHelper = $view['slots']; /* @var $slotsHelper SlotsHelper */
     <script type="text/javascript"></script>
 
     <style>
+        #header {
+            border-bottom: 1px solid #eee;
+            margin-bottom:20px;
+        }
+
+        #header .row > div {
+            overflow: hidden;
+        }
+
         #header a {
             text-decoration: none;
             color:           #337ab7;
@@ -40,14 +49,12 @@ $slotsHelper = $view['slots']; /* @var $slotsHelper SlotsHelper */
 </head>
 <body>
 <div class="container" id="header">
-    <div class="row" style="border-bottom: 1px solid #eee;margin-bottom:20px;">
-        <?php $slotsHelper->output('header', ''); ?>
-    </div>
+    <div class="row"><?php $slotsHelper->output('header', ''); ?></div>
 </div>
 
 <?php $slotsHelper->output('content', ''); ?>
 
-<?php $slotsHelper->output('footer', ''); ?>
+<?php /** $slotsHelper->output('footer', ''); */ ?>
 
 
 <script type="text/javascript">
@@ -69,7 +76,7 @@ $slotsHelper = $view['slots']; /* @var $slotsHelper SlotsHelper */
                     no_results_text: "[Enter] für neuen Eintrag"
                 },
 
-            $input = $(this);
+                $input = $(this);
 
             $input.chosen(options)
                 .parent()

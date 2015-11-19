@@ -1,0 +1,12 @@
+.datepicker {
+    min-width: 230px;
+    cursor: pointer;
+}
+
+.datepicker .cw {
+    color: grey;
+}
+
+.datepicker th.cw::before {
+    content: 'KW';
+}
