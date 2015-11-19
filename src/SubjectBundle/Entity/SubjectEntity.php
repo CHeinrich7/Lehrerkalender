@@ -38,6 +38,7 @@ class SubjectEntity extends SoftdeletableEntity
      * @var string
      *
      * @ORM\Column(name="name")
+     * @Constraints\Length(max="5")
      */
     protected $name;
 
@@ -95,5 +96,13 @@ class SubjectEntity extends SoftdeletableEntity
         $this->educationClass = $educationClass;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNameWithEducationClassName()
+    {
+        return $this->getEducationClass()->getName() . ' - ' . $this->getName();
     }
 }
