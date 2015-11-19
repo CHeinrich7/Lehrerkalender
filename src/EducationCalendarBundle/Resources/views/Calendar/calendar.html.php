@@ -22,23 +22,60 @@ $view->extend('::loggedIn.html.php');
 
 <?php $days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag']; ?>
 
+<style>
+    .week {
+        font-size: 20px;
+        margin-top: 6px;
+    }
+
+    .cw {
+        color: grey;
+    }
+
+    th.cw::before {
+        content: 'KW';
+    }
+
+    .datepicker {
+        min-width: 230px;
+        cursor: pointer;
+    }
+
+    .table-div {
+        margin-top: 40px;
+    }
+
+    @media(max-width: 499px) {
+        .week {
+            display: none;
+        }
+
+        .date-holder h2 {
+            text-align: center;
+            float: none !important;
+        }
+    }
+</style>
+
 <div class="container">
-    <div class="row">
-        <div class="col-sm-4 col-xs-2">
-            <h2 class="no-margin pull-right pointer">
+    <div class="row date-holder">
+        <div class="col-sm-4 col-xs-3">
+            <h2 id="prevWeek" class="no-margin pull-right pointer">
                 <span class="glyphicon glyphicon-chevron-left"></span>
+                <div class="pull-right week">KW --</div>
             </h2>
         </div>
-        <div class="col-sm-4 col-xs-8 pointer">
-            <div id="calendarViewDatePicker" class="input-group">
-                <input type="text" class="form-control text-center" />
+        <div class="col-sm-4 col-xs-6 pointer">
+            <div class="input-group date" id="calendarViewDatePicker">
+                <input type="date" class="form-control text-center" autocomplete="off" value="<?php echo date('d.m.Y'); ?>" id="wasd" />
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>
-        <div class="col-sm-4 col-xs-2">
-            <h2 class="no-margin pull-left pointer">
+        <div class="col-sm-4 col-xs-3">
+            <h2 id="nextWeek" class="no-margin pull-left pointer">
+                <div class="week pull-left">KW --</div>
                 <span class="glyphicon glyphicon-chevron-right"></span>
             </h2>
         </div>
@@ -104,16 +141,52 @@ $view->extend('::loggedIn.html.php');
 
 <script>
     <?php $slotsHelper->start('jQuery'); ?>
-    $('#calendarViewDatePicker')
-        .datetimepicker({
-            format          : 'DD.MM.YYYY',
-            useCurrent      : true,
+
+
+    var format  = 'dd.mm.yyyy',
+        $picker = $('#calendarViewDatePicker'),
+        $input  = $picker.find('input'),
+
+        prevWeek,
+        nextWeek;
+
+    function updateWeekData(mObj)
+    {
+        prevWeek = new moment(mObj).days(-6);
+        nextWeek = new moment(mObj).days(8);
+
+        $("#prevWeek").data('week', prevWeek.isoWeek()).find('.week').html( "KW " + prevWeek.isoWeek());
+        $("#nextWeek").data('week', nextWeek.isoWeek()).find('.week').html( "KW " + nextWeek.isoWeek());
+    }
+
+    $picker
+        .datepicker({
+            format          : format,
             calendarWeeks   : true,
-            viewMode        : 'days'
+            viewMode        : 'days',
+            language        : 'de',
+            allowInputToggle: true
         })
-        .on("dp.change",function(e){
-            console.log(e.date._d);
-        });
+        .on('changeDate', function() {
+            updateWeekData(moment($input.val(), format.toLocaleUpperCase()));
+        })
+        .trigger('changeDate');
+
+    $('#prevWeek, #nextWeek').on('click', function()
+    {
+        console.log(this, $(this).data('week'));
+
+        var mObj = new moment($input.val(), 'DD.MM.YYYY');
+
+        mObj.isoWeekday(1);
+        mObj.isoWeek(mObj.isoWeek()+1);
+
+        var dateString = mObj.date() + '.' + ( mObj.month() + 1 ) + '.' + mObj.year();
+
+        $picker.datepicker('update', mObj._d);
+
+        $input.val(dateString).trigger('changeDate');
+    });
 
     $('textarea.height-34').each(function() {
         $(this)

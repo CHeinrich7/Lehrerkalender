@@ -34,6 +34,12 @@ select.form-control + .chosen-container .chosen-drop {
 
 }
 
+select.form-control + .chosen-container .chosen-search input[type=text]::before {
+    position: absolute;
+    content: 'L';
+    z-index: -1;
+}
+
 select.form-control + .chosen-container .chosen-search input[type=text] {
     display: block;
     width: 100%;
@@ -43,14 +49,13 @@ select.form-control + .chosen-container .chosen-search input[type=text] {
     line-height: 1.428571429;
     color: #555;
     vertical-align: middle;
-    background-color: #FFF;
     border: 1px solid #CCC;
     border-radius: 4px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-    background-image:none;
+    background: #FFF url('../img/search.png') no-repeat scroll 98% 6px;
 }
 
 select.form-control + .chosen-container .chosen-results {
