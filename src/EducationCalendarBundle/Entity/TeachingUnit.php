@@ -7,6 +7,8 @@
 
 namespace EducationCalendarBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use SubjectBundle\Entity\SubjectEntity;
 use Symfony\Component\Validator\Constraints;
@@ -67,6 +69,13 @@ class TeachingUnit extends SoftdeletableEntity
      */
     protected $content;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="MarkBundle\Entity\MarkEntity", mappedBy="teachingUnit")
+     */
+    protected $marks;
+
 
     /**
      * @var string
@@ -75,6 +84,14 @@ class TeachingUnit extends SoftdeletableEntity
      * @Constraints\Length(max="5")
      */
     protected $room;
+
+    /**
+     */
+    public function __construct()
+    {
+        $this->marks = new ArrayCollection();
+    }
+
 
     /**
      * @return int
@@ -200,6 +217,26 @@ class TeachingUnit extends SoftdeletableEntity
     public function setRoom($room)
     {
         $this->room = $room;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getMarks()
+    {
+        return $this->marks;
+    }
+
+    /**
+     * @param Collection $marks
+     *
+     * @return $this
+     */
+    public function setMarks(Collection $marks)
+    {
+        $this->marks = $marks;
 
         return $this;
     }

@@ -73,7 +73,7 @@ class EducationClassEntity extends SoftdeletableEntity
     }
 
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
     public function getSubjects()
     {
@@ -93,7 +93,7 @@ class EducationClassEntity extends SoftdeletableEntity
     }
 
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
     public function getStudents()
     {

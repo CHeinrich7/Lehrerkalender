@@ -8,6 +8,8 @@
 namespace MarkBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use EducationCalendarBundle\Entity\TeachingUnit;
+use SubjectBundle\Entity\StudentEntity;
 use Symfony\Component\Validator\Constraints;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -41,6 +43,22 @@ class MarkEntity
      * @ORM\Column(type="integer")
      */
     protected $type;
+
+    /**
+     * @var TeachingUnit
+     *
+     * @ORM\ManyToOne(targetEntity="EducationCalendarBundle\Entity\TeachingUnit")
+     * @ORM\JoinColumn(referencedColumnName="id")
+     */
+    protected $teachingUnit;
+
+    /**
+     * @var StudentEntity
+     *
+     * @ORM\ManyToOne(targetEntity="SubjectBundle\Entity\StudentEntity")
+     * @ORM\JoinColumn(referencedColumnName="id")
+     */
+    protected $student;
 
     /**
      * @return int
@@ -86,6 +104,46 @@ class MarkEntity
     public function setType($type)
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return TeachingUnit
+     */
+    public function getTeachingUnit()
+    {
+        return $this->teachingUnit;
+    }
+
+    /**
+     * @param TeachingUnit $teachingUnit
+     *
+     * @return $this
+     */
+    public function setTeachingUnit(TeachingUnit $teachingUnit)
+    {
+        $this->teachingUnit = $teachingUnit;
+
+        return $this;
+    }
+
+    /**
+     * @return StudentEntity
+     */
+    public function getStudent()
+    {
+        return $this->student;
+    }
+
+    /**
+     * @param StudentEntity $student
+     *
+     * @return $this
+     */
+    public function setStudent(StudentEntity $student)
+    {
+        $this->student = $student;
 
         return $this;
     }

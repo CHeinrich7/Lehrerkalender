@@ -7,6 +7,8 @@
 
 namespace SubjectBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -72,6 +74,20 @@ class StudentEntity extends SoftdeletableEntity
      * @ORM\Column(type="datetime")
      */
     protected $caved;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="MarkBundle\Entity\MarkEntity", mappedBy="teachingUnit")
+     */
+    protected $marks;
+
+    /**
+     */
+    public function __construct()
+    {
+        $this->marks = new ArrayCollection();
+    }
 
     /**
      * @return integer
@@ -197,6 +213,26 @@ class StudentEntity extends SoftdeletableEntity
     public function setCaved($caved)
     {
         $this->caved = $caved;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getMarks()
+    {
+        return $this->marks;
+    }
+
+    /**
+     * @param Collection $marks
+     *
+     * @return $this
+     */
+    public function setMarks(Collection $marks)
+    {
+        $this->marks = $marks;
 
         return $this;
     }
