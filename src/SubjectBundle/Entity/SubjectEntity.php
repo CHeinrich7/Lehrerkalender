@@ -7,6 +7,8 @@
 
 namespace SubjectBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -49,6 +51,19 @@ class SubjectEntity extends SoftdeletableEntity
      * @ORM\JoinColumn(referencedColumnName="id")
      */
     protected $educationClass;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="EducationCalendarBundle\Entity\TeachingUnit", mappedBy="subject")
+     */
+    protected $teachingUnits;
+
+
+    public function __construct()
+    {
+        $this->teachingUnits = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -94,6 +109,26 @@ class SubjectEntity extends SoftdeletableEntity
     public function setEducationClass($educationClass)
     {
         $this->educationClass = $educationClass;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getTeachingUnits()
+    {
+        return $this->teachingUnits;
+    }
+
+    /**
+     * @param Collection $teachingUnits
+     *
+     * @return $this
+     */
+    public function setTeachingUnits($teachingUnits)
+    {
+        $this->teachingUnits = $teachingUnits;
 
         return $this;
     }

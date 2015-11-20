@@ -82,8 +82,6 @@ class StudentEntity extends SoftdeletableEntity
      */
     protected $marks;
 
-    /**
-     */
     public function __construct()
     {
         $this->marks = new ArrayCollection();

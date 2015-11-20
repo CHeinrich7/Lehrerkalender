@@ -56,8 +56,6 @@ class EducationClassEntity extends SoftdeletableEntity
      */
     protected $name;
 
-    /**
-     */
     public function __construct()
     {
         $this->subjects = new ArrayCollection();
