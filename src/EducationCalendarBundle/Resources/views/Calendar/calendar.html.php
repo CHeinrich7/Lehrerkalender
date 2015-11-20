@@ -174,5 +174,81 @@ $view->extend('::loggedIn.html.php');
             .on('focusout', function() { $(this).addClass('height-34'); })
     });
 
+    function saveEntity($that, $target, $subject)
+    {
+        var block   = $that.data('block'),  // UnitBlock
+            time    = $that.data('time'),   // time for \DateTime
+            subject = $subject.val(),       // SubjectEntity::id
+
+            data    = {
+                key : $target.attr('name'),
+                val : $target.val()
+            },
+
+            proto_route = '<?php
+                echo $routerHelper->generate('teaching_unit_save', [
+                    'block'     => '_block_',
+                    'time'      => '_time_',
+                    'subject'   => '_subject_'
+                ]);
+                ?>',
+
+            route   = proto_route
+                .replace('_block_', block)
+                .replace('_time_', time)
+                .replace('_subject_', subject)
+            ;
+
+        $.ajax({
+            url: route,
+            data: data,
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(response) {
+                console.log(response);
+            }
+        });
+    }
+
+    function deleteEntity($that, $target)
+    {
+        var block   = $that.data('block'),  // UnitBlock
+            time    = $that.data('time'),   // time for \DateTime
+
+            proto_route = '<?php
+                echo $routerHelper->generate('teaching_unit_remove', [
+                    'block'     => '_block_',
+                    'time'      => '_time_'
+                ]);
+                ?>',
+
+            route   = proto_route
+                .replace('_block_', block)
+                .replace('_time_', time)
+            ;
+
+        $.ajax({
+            url: route,
+            success: function(response) { console.log(response) }
+        });
+    }
+
+    function sendFormAjax(event)
+    {
+        var $that   = $(this),
+            $target = $(event.target),
+            $subject= $that.find('[name="subject_class"]');
+
+        // do not save TeachingUnit without Subject
+        if(!$subject.val()) {
+            deleteEntity($that, $target);
+        } else {
+            saveEntity($that, $target, $subject);
+        }
+    }
+
+    $(document).on('change', 'form', sendFormAjax);
+
     <?php $slotsHelper->stop(); ?>
 </script>

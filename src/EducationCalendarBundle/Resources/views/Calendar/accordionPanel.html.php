@@ -20,9 +20,9 @@
                 <div class="col-xs-12 td-div td-div-<?php echo $block; ?>">
                     <?php echo $view->render('EducationCalendarBundle:Calendar:accordionPanelForm.html.php', [
                         'block'     => $block,
-                        'date'      => $data['day'],
+                        'time'      => $data['time'],
                         'subjects'  => $subjects,
-                        'teachingUnit' => $teachingUnit
+                        'teachingUnit'  => $teachingUnit
                     ]); ?>
                 </div>
             <?php endforeach; ?>

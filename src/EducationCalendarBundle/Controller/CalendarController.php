@@ -5,6 +5,8 @@ namespace EducationCalendarBundle\Controller;
 use EducationCalendarBundle\Entity\TeachingUnit;
 use SubjectBundle\Entity\SubjectEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class CalendarController extends Controller
@@ -47,6 +49,53 @@ class CalendarController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @param integer $block
+     * @param integer $time
+     *
+     * @return JsonResponse
+     */
+    public function saveTeachingUnitAction(Request $request, SubjectEntity $subject, $block, $time)
+    {
+
+        $em = $this->get('doctrine.orm.default_entity_manager');
+
+        $repo = $em->getRepository('EducationCalendarBundle:TeachingUnit');
+
+        $success = $repo->saveByData(
+            $request,           // Request
+            $subject,           // Subject
+            $this->getUser(),   // User
+            $block,             // TeachingUnit::unitBlock
+            $time               // TeachingUnit::date->getTimestamp
+        );
+
+        return new JsonResponse(['success' => $success]);
+    }
+
+    /**
+     * @param integer $block
+     * @param integer $time
+     *
+     * @return JsonResponse
+     */
+    public function removeTeachingUnitAction($block, $time)
+    {
+
+        $em = $this->get('doctrine.orm.default_entity_manager');
+
+        $repo = $em->getRepository('EducationCalendarBundle:TeachingUnit');
+
+        $removed = $repo->removeByData(
+            $this->getUser(),   // User
+            $block,             // TeachingUnit::unitBlock
+            $time               // TeachingUnit::date->getTimestamp
+        );
+
+        return new JsonResponse(['success' => true, 'data' => ['removed' => $removed]]);
+    }
+
+    /**
      * @param integer $time
      * @return array
      */
@@ -61,7 +110,7 @@ class CalendarController extends Controller
                 $time
             );
 
-        $data = $this->getPreparedDayData();
+        $data = $this->getPreparedDayData($time);
         foreach($teachingUnits as $teachingUnit)
         {
             $day    = $teachingUnit->getDate()->format('w')-1;
@@ -76,13 +125,16 @@ class CalendarController extends Controller
     /**
      * @return array
      */
-    private function getPreparedDayData()
+    private function getPreparedDayData($time)
     {
         // this is an example how a multilanguage system could look like
         $daysOfWeek = [
             'en' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
             'de' => ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag']
         ];
+
+        $tomorrow   = strtotime('tomorrow', $time);
+        $monday     = strtotime('last monday', $tomorrow);
 
         // 5 blocks per day
         $blocks = [ 1 => null, 2 => null, 3 => null, 4 => null, 5 => null ];
@@ -92,8 +144,13 @@ class CalendarController extends Controller
         $data = [];
         foreach($daysOfWeek['en'] as $key => $dayString)
         {
+            $lowerDayString = strtolower($dayString);
+
+            $dayTime = ($lowerDayString == 'monday') ? $monday : strtotime('next ' . $lowerDayString, $monday);
+
             $data[] = [
                 'day'       => $daysOfWeek['de'][$key],
+                'time'      => $dayTime,
                 'blocks'    => $blocks
             ];
         }

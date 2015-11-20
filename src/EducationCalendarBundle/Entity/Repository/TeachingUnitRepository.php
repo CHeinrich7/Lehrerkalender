@@ -9,6 +9,8 @@ namespace EducationCalendarBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use EducationCalendarBundle\Entity\TeachingUnit;
+use SubjectBundle\Entity\SubjectEntity;
+use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\User;
 
 class TeachingUnitRepository extends EntityRepository
@@ -60,5 +62,94 @@ class TeachingUnitRepository extends EntityRepository
         ;
 
         return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @param Request       $request
+     * @param SubjectEntity $subject
+     * @param User          $user
+     * @param integer       $block
+     * @param integer       $time
+     *
+     * @return bool
+     */
+    public function saveByData(Request $request, SubjectEntity $subject, User $user, $block, $time)
+    {
+        $success = true;
+
+        $date = new \DateTime();
+        $date->setTimestamp($time);
+
+        $teachingUnit = $this
+            ->findOneBy([
+                'unitBlock' => $block,
+                'date'      => $date,
+                'createdBy' => $user
+            ]);
+
+        if($teachingUnit instanceof TeachingUnit !== true)
+        {
+            $teachingUnit = new TeachingUnit();
+            $teachingUnit
+                ->setUnitBlock($block)
+                ->setDate($date);
+        }
+
+        $teachingUnit->setSubject($subject);
+
+        $value = $request->get('val');
+
+        switch($request->get('key')) {
+            case 'block':
+                $teachingUnit->setUnitBlock($value);
+                break;
+            case 'room':
+                $teachingUnit->setRoom($value);
+                break;
+            case 'content':
+                $teachingUnit->setContent($value);
+                break;
+            case 'notice':
+                $teachingUnit->setNotice($value);
+                break;
+            case 'default':
+                $success = false;
+        }
+
+        if($success !== false) {
+            $this->_em->persist($teachingUnit);
+            $this->_em->flush();
+        }
+
+        return $success;
+    }
+
+    /**
+     * @param User      $user
+     * @param integer   $block
+     * @param integer   $time
+     *
+     * @return bool
+     */
+    public function removeByData(User $user, $block, $time)
+    {
+        $date = new \DateTime();
+        $date->setTimestamp($time);
+
+        $teachingUnit = $this
+            ->findOneBy([
+                'unitBlock' => $block,
+                'date'      => $date,
+                'createdBy' => $user
+            ]);
+
+        if($teachingUnit instanceof TeachingUnit === true) {
+            $this->_em->remove($teachingUnit);
+            $this->_em->flush();
+
+            return true;
+        }
+
+        return false;
     }
 }

@@ -8,3 +8,11 @@ start:
 education_calendar_overview:
     path:     /in/calendar
     defaults: { _controller: EducationCalendarBundle:Calendar:calendar }
+
+teaching_unit_save:
+    path:     /in/calendar/save/{subject}/{block}/{time}
+    defaults: { _controller: EducationCalendarBundle:Calendar:saveTeachingUnit }
+
+teaching_unit_remove:
+    path:     /in/calendar/remove/{block}/{time}
+    defaults: { _controller: EducationCalendarBundle:Calendar:removeTeachingUnit }

@@ -4,14 +4,14 @@ use \EducationCalendarBundle\Entity\TeachingUnit;
  * @var $view           \Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine
  *
  * @var $block          integer
- * @var $date           string
+ * @var $day            string
+ * @var $time           integer
  * @var $data           array
  * @var $teachingUnit   TeachingUnit|null
  * @var $subjects       array
  */
 
 $data = [
-    'date'      => $date,
     'block'     => $block+1,
     'room'      => '',
     'subject_class' => [
@@ -30,7 +30,7 @@ if($teachingUnit instanceof TeachingUnit === true) {
 }
 
 ?>
-<form action="#" class="form-horizontal row" data-block="<?php echo $data['block']; ?>" data-date="<?php echo $data['date']; ?>" autocomplete="off">
+<form action="#" class="form-horizontal row" data-block="<?php echo $data['block']; ?>" data-time="<?php echo $time; ?>" autocomplete="off">
     <div class="col-lg-3 col-xs-4">
         <div class="row">
             <div class="col-lg-4 col-sm-3 cell">
