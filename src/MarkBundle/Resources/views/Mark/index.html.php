@@ -7,7 +7,10 @@
  *
  * @var $error          Symfony\Component\Security\Core\Exception\AuthenticationServiceException
  *
- * @var $name           string
+ * @var $data           array
+ * @var $teachingUnits  \EducationCalendarBundle\Entity\TeachingUnit[]
+ * @var $teachingUnit   \EducationCalendarBundle\Entity\TeachingUnit
+ * @var $subject        \SubjectBundle\Entity\SubjectEntity
  */
 
 $slotsHelper = $view['slots'];
@@ -15,25 +18,30 @@ $routerHelper = $view['router'];
 $formHelper = $view['form'];
 
 $view->extend('::loggedIn.html.php');
-
 ?>
 
 <?php $slotsHelper->start('title'); ?>Benotung<?php $slotsHelper->stop(); ?>
 
 <?php $slotsHelper->start('content'); ?>
 
+<pre><?php
+    foreach($teachingUnits as $teachingUnit) {
+        var_dump($teachingUnit->getDate()->format('d.m.Y H:i:s'));
+    }
+?></pre>
+
 <div id="mark-form-wrapper" style="width:250px;" class="well">
-    <form action="" class="form-horizontal">
+    <form id="mark-form" action="#" class="form-horizontal">
         <div class="form-group">
-            <label class="control-label col-sm-3">Note</label>
+            <label for="mark" class="control-label col-sm-3">Note</label>
             <div class="col-sm-9">
-                <input class="form-control text-center" type="text" value="100%" />
+                <input id="mark" name="mark" class="form-control text-center" type="text" value="100%" />
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-3">Typ</label>
+            <label for="mark_type" class="control-label col-sm-3">Typ</label>
             <div class="col-sm-9">
-                <select name="" id="" class="form-control text-center">
+                <select name="mark_type" id="mark_type" class="form-control text-center">
                     <option value="">Mündlich</option>
                     <option value="">Sonderleistung</option>
                     <option value="">Schriftlich</option>
@@ -60,17 +68,22 @@ $view->extend('::loggedIn.html.php');
                 <table id="table-students" class="table table-striped">
                     <thead>
                     <tr>
-                        <th>&nbsp;</th>
+                        <th class="valign">
+                            <h3 class="no-margin"><?php echo $subject->getNameWithEducationClassName(); ?></h3>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php for($k = 0; $k < 20; $k++): ?>
+                    <?php foreach($data as $studentData): ?>
                         <tr>
                             <td>
-                                <label data-id="<?php echo $k; ?>" class="control-label student">Schüler Name</label>
+                                <label data-id="<?php echo $studentData['id']; ?>" class="control-label student">
+                                    <input name="firstname" type="text" value="<?php echo $studentData['firstname']; ?>" />
+                                    <input name="lastname"  type="text" value="<?php echo $studentData['lastname']; ?>" min="3" />
+                                </label>
                             </td>
                         </tr>
-                    <?php endfor; ?>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -78,21 +91,21 @@ $view->extend('::loggedIn.html.php');
                 <table id="table-marks" class="table table-striped">
                     <thead>
                     <tr>
-                        <?php $max = 20; for($i = 0; $i < $max; $i++): ?>
+                        <?php foreach($teachingUnits as $teachingUnit): ?>
                             <th>
-                                <div class="date" data-id="<?php echo $i; ?>">00.00.00</div>
+                                <div class="date" data-id="<?php echo $teachingUnit->getId(); ?>"><?php echo $teachingUnit->getDate()->format('d.m.Y'); ?></div>
                             </th>
-                        <?php endfor; ?>
+                        <?php endforeach; ?>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php for($k = 0; $k < 20; $k++): ?>
-                        <tr>
-                            <?php for($i = 0; $i < $max; $i++): ?>
-                                <td><span>100%</span></td>
-                            <?php endfor; ?>
+                    <?php foreach($data as $studentData): ?>
+                        <tr data-id="<?php echo $studentData['id']; ?>">
+                            <?php foreach($data['teachingUnits'] as $teachingUnitId => $mark): ?>
+                                <td><span><?php echo $mark; ?></span></td>
+                            <?php endforeach; ?>
                         </tr>
-                    <?php endfor; ?>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
