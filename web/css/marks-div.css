@@ -1,0 +1,109 @@
+.marks .date {
+    transform:  rotate(-45deg);
+    margin-top: 20px;
+    width:      20px;
+    height:     20px;
+    margin-left:10px;
+}
+
+.marks .inline {
+    display:        inline-block;
+    vertical-align: top;
+}
+
+.marks .inline table thead {
+    height: 60px;
+}
+
+.marks .inline table tbody td {
+    height: 40px;
+    vertical-align: middle;
+}
+
+.marks .inline td label {
+    margin: 0;
+}
+
+.marks .no-wrap {
+    white-space: nowrap;
+}
+
+#table-marks td {
+    padding:    0;
+    text-align: center;
+    position:   relative;
+}
+
+#table-marks td > span {
+    width:  100%;
+    padding:9px 0;
+    display: inline-block;
+}
+
+#table-students-holder {
+    position:relative;
+    width:150px;
+}
+
+.marks .marked {
+    background-color: #eee;
+}
+
+.marks .marked-form {
+    background-color: #ddd;
+}
+
+.marks .special {
+    background-color: rgba(51, 204, 119, 0.5);
+}
+
+.marks .exercise {
+    background-color: rgba(201, 48, 44, 0.5);
+}
+
+.marks .ajax {
+    background-color: #5cb85c;
+}
+
+#table-marks td:hover > span {
+    background-color: #b4b4b4;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#table-marks td span:hover * {
+    cursor: auto;
+}
+
+#mark-form-wrapper {
+    position: absolute;
+    border-color: #66afe9;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+    outline: 0 none;
+    bottom:-200px;
+    display:none;
+    z-index:3;
+}
+
+#mark-form-wrapper .form-group:last-child {
+    margin-bottom: 0;
+}
+
+#mark-form-wrapper .btn {
+    min-width: 75px;
+}
+
+#mark-form-wrapper::before {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    width: 0;
+    height: 0;
+    position: absolute;
+    content: "";
+    left: 8px;
+    top: -15px;
+    border: 13px solid rgba(0,0,0,0);
+    border-bottom: 15px solid #ccc;
+    border-top: 0 solid;
+}

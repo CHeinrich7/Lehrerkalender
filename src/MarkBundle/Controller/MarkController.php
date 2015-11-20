@@ -9,6 +9,10 @@ class MarkController extends Controller
 {
     public function indexAction(Subject $subject)
     {
-        return $this->render('MarkBundle:mark:index.html.php');
+        return $this->render('MarkBundle:mark:index.html.php', [
+            'subject'           => $subject,
+            'educationClass'    => $subject->getEducationClass(),
+            'students'          => $subject->getEducationClass()->getStudents(),
+        ]);
     }
 }

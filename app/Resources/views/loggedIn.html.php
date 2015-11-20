@@ -33,6 +33,7 @@ $view->extend('::base.html.php');
     <link href="/css/chosen-bootstrap.css" rel="stylesheet">
     <link href="/css/datepicker.css" rel="stylesheet">
     <link href="/css/table-div.css" rel="stylesheet">
+    <link href="/css/marks-div.css" rel="stylesheet">
 
     <!-- some styles should be overwritten for this system -->
     <link href="/css/override-bootstrap.css" rel="stylesheet">
