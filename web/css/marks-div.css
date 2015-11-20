@@ -1,5 +1,10 @@
 .marks .date {
-    transform:  rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+
     margin-top: 20px;
     width:      20px;
     height:     20px;
@@ -12,6 +17,10 @@
 }
 
 .marks .inline table thead {
+    height: 60px;
+}
+
+.marks .inline table thead th {
     height: 60px;
 }
 
