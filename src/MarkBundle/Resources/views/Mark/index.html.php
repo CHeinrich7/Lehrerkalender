@@ -1,4 +1,5 @@
 <?php
+use \MarkBundle\Entity\MarkEntity;
 /**
  * @var $app            Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables
  * @var $view           Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine
@@ -24,12 +25,6 @@ $view->extend('::loggedIn.html.php');
 
 <?php $slotsHelper->start('content'); ?>
 
-<pre><?php
-    foreach($teachingUnits as $teachingUnit) {
-        var_dump($teachingUnit->getDate()->format('d.m.Y H:i:s'));
-    }
-?></pre>
-
 <div id="mark-form-wrapper" style="width:250px;" class="well">
     <form id="mark-form" action="#" class="form-horizontal">
         <div class="form-group">
@@ -42,9 +37,9 @@ $view->extend('::loggedIn.html.php');
             <label for="mark_type" class="control-label col-sm-3">Typ</label>
             <div class="col-sm-9">
                 <select name="mark_type" id="mark_type" class="form-control text-center">
-                    <option value="">Mündlich</option>
-                    <option value="">Sonderleistung</option>
-                    <option value="">Schriftlich</option>
+                    <option value="<?php echo MarkEntity::VERBAL;  ?>">Mündlich</option>
+                    <option value="<?php echo MarkEntity::SPECIAL; ?>">Sonderleistung</option>
+                    <option value="<?php echo MarkEntity::WRITTEN; ?>">Schriftlich</option>
                 </select>
             </div>
         </div>
@@ -61,6 +56,26 @@ $view->extend('::loggedIn.html.php');
     </form>
 </div>
 
+<style>
+    td:hover .control-label .form-control {
+        border: 1px solid #888;
+        padding: 0;
+    }
+
+    .control-label .form-control {
+        display: inline;
+        box-shadow: none;
+        background: transparent;
+        min-width:30px;
+        border: 0;
+        padding: 1px;
+    }
+    .control-label .form-control:focus {
+        background: white;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    }
+</style>
+
 <div class="container marks">
     <div class="row">
         <div class="col-xs-12 no-wrap">
@@ -69,21 +84,29 @@ $view->extend('::loggedIn.html.php');
                     <thead>
                     <tr>
                         <th class="valign">
-                            <h3 class="no-margin"><?php echo $subject->getNameWithEducationClassName(); ?></h3>
+                            <h2 class="no-margin text-center"><?php echo $subject->getNameWithEducationClassName(); ?></h2>
                         </th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php foreach($data as $studentData): ?>
                         <tr>
-                            <td>
+                            <td class="no-padding">
                                 <label data-id="<?php echo $studentData['id']; ?>" class="control-label student">
-                                    <input name="firstname" type="text" value="<?php echo $studentData['firstname']; ?>" />
-                                    <input name="lastname"  type="text" value="<?php echo $studentData['lastname']; ?>" min="3" />
+                                    <input name="firstname" type="text" class="form-control" value="<?php echo $studentData['firstname']; ?>" />
+                                    <input name="lastname"  type="text" class="form-control" value="<?php echo $studentData['lastname']; ?>" min="3" />
                                 </label>
                             </td>
                         </tr>
                     <?php endforeach; ?>
+                    <tr>
+                        <td class="no-padding">
+                            <label data-id="new" class="control-label student" style="white-space: nowrap">
+                                <input name="firstname" type="text" value="Peter Franz" class="form-control" style="min-width:30px;" autocomplete="off" />
+                                <input name="lastname"  type="text" value="Detlef Wurst" class="form-control" style="min-width:30px;" min="3" autocomplete="off" />
+                            </label>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -101,8 +124,8 @@ $view->extend('::loggedIn.html.php');
                     <tbody>
                     <?php foreach($data as $studentData): ?>
                         <tr data-id="<?php echo $studentData['id']; ?>">
-                            <?php foreach($data['teachingUnits'] as $teachingUnitId => $mark): ?>
-                                <td><span><?php echo $mark; ?></span></td>
+                            <?php foreach($studentData['teachingUnits'] as $teachingUnitId => $mark): ?>
+                                <td><span><?php echo $mark ? $mark : '&nbsp;'; ?></span></td>
                             <?php endforeach; ?>
                         </tr>
                     <?php endforeach; ?>
@@ -118,6 +141,24 @@ $view->extend('::loggedIn.html.php');
 
 <script type="text/javascript">
     <?php $slotsHelper->start('jQuery'); ?>
+
+    $.fn.textWidth = function(){
+        var $self = $(this),
+            val = $self.val(),
+            $calculator = $('<span style="display: inline-block;position:absolute;width:auto;left:-9999px;font-weight:bold" />'),
+            width;
+
+        $calculator.text(val);
+        $('body').append($calculator);
+        width = $calculator.width();
+        $calculator.remove();
+        $self.css('width', width+3);
+    };
+
+    $('.control-label .form-control')
+        .on('keyup keydown', function() {
+            $(this).textWidth();
+        }).trigger('keyup');
 
     var marks =
     {
@@ -157,6 +198,8 @@ $view->extend('::loggedIn.html.php');
         init: function()
         {
             var that = this;
+
+            that.debug = false;
 
             that.tableStudents = $(that.tableStudentsId);
             that.tableMarks =    $(that.tableMarksId);

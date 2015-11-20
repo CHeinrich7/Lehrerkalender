@@ -20,9 +20,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class MarkEntity
 {
-    CONST MUENDLICH      = 1;
-    CONST SCHRIFTLICH    = 2;
-    CONST SONDERLEISTUNG = 3;
+    CONST VERBAL  = 1;
+    CONST WRITTEN = 2;
+    CONST SPECIAL = 3;
 
     /**
      * @var integer

@@ -142,7 +142,7 @@ class StudentEntity extends SoftdeletableEntity
      */
     public function getLastname()
     {
-        return $this->lastlame;
+        return $this->lastname;
     }
 
     /**
@@ -150,7 +150,7 @@ class StudentEntity extends SoftdeletableEntity
      *
      * @return $this
      */
-    public function setLastlame($lastname)
+    public function setLastname($lastname)
     {
         $this->lastname = $lastname;
 

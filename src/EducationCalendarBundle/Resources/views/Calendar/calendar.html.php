@@ -157,7 +157,7 @@ $view->extend('::loggedIn.html.php');
 
         var $accordion = $('#accordion'),
 
-            time = mObj.valueOf(),
+            time = mObj.unix(),
 
             proto_url = '<?php echo $routerHelper->generate('education_calendar_accordion_response', ['time' => '_time_']); ?>',
             route = proto_url.replace('_time_', time);

@@ -40,7 +40,8 @@ class CalendarController extends Controller
                     ->render('EducationCalendarBundle:Calendar:accordionPanel.html.php', [
                         'data'      => $dayData,
                         'index'     => $index,
-                        'subjects'  => $subjects
+                        'subjects'  => $subjects,
+                        'time'      => $time
                     ])
                     ->getContent();
         }
