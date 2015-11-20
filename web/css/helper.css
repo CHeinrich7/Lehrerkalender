@@ -97,6 +97,10 @@
     text-align: center !important;
 }
 
+.valign {
+    vertical-align: middle !important;
+}
+
 .pointer {
     cursor: pointer;
 }
