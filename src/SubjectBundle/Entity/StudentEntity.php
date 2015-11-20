@@ -41,7 +41,7 @@ class StudentEntity extends SoftdeletableEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="firstname", type="string")
+     * @ORM\Column(name="firstname", type="string", length=50, nullable=true)
      * @Constraints\Length(min = "3")
      */
     protected $firstname;
@@ -49,17 +49,18 @@ class StudentEntity extends SoftdeletableEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="lastname", type="string")
+     * @ORM\Column(name="lastname", type="string", length=50)
      * @Constraints\Length(min = "3")
+     * @Constraints\NotBlank()
      */
-    protected $lastlame;
+    protected $lastname;
 
     /**
      * @var boolean
      *
      * @ORM\Column(type="boolean")
      */
-    protected $isSuspended;
+    protected $isSuspended = false;
 
     /**
      * @var \DateTime
@@ -139,19 +140,19 @@ class StudentEntity extends SoftdeletableEntity
     /**
      * @return string
      */
-    public function getLastlame()
+    public function getLastname()
     {
         return $this->lastlame;
     }
 
     /**
-     * @param string $lastlame
+     * @param string $lastname
      *
      * @return $this
      */
-    public function setLastlame($lastlame)
+    public function setLastlame($lastname)
     {
-        $this->lastlame = $lastlame;
+        $this->lastname = $lastname;
 
         return $this;
     }
@@ -234,5 +235,13 @@ class StudentEntity extends SoftdeletableEntity
         $this->marks = $marks;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullName()
+    {
+        return trim($this->firstname . ' ' . $this->lastname);
     }
 }

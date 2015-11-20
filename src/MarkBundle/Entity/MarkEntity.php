@@ -34,7 +34,7 @@ class MarkEntity
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=5, nullable=true)
+     * @ORM\Column(type="string", length=4, nullable=true)
      * @var string
      */
     protected $mark;
@@ -43,6 +43,7 @@ class MarkEntity
      * @var integer
      * @ORM\Column(type="smallint")
      * @Constraints\Length(max="3", min="1")
+     * @Constraints\NotBlank()
      */
     protected $type = 1;
 

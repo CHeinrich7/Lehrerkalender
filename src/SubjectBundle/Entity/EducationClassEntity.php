@@ -53,7 +53,7 @@ class EducationClassEntity extends SoftdeletableEntity
     /**
      * @var string
      *
-     * @ORM\Column(type="string", name="name")
+     * @ORM\Column(type="string", name="name", length=5)
      * @Constraints\Length(max="5")
      */
     protected $name;

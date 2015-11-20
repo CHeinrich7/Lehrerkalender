@@ -34,6 +34,7 @@ class TeachingUnit extends SoftdeletableEntity
     /**
      * @ORM\Column(type="date")
      * @Constraints\Date
+     * @Constraints\NotBlank()
      *
      * @var \DateTime
      */
@@ -42,7 +43,7 @@ class TeachingUnit extends SoftdeletableEntity
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=false)
-     * @Constraints\NotNull
+     * @Constraints\NotBlank()
      */
     protected $unitBlock;
 
