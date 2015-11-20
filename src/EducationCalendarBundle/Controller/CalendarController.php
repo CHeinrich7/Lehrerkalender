@@ -14,7 +14,7 @@ class CalendarController extends Controller
     public function calendarAction()
     {
         /** @var Response */
-        $response = $this->forward('EducationCalendarBundle:Calendar:getTable', ['time' => time()]);
+        $response = $this->forward('EducationCalendarBundle:Calendar:getAccordionResponse', ['time' => time()]);
 
         return $this->render('EducationCalendarBundle:Calendar:calendar.html.php',array('tableResponse' => $response));
     }
@@ -24,7 +24,7 @@ class CalendarController extends Controller
      *
      * @return Response
      */
-    public function getTableAction($time)
+    public function getAccordionResponseAction($time)
     {
         $subjects = $this->getUserSubjects();
 

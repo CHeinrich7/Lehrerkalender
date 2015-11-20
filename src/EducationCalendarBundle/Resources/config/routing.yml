@@ -16,3 +16,7 @@ teaching_unit_save:
 teaching_unit_remove:
     path:     /in/calendar/remove/{block}/{time}
     defaults: { _controller: EducationCalendarBundle:Calendar:removeTeachingUnit }
+
+education_calendar_accordion_response:
+    path:     /in/calendar/accordion/{time}
+    defaults: { _controller: EducationCalendarBundle:Calendar:getAccordionResponse }

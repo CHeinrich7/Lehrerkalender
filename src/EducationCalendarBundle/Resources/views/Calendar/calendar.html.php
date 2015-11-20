@@ -120,13 +120,17 @@ $view->extend('::loggedIn.html.php');
     var
         format  = 'dd.mm.yyyy',
         $picker = $('#datepicker'),
+        pickerInitialized = false,
         datepickerOptions = {
             format          : format,
             calendarWeeks   : true,
             viewMode        : 'days',
             language        : 'de',
             allowInputToggle: true
-        };
+        },
+
+        changeAccordionAjax = null
+        ;
 
     /**
      * @param mObj moment with date of #datepicker value
@@ -144,22 +148,61 @@ $view->extend('::loggedIn.html.php');
         $("#nextWeek").data('week', nextWeek.isoWeek()).find('.week').html( "KW " + nextWeek.isoWeek());
     }
 
+    /**
+     * @param mObj moment with date of #datepicker value
+     */
+    function changeAccordionData(mObj)
+    {
+
+        var $accordion = $('#accordion'),
+
+            time = mObj.valueOf(),
+
+            proto_url = '<?php echo $routerHelper->generate('education_calendar_accordion_response', ['time' => '_time_']); ?>',
+            route = proto_url.replace('_time_', time);
+
+        $accordion.fadeOut();
+
+        changeAccordionAjax = $.ajax({
+            url: route,
+            success: function(response) {
+                $('#accordion').html(response);
+                refreshChosen();
+                $accordion.fadeIn();
+            }
+        })
+    }
+
     $picker
         .datepicker(datepickerOptions)
         .on('changeDate', function() {
-            updateWeekData(moment($(this).val(), format.toUpperCase()));
+            updateWeekData(new moment($(this).val(), format.toUpperCase()));
+
+            if(pickerInitialized !== true) {
+                pickerInitialized = true;
+            } else {
+                changeAccordionData(new moment($(this).val(), format.toUpperCase()));
+            }
         })
         .trigger('changeDate');
 
     // datepicker gets update when clicking on '< KW 32' or 'KW 34 >'
     $('#prevWeek, #nextWeek').on('click', function()
     {
-        var mObj = new moment($picker.val(), 'DD.MM.YYYY');
+        var mObj        = new moment($picker.val(), format.toUpperCase()),
+            addToWeek   = ( $(this).attr('id') === 'prevWeek' )
+                            ? (-1)
+                            : 1
+            ;
+
+        if(changeAccordionAjax !== null) {
+            changeAccordionAjax.abort();
+        }
 
         // first day of week in moment.js is sunday, but we need monday
-        mObj
-            .isoWeekday(1)
-            .isoWeek(mObj.isoWeek()+1);
+        mObj.isoWeekday(1)
+
+            .isoWeek(mObj.isoWeek()+addToWeek);
 
         // udpate picker and trigger that it's updated
         $picker
@@ -194,8 +237,8 @@ $view->extend('::loggedIn.html.php');
                 ?>',
 
             route   = proto_route
-                .replace('_block_', block)
-                .replace('_time_', time)
+                .replace('_block_'  , block)
+                .replace('_time_'   , time)
                 .replace('_subject_', subject)
             ;
 

@@ -92,7 +92,7 @@ $view->extend('::base.html.php');
                     });
 
                 $input
-                    .on('change', function() {
+                    .on('change init', function() {
                         var $chosenSingle = $(this).parent().find('.chosen-single');
 
                         $chosenSingle.removeClass('placeholder');
@@ -100,12 +100,14 @@ $view->extend('::base.html.php');
                         if($(this).find('option:selected').hasClass('placeholder') === true) {
                             $chosenSingle.addClass('placeholder');
                         }
-                    }).trigger('change');
+                    }).trigger('init');
             }
 
-            $( document ).ready(function() {
+            window.refreshChosen = function() {
                 $('.chosen, .chosen-select').each(chosenOptionalValue);
-            });
+            };
+
+            $( document ).ready(refreshChosen);
         })(document, jQuery);
     </script>
 <?php $slotsHelper->stop(); ?>
