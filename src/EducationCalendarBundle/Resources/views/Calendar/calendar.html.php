@@ -137,10 +137,11 @@ $view->extend('::loggedIn.html.php');
      */
     function updateWeekData(mObj)
     {
+        mObj.isoWeekday(1);
         // initialize new moment objects with date of previews- and next week date
         var
-            prevWeek = new moment(mObj).days(-6),
-            nextWeek = new moment(mObj).days(8);
+            prevWeek = new moment(mObj).days(-7),
+            nextWeek = new moment(mObj).days(7);
 
         // '< KW 32'
         $("#prevWeek").data('week', prevWeek.isoWeek()).find('.week').html( "KW " + prevWeek.isoWeek());
@@ -176,11 +177,17 @@ $view->extend('::loggedIn.html.php');
     $picker
         .datepicker(datepickerOptions)
         .on('changeDate', function() {
-            updateWeekData(new moment($(this).val(), format.toUpperCase()));
+
+            var mObj     = new moment($(this).val(), format.toUpperCase()),
+                lastWeek    = $(this).data('week'),
+                currentWeek = mObj.isoWeek();
+
+            $(this).data('week', currentWeek);
+            updateWeekData(mObj);
 
             if(pickerInitialized !== true) {
                 pickerInitialized = true;
-            } else {
+            } else if(lastWeek !== currentWeek) {
                 changeAccordionData(new moment($(this).val(), format.toUpperCase()));
             }
         })
@@ -254,7 +261,7 @@ $view->extend('::loggedIn.html.php');
         });
     }
 
-    function deleteEntity($that, $target)
+    function deleteEntity($that)
     {
         var block   = $that.data('block'),  // UnitBlock
             time    = $that.data('time'),   // time for \DateTime
@@ -285,7 +292,7 @@ $view->extend('::loggedIn.html.php');
 
         // do not save TeachingUnit without Subject
         if(!$subject.val()) {
-            deleteEntity($that, $target);
+            deleteEntity($that);
         } else {
             saveEntity($that, $target, $subject);
         }
