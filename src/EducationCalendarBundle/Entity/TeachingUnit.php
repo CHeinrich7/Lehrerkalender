@@ -73,6 +73,7 @@ class TeachingUnit extends SoftdeletableEntity
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="MarkBundle\Entity\MarkEntity", mappedBy="teachingUnit")
+     * @ORM\OrderBy({"mark" = "ASC"})
      */
     protected $marks;
 

@@ -39,6 +39,7 @@ class EducationClassEntity extends SoftdeletableEntity
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="SubjectEntity", mappedBy="educationClass")
+     * @ORM\OrderBy({"name" = "ASC"})
      */
     protected $subjects;
 
@@ -46,6 +47,7 @@ class EducationClassEntity extends SoftdeletableEntity
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="StudentEntity", mappedBy="educationClass")
+     * @ORM\OrderBy({"lastname" = "ASC", "firstname" = "ASC"})
      */
     protected $students;
     /**

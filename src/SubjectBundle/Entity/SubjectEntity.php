@@ -56,6 +56,7 @@ class SubjectEntity extends SoftdeletableEntity
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="EducationCalendarBundle\Entity\TeachingUnit", mappedBy="subject")
+     * @ORM\OrderBy({"date" = "DESC"})
      */
     protected $teachingUnits;
 

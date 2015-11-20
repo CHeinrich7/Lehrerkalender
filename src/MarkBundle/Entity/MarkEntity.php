@@ -23,6 +23,7 @@ class MarkEntity
     CONST MUENDLICH      = 1;
     CONST SCHRIFTLICH    = 2;
     CONST SONDERLEISTUNG = 3;
+
     /**
      * @var integer
      *
@@ -33,16 +34,17 @@ class MarkEntity
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=5)
+     * @ORM\Column(type="string", length=5, nullable=true)
      * @var string
      */
     protected $mark;
 
     /**
      * @var integer
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="smallint")
+     * @Constraints\Length(max="3", min="1")
      */
-    protected $type;
+    protected $type = 1;
 
     /**
      * @var TeachingUnit
