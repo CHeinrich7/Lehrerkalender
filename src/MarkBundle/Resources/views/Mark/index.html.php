@@ -34,9 +34,9 @@ $view->extend('::loggedIn.html.php');
             </div>
         </div>
         <div class="form-group">
-            <label for="mark_type" class="control-label col-sm-3">Typ</label>
+            <label for="mark-type" class="control-label col-sm-3">Typ</label>
             <div class="col-sm-9">
-                <select name="mark_type" id="mark_type" class="form-control text-center">
+                <select name="mark_type" id="mark-type" class="form-control text-center">
                     <option value="<?php echo MarkEntity::VERBAL;  ?>">Mündlich</option>
                     <option value="<?php echo MarkEntity::SPECIAL; ?>">Sonderleistung</option>
                     <option value="<?php echo MarkEntity::WRITTEN; ?>">Schriftlich</option>
@@ -57,12 +57,13 @@ $view->extend('::loggedIn.html.php');
 </div>
 
 <style>
-    td:hover .control-label .form-control {
+    .marks td:hover .control-label .form-control,
+    .marks td .control-label .form-control:focus {
         border: 1px solid #888;
         padding: 0;
     }
 
-    .control-label .form-control {
+    .marks .control-label .form-control {
         display: inline;
         box-shadow: none;
         background: transparent;
@@ -70,7 +71,7 @@ $view->extend('::loggedIn.html.php');
         border: 0;
         padding: 1px;
     }
-    .control-label .form-control:focus {
+    .marks .control-label .form-control:focus {
         background: white;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
     }
@@ -102,8 +103,8 @@ $view->extend('::loggedIn.html.php');
                     <tr>
                         <td class="no-padding">
                             <label data-id="new" class="control-label student" style="white-space: nowrap">
-                                <input name="firstname" type="text" value="Peter Franz" class="form-control" style="min-width:30px;" autocomplete="off" />
-                                <input name="lastname"  type="text" value="Detlef Wurst" class="form-control" style="min-width:30px;" min="3" autocomplete="off" />
+                                <input name="firstname" type="text" value="" placeholder="Vorname" class="form-control" style="min-width:75px;" autocomplete="off" />
+                                <input name="lastname"  type="text" value="" placeholder="Nachname" class="form-control" style="min-width:75px;" min="3" autocomplete="off" />
                             </label>
                         </td>
                     </tr>
@@ -123,9 +124,9 @@ $view->extend('::loggedIn.html.php');
                     </thead>
                     <tbody>
                     <?php foreach($data as $studentData): ?>
-                        <tr data-id="<?php echo $studentData['id']; ?>">
+                        <tr data-student-id="<?php echo $studentData['id']; ?>">
                             <?php foreach($studentData['teachingUnits'] as $teachingUnitId => $mark): ?>
-                                <td><span><?php echo $mark ? $mark : '&nbsp;'; ?></span></td>
+                                <td data-tu-id="<?php echo $teachingUnitId; ?>"><span><?php echo $mark ? $mark : '&nbsp;'; ?></span></td>
                             <?php endforeach; ?>
                         </tr>
                     <?php endforeach; ?>
@@ -199,8 +200,6 @@ $view->extend('::loggedIn.html.php');
         {
             var that = this;
 
-            that.debug = false;
-
             that.tableStudents = $(that.tableStudentsId);
             that.tableMarks =    $(that.tableMarksId);
             that.values =         that.tableMarks.find('td');
@@ -212,6 +211,10 @@ $view->extend('::loggedIn.html.php');
                 .on('mouseenter', {marks: that, 'class': 'marked'}, this.setColors);
 
             that.setFormEvents();
+
+            that.tableStudents
+                .find('student')
+                .on('change', {marks: that} ,that.sendStudentAjax);
         },
 
         hideForm: function(event)
@@ -250,24 +253,95 @@ $view->extend('::loggedIn.html.php');
 
             that
                 .updateCurrent($(this))
-                .prepareAndLoadForm($(this));
+                .prepareAndLoadMarkForm($(this));
         },
 
-        prepareAndLoadForm: function($elm)
+        prepareAndLoadMarkForm: function($elm)
         {
             var that = this,
 
-                $form = that.formWrapper.find('form');
+                $form       = that.formWrapper.find('form'),
+
+                studentId       = $elm.parent().data('student-id'),
+                teachingUnitId  = $elm.data('tu-id'),
+
+                proto_route     = '<?php echo $routerHelper->generate('mark_load', ['student' => '_student_', 'teachingUnit' => '_teachingUnit_']); ?>',
+                route           = proto_route.replace('_student_', studentId).replace('_teachingUnit_', teachingUnitId);
 
             $elm.append(that.formWrapper);
-            that.formWrapper.fadeIn();
+
+            $.ajax({
+                url: route,
+                success: function(response)
+                {
+                    var $markType = $('#mark-type'),
+                        $mark     = $('#mark');
+
+                    that.log(response);
+
+                    $markType.find('option[value="'+response.type+'"]').attr('selected', true);
+
+                    $mark.val(response.mark);
+
+                    $form
+                        .off('click')
+                        .on(
+                            'click',
+                            '[data-submit]',
+                            {
+                                elm:            $elm,
+                                that:           that,
+                                student:        studentId,
+                                teachingUnit:   teachingUnitId
+                            },
+                            that.sendMarkAjax
+                        );
+
+                    that.formWrapper.fadeIn();
+                }
+            });
 
             return that;
         },
 
-        sendAjax: function()
+        sendMarkAjax: function(event)
         {
-            var that = this;
+            var that = event.data.that,
+
+                proto_route     = '<?php echo $routerHelper->generate('mark_save', ['student' => '_student_', 'teachingUnit' => '_teachingUnit_']); ?>',
+                route           = proto_route.replace('_student_', event.data.student).replace('_teachingUnit_', event.data.teachingUnit),
+
+
+
+                $markType = $('#mark-type'),
+                $mark     = $('#mark');
+
+            $.ajax({
+                url : route,
+                data: {
+                    mark: $mark.val(),
+                    type: $markType.val()
+                },
+                success: function(response) {
+                    that.log(response);
+                    event.data.elm.find('span').first().text(response.mark);
+                    that.formWrapper.find('[data-abort]').trigger('click');
+                }, error: function(response) {
+                    that.log(response);
+                }
+            });
+
+            return that;
+        },
+
+        sendStudentAjax: function(event)
+        {
+            var that = event.data.marks;
+
+            $.ajax({
+                'url' : '<?php /*echo $routerHelper->generate('');*/ ?>',
+                'data': ''
+            });
 
             return that;
         },

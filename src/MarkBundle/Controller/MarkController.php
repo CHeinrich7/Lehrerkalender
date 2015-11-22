@@ -7,6 +7,8 @@ use MarkBundle\Entity\MarkEntity;
 use SubjectBundle\Entity\StudentEntity;
 use SubjectBundle\Entity\SubjectEntity as Subject;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class MarkController extends Controller
 {
@@ -42,6 +44,66 @@ class MarkController extends Controller
             'data'          => $data,
             'teachingUnits' => $teachingUnits,
             'subject'       => $subject
+        ]);
+    }
+
+    function loadAction($student, $teachingUnit)
+    {
+        $em = $this->get('doctrine.orm.default_entity_manager');
+
+        $mark = $em->getRepository('MarkBundle:MarkEntity')->findOneBy([
+            'student'       => $student,
+            'teachingUnit'  => $teachingUnit
+        ]);
+
+        $new = false;
+
+        if($mark instanceof MarkEntity !== true) {
+            $mark = new MarkEntity();
+            $new = true;
+        }
+
+        return new JsonResponse([
+            'mark'  => $mark->getMark(),
+            'type'  => $mark->getType(),
+            'new'   => $new
+        ]);
+    }
+
+    function saveAction(Request $request, StudentEntity $student, TeachingUnit $teachingUnit)
+    {
+        $em = $this->get('doctrine.orm.default_entity_manager');
+
+        $markEntity = $em->getRepository('MarkBundle:MarkEntity')->findOneBy([
+            'student'       => $student,
+            'teachingUnit'  => $teachingUnit
+        ]);
+
+        $new = false;
+
+        if($markEntity instanceof MarkEntity !== true) {
+            $markEntity = new MarkEntity();
+            $new = true;
+
+            $markEntity
+                ->setStudent($student)
+                ->setTeachingUnit($teachingUnit);
+        }
+
+        $type = $request->get('type');
+        $mark = $request->get('mark');
+
+        $markEntity
+            ->setType($type)
+            ->setMark($mark);
+
+        $em->persist($markEntity);
+        $em->flush();
+
+        return new JsonResponse([
+            'mark'  => $markEntity->getMark(),
+            'type'  => $markEntity->getType(),
+            'new'   => $new
         ]);
     }
 }

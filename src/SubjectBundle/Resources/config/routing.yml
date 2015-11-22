@@ -5,3 +5,7 @@ subject_class_new:
 subject_select_class:
     path:     /in/classes
     defaults: { _controller: SubjectBundle:EducationClass:select }
+
+student_save:
+    path:     /in/student/save/{subject}/{studentId}
+    defaults: { _controller: SubjectBundle:Student:save }

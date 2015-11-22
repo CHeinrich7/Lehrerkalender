@@ -1,3 +1,11 @@
 mark_overview:
     path:     /in/marks/{subject}
     defaults: { _controller: MarkBundle:Mark:index }
+
+mark_load:
+    path:     /in/marks/load/{student}/{teachingUnit}
+    defaults: { _controller: MarkBundle:Mark:load }
+
+mark_save:
+    path:     /in/marks/save/{student}/{teachingUnit}
+    defaults: { _controller: MarkBundle:Mark:save }

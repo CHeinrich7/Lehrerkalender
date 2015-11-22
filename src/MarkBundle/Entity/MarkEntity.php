@@ -51,15 +51,17 @@ class MarkEntity
      * @var TeachingUnit
      *
      * @ORM\ManyToOne(targetEntity="EducationCalendarBundle\Entity\TeachingUnit")
-     * @ORM\JoinColumn(referencedColumnName="id")
+     * @ORM\JoinColumn(referencedColumnName="id", nullable=false)
+     * @Constraints\NotNull()
      */
     protected $teachingUnit;
 
     /**
      * @var StudentEntity
      *
-     * @ORM\ManyToOne(targetEntity="SubjectBundle\Entity\StudentEntity")
-     * @ORM\JoinColumn(referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="SubjectBundle\Entity\StudentEntity",)
+     * @ORM\JoinColumn(referencedColumnName="id", nullable=false)
+     * @Constraints\NotNull()
      */
     protected $student;
 
