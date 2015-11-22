@@ -12,7 +12,7 @@ use \EducationCalendarBundle\Entity\TeachingUnit;
  */
 
 $data = [
-    'block'     => $block+1,
+    'block'     => $block,
     'room'      => '',
     'subject_class' => [
         'selected' => '',
