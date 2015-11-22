@@ -5,8 +5,6 @@ namespace EducationCalendarBundle\Controller;
 use EducationCalendarBundle\Entity\TeachingUnit;
 use SubjectBundle\Entity\SubjectEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class CalendarController extends Controller
@@ -50,53 +48,6 @@ class CalendarController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param integer $block
-     * @param integer $time
-     *
-     * @return JsonResponse
-     */
-    public function saveTeachingUnitAction(Request $request, SubjectEntity $subject, $block, $time)
-    {
-
-        $em = $this->get('doctrine.orm.default_entity_manager');
-
-        $repo = $em->getRepository('EducationCalendarBundle:TeachingUnit');
-
-        $success = $repo->saveByData(
-            $request,           // Request
-            $subject,           // Subject
-            $this->getUser(),   // User
-            $block,             // TeachingUnit::unitBlock
-            $time               // TeachingUnit::date->getTimestamp
-        );
-
-        return new JsonResponse(['success' => $success]);
-    }
-
-    /**
-     * @param integer $block
-     * @param integer $time
-     *
-     * @return JsonResponse
-     */
-    public function removeTeachingUnitAction($block, $time)
-    {
-
-        $em = $this->get('doctrine.orm.default_entity_manager');
-
-        $repo = $em->getRepository('EducationCalendarBundle:TeachingUnit');
-
-        $removed = $repo->removeByData(
-            $this->getUser(),   // User
-            $block,             // TeachingUnit::unitBlock
-            $time               // TeachingUnit::date->getTimestamp
-        );
-
-        return new JsonResponse(['success' => true, 'data' => ['removed' => $removed]]);
-    }
-
-    /**
      * @param integer $time
      * @return array
      */
@@ -115,7 +66,7 @@ class CalendarController extends Controller
         foreach($teachingUnits as $teachingUnit)
         {
             $day    = $teachingUnit->getDate()->format('w')-1;
-            $block  = $teachingUnit->getUnitBlock()-1;
+            $block  = $teachingUnit->getUnitBlock();
             $data[$day]['blocks'][$block] = $teachingUnit;
         }
 

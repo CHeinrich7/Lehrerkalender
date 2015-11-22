@@ -9,14 +9,16 @@ education_calendar_overview:
     path:     /in/calendar
     defaults: { _controller: EducationCalendarBundle:Calendar:calendar }
 
-teaching_unit_save:
-    path:     /in/calendar/save/{subject}/{block}/{time}
-    defaults: { _controller: EducationCalendarBundle:Calendar:saveTeachingUnit }
-
-teaching_unit_remove:
-    path:     /in/calendar/remove/{block}/{time}
-    defaults: { _controller: EducationCalendarBundle:Calendar:removeTeachingUnit }
-
 education_calendar_accordion_response:
     path:     /in/calendar/accordion/{time}
     defaults: { _controller: EducationCalendarBundle:Calendar:getAccordionResponse }
+
+
+
+teaching_unit_save:
+    path:     /in/calendar/save/{subject}/{block}/{time}
+    defaults: { _controller: EducationCalendarBundle:TeachingUnit:saveTeachingUnit }
+
+teaching_unit_remove:
+    path:     /in/calendar/remove/{block}/{time}
+    defaults: { _controller: EducationCalendarBundle:TeachingUnit:removeTeachingUnit }
