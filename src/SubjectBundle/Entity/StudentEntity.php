@@ -33,7 +33,7 @@ class StudentEntity extends SoftdeletableEntity
     /**
      * @var EducationClassEntity
      *
-     * @ORM\ManyToOne(targetEntity="EducationClassEntity")
+     * @ORM\ManyToOne(targetEntity="EducationClassEntity", inversedBy="students")
      * @ORM\JoinColumn(referencedColumnName="id")
      */
     protected $educationClass;
@@ -76,7 +76,7 @@ class StudentEntity extends SoftdeletableEntity
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="MarkBundle\Entity\MarkEntity", mappedBy="teachingUnit")
+     * @ORM\OneToMany(targetEntity="MarkBundle\Entity\MarkEntity", mappedBy="student")
      * @ORM\OrderBy({"mark" = "ASC"})
      */
     protected $marks;

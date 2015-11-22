@@ -116,10 +116,8 @@ Klasse auswaehlen
             'url': '<?php echo $routerHelper->generate('subject_class_new'); ?>',
             'data': data,
             success: function (response) {
-                if (response.success) {
-                    console.log(response.data);
-                    location.reload();
-                }
+                    console.log(response);
+                location.reload();
             },
             error: function (response) {
                 alert(response.error)

@@ -50,7 +50,7 @@ class MarkEntity
     /**
      * @var TeachingUnit
      *
-     * @ORM\ManyToOne(targetEntity="EducationCalendarBundle\Entity\TeachingUnit")
+     * @ORM\ManyToOne(targetEntity="EducationCalendarBundle\Entity\TeachingUnit", inversedBy="marks")
      * @ORM\JoinColumn(referencedColumnName="id", nullable=false)
      * @Constraints\NotNull()
      */
@@ -59,7 +59,7 @@ class MarkEntity
     /**
      * @var StudentEntity
      *
-     * @ORM\ManyToOne(targetEntity="SubjectBundle\Entity\StudentEntity",)
+     * @ORM\ManyToOne(targetEntity="SubjectBundle\Entity\StudentEntity", inversedBy="marks")
      * @ORM\JoinColumn(referencedColumnName="id", nullable=false)
      * @Constraints\NotNull()
      */

@@ -48,7 +48,7 @@ class SubjectEntity extends SoftdeletableEntity
     /**
      * @var EducationClassEntity
      *
-     * @ORM\ManyToOne(targetEntity="EducationClassEntity")
+     * @ORM\ManyToOne(targetEntity="EducationClassEntity", inversedBy="subjects")
      * @ORM\JoinColumn(referencedColumnName="id")
      */
     protected $educationClass;

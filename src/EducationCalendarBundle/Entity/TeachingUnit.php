@@ -51,7 +51,7 @@ class TeachingUnit extends SoftdeletableEntity
     /**
      * @var SubjectEntity
      *
-     * @ORM\ManyToOne(targetEntity="SubjectBundle\Entity\SubjectEntity")
+     * @ORM\ManyToOne(targetEntity="SubjectBundle\Entity\SubjectEntity", inversedBy="teachingUnits")
      * @ORM\JoinColumn(referencedColumnName="id")
      */
     protected $subject;
