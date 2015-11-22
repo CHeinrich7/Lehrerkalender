@@ -99,9 +99,9 @@
         color: #eeeeee;
     }
 
-    .table-div .td-div-0::before { content: '1'; }
-    .table-div .td-div-1::before { content: '2'; }
-    .table-div .td-div-2::before { content: '3'; }
-    .table-div .td-div-3::before { content: '4'; }
-    .table-div .td-div-4::before { content: '5'; }
+    .table-div .td-div-1::before { content: '1'; }
+    .table-div .td-div-2::before { content: '2'; }
+    .table-div .td-div-3::before { content: '3'; }
+    .table-div .td-div-4::before { content: '4'; }
+    .table-div .td-div-5::before { content: '5'; }
 }
