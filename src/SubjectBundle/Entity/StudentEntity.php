@@ -42,16 +42,13 @@ class StudentEntity extends SoftdeletableEntity
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=50, nullable=true)
-     * @Constraints\Length(min = "3")
      */
     protected $firstname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastname", type="string", length=50)
-     * @Constraints\Length(min = "3")
-     * @Constraints\NotBlank()
+     * @ORM\Column(name="lastname", type="string", length=50, nullable=true)
      */
     protected $lastname;
 
@@ -65,14 +62,14 @@ class StudentEntity extends SoftdeletableEntity
     /**
      * @var \DateTime
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $entered;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $caved;
 

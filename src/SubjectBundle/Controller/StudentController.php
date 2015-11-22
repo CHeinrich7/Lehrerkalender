@@ -20,6 +20,8 @@ class StudentController extends Controller
      * @param Request       $request
      * @param SubjectEntity $subject
      * @param string        $studentId
+     *
+     * @return JsonResponse
      */
     public function saveAction(Request $request, SubjectEntity $subject, $studentId)
     {
@@ -34,6 +36,7 @@ class StudentController extends Controller
         } else {
             $new = true;
             $student = new StudentEntity();
+            $student->setEducationClass($subject->getEducationClass());
         }
 
         $student

@@ -118,6 +118,7 @@ Klasse auswaehlen
             success: function (response) {
                 if (response.success) {
                     console.log(response.data);
+                    location.reload();
                 }
             },
             error: function (response) {

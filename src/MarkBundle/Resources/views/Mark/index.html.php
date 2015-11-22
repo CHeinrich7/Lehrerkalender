@@ -26,17 +26,17 @@ $view->extend('::loggedIn.html.php');
 <?php $slotsHelper->start('content'); ?>
 
 <div id="mark-form-wrapper" style="width:250px;" class="well">
-    <form id="mark-form" action="#" class="form-horizontal">
+    <form id="mark-form" action="#" class="form-horizontal" autocomplete="off">
         <div class="form-group">
             <label for="mark" class="control-label col-sm-3">Note</label>
             <div class="col-sm-9">
-                <input id="mark" name="mark" class="form-control text-center" type="text" value="100%" />
+                <input id="mark" name="mark" class="form-control text-center" type="text" value="100%" autocomplete="off" />
             </div>
         </div>
         <div class="form-group">
             <label for="mark-type" class="control-label col-sm-3">Typ</label>
             <div class="col-sm-9">
-                <select name="mark_type" id="mark-type" class="form-control text-center">
+                <select name="mark_type" id="mark-type" class="form-control text-center" autocomplete="off">
                     <option value="<?php echo MarkEntity::VERBAL;  ?>">Mündlich</option>
                     <option value="<?php echo MarkEntity::SPECIAL; ?>">Sonderleistung</option>
                     <option value="<?php echo MarkEntity::WRITTEN; ?>">Schriftlich</option>
@@ -94,8 +94,8 @@ $view->extend('::loggedIn.html.php');
                         <tr>
                             <td class="no-padding">
                                 <label data-id="<?php echo $studentData['id']; ?>" class="control-label student">
-                                    <input name="firstname" type="text" class="form-control" value="<?php echo $studentData['firstname']; ?>" />
-                                    <input name="lastname"  type="text" class="form-control" value="<?php echo $studentData['lastname']; ?>" min="3" />
+                                    <input name="firstname" type="text" class="form-control" autocomplete="off" value="<?php echo $studentData['firstname']; ?>" />
+                                    <input name="lastname"  type="text" class="form-control" autocomplete="off" value="<?php echo $studentData['lastname']; ?>" min="3" />
                                 </label>
                             </td>
                         </tr>
@@ -213,7 +213,7 @@ $view->extend('::loggedIn.html.php');
             that.setFormEvents();
 
             that.tableStudents
-                .find('student')
+                .find('.student')
                 .on('change', {marks: that} ,that.sendStudentAjax);
         },
 
@@ -223,6 +223,8 @@ $view->extend('::loggedIn.html.php');
                 cssClass= 'marked-form';
 
             $('.'+cssClass).removeClass(cssClass);
+
+            that.resetCurrent();
 
             that.formWrapper.fadeOut();
         },
@@ -279,7 +281,8 @@ $view->extend('::loggedIn.html.php');
 
                     that.log(response);
 
-                    $markType.find('option[value="'+response.type+'"]').attr('selected', true);
+                    $markType.find('option').prop('selected', false);
+                    $markType.find('option[value="'+response.type+'"]').prop('selected', true);
 
                     $mark.val(response.mark);
 
@@ -336,11 +339,35 @@ $view->extend('::loggedIn.html.php');
 
         sendStudentAjax: function(event)
         {
-            var that = event.data.marks;
+            var that = event.data.marks,
+                $elm = $(this),
+
+                studentId = $elm.data('id'),
+
+                proto_url = '<?php echo $routerHelper->generate('student_save', [ 'studentId' => '_student_', 'subject'   => $subject->getId() ]); ?>',
+                route     = proto_url.replace('_student_', studentId),
+
+                firstname = $elm.find('[name="firstname"]').val(),
+                lastname  = $elm.find('[name="lastname"]').val();
+
+            if(studentId === 'new' && (firstname.length <= 0 || lastname.length <= 0)) {
+                return;
+            }
 
             $.ajax({
-                'url' : '<?php /*echo $routerHelper->generate('');*/ ?>',
-                'data': ''
+                url : route,
+                data: {
+                    firstname: firstname,
+                    lastname: lastname
+                },
+                success: function(response) {
+                    if(response.new) {
+                        location.reload();
+                    }
+                },
+                error: function(response) {
+                    that.log(response)
+                }
             });
 
             return that;
