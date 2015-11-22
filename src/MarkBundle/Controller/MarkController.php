@@ -34,7 +34,11 @@ class MarkController extends Controller
             }
 
             foreach($marks as $mark) { /** @var MarkEntity $mark */
-                $studentData['teachingUnits'][$mark->getTeachingUnit()->getId()] = $mark->getMark();
+                $markSubject = $mark->getTeachingUnit()->getSubject();
+
+                if($markSubject->getId() === $subject->getId()) {
+                    $studentData['teachingUnits'][$mark->getTeachingUnit()->getId()] = $mark->getMark();
+                }
             }
 
             $data[] = $studentData;
