@@ -89,7 +89,7 @@ $view->extend('::loggedIn.html.php');
         </div>
         <div class="col-sm-4 col-xs-6 pointer">
             <div class="input-group date" id="calendarViewDatePicker">
-                <input id="datepicker" type="date" class="form-control text-center" autocomplete="off" value="<?php echo date('d.m.Y'); ?>" />
+                <input id="datepicker" type="text" class="form-control text-center" autocomplete="off" value="<?php echo date('d.m.Y'); ?>" />
                 <label for="datepicker" class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </label>
