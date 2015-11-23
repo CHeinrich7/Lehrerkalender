@@ -21,7 +21,7 @@ if (!$label) {
     <div class="<?php echo $class; ?>">
         <div class="clearfix">
             <div class=""></div>
-            <button class="btn btn-primary pull-right" type="<?php echo isset($type) ? $view->escape($type) : 'submit' ?>" <?php echo $formHelper->block($form, 'button_attributes') ?>>Speichern</button>
+            <button class="btn btn-primary pull-right" type="<?php echo isset($type) ? $view->escape($type) : 'submit' ?>" <?php echo $formHelper->block($form, 'button_attributes') ?>><?php echo $label; ?></button>
         </div>
     </div>
 </div>
