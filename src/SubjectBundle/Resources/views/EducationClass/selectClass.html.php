@@ -120,7 +120,7 @@ Klasse auswaehlen
                 location.reload();
             },
             error: function (response) {
-                alert(response.error)
+                alert("Die Kombination Klasse - Fach ist bereits vorhanden");
             }
         });
 
