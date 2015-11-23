@@ -38,12 +38,11 @@ class BlameableListener extends TimestampableListener
             if (null !== $this->user && ! is_object($this->user)) {
                 throw new InvalidArgumentException("Blame is reference, user must be an object");
             }
-            $user = $this->user->getToken()->getUser();
-            if(!is_object($user))
-            {
+            $token = $this->user->getToken();
+            if(!is_object($token)) {
                 return null;
             }
-            return $user;
+            return $token->getUser();
         }
 
         // ok so its not an association, then it is a string
