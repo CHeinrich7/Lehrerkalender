@@ -67,7 +67,7 @@ $view->extend('::loggedIn.html.php');
         display: inline;
         box-shadow: none;
         background: transparent;
-        min-width:30px;
+        min-width:50px;
         border: 0;
         padding: 1px;
     }
@@ -153,7 +153,7 @@ $view->extend('::loggedIn.html.php');
         $('body').append($calculator);
         width = $calculator.width();
         $calculator.remove();
-        $self.css('width', width+3);
+        $self.css('width', width+10);
     };
 
     $('.control-label .form-control')
