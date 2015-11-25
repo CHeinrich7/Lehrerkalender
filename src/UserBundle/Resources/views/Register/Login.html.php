@@ -31,26 +31,24 @@ $formHelper->setTheme($loginFormView, ':Form');
 
 
 <?php $slotsHelper->start('content'); ?>
-    <div class="container">
-        <?php if($error): ?>
-            <div class="row">
-                <div class="col-sm-offset-3 col-sm-6">
-                    <div class="alert alert-danger">
-                        <?php echo $error->getMessage(); ?>
-                    </div>
+<?php if($error): ?>
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+                <div class="alert alert-danger">
+                    <?php echo $error->getMessage(); ?>
                 </div>
             </div>
-        <?php endif; ?>
-        <?php if($username !== false): ?>
-            <div class="row">
-                <div class="col-sm-offset-3 col-sm-6">
-                    <div class="alert alert-info">
-                        <p>Danke, dass du dich ausgeloggt hast.<br /><br />Vielleicht sehen wir uns bald mal wieder, <b><?php echo $username; ?></b></p>
-                    </div>
-                </div>
+        </div>
+<?php endif; ?>
+<?php if($username !== false): ?>
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+            <div class="alert alert-info">
+                <p>Danke, dass du dich ausgeloggt hast.<br /><br />Vielleicht sehen wir uns bald mal wieder, <b><?php echo $username; ?></b></p>
             </div>
-        <?php endif; ?>
-
-        <?php echo $formHelper->form( $loginFormView ); ?>
+        </div>
     </div>
+<?php endif; ?>
+
+<?php echo $formHelper->form( $loginFormView ); ?>
 <?php $slotsHelper->stop(); ?>

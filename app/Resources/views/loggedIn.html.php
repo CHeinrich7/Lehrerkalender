@@ -38,14 +38,56 @@ $view->extend('::base.html.php');
     <!-- some styles should be overwritten for this system -->
     <link href="/css/override-bootstrap.css" rel="stylesheet">
     <link href="/css/override-datepicker.css" rel="stylesheet">
+
+    <style>
+        html, body {
+            min-height: 100%;
+            padding: 0;
+            margin: 0;
+            height:100%;
+        }
+
+        body > .container {
+            min-height:100%;
+            position:relative;
+            padding-bottom: 80px;
+        }
+
+        #footer {
+            position:absolute;
+            bottom: 0;
+        }
+
+        .glyphicon {
+            top: 3px;
+        }
+
+        @media (max-width: 767px) {
+            #header .glyphicon {
+                font-size: 40px;
+            }
+
+            #header > div {
+                padding: 0;
+            }
+
+            .date-holder {
+                font-size: 20px;
+            }
+        }
+    </style>
 <?php $slotsHelper->stop(); ?>
 
 <?php $slotsHelper->start('header'); ?>
     <div class="col-xs-6">
-        <a href="<?php echo $routerHelper->generate('education_calendar_overview'); ?>"><h1 class="text-center">Kalender</h1></a>
+        <a href="<?php echo $routerHelper->generate('education_calendar_overview'); ?>">
+            <h1 class="text-center"><i class="glyphicon glyphicon-calendar"></i><span class="hidden-xs">&nbsp;Kalender</span></h1>
+        </a>
     </div>
     <div class="col-xs-6">
-        <a href="<?php echo $routerHelper->generate('subject_select_class'); ?>"><h1 class="text-center">Benotung</h1></a>
+        <a href="<?php echo $routerHelper->generate('subject_select_class'); ?>">
+            <h1 class="text-center"><i class="glyphicon glyphicon-music"></i><span class="hidden-xs">&nbsp;Benotung</span></h1>
+        </a>
     </div>
 <?php if (in_array($app->getEnvironment(), array('dev', 'test'))): ?>
     <div class="col-xs-12 text-center">
@@ -112,3 +154,18 @@ $view->extend('::base.html.php');
         })(document, jQuery);
     </script>
 <?php $slotsHelper->stop(); ?>
+
+<?php if($app->getSecurity()->isGranted(\UserBundle\Entity\Role::ROLE_ADMIN)): ?>
+<?php $slotsHelper->start('footer'); ?>
+    <div class="col-xs-4 col-xs-offset-2">
+        <a href="<?php $routerHelper->generate('user_index'); ?>">
+            <h3 class="no-margin-top text-center"><span class="glyphicon glyphicon-user"></span>&nbsp;User</h3>
+        </a>
+    </div>
+    <div class="col-xs-4">
+        <a href="<?php $routerHelper->generate('user_index'); ?>">
+            <h3 class="no-margin text-center"><span class="glyphicon glyphicon-education"></span>&nbsp;User</h3>
+        </a>
+    </div>
+<?php $slotsHelper->stop(); ?>
+<?php endif; ?>

@@ -21,20 +21,18 @@ $formHelper->setTheme($userFormView, ':Form');
 ?>
 
 <?php $slotsHelper->start('content') ?>
-    <div class="container">
-        <?php
-        echo $formHelper->start( $userFormView );
+<?php
+echo $formHelper->start( $userFormView );
 
-        echo $formHelper->row( $userFormView->children['username'] );
-        echo $formHelper->row( $userFormView->children['password'] );
+echo $formHelper->row( $userFormView->children['username'] );
+echo $formHelper->row( $userFormView->children['password'] );
 
-        if(!isset($newUser) || $newUser == false) {
-            echo $formHelper->row( $userFormView->children['plainPassword'] );
-        }
+if(!isset($newUser) || $newUser == false) {
+    echo $formHelper->row( $userFormView->children['plainPassword'] );
+}
 
-        echo $formHelper->row( $userFormView->children['save'] );
+echo $formHelper->row( $userFormView->children['save'] );
 
-        echo $formHelper->end( $userFormView );
-        ?>
-    </div>
+echo $formHelper->end( $userFormView );
+?>
 <?php $slotsHelper->stop('content') ?>

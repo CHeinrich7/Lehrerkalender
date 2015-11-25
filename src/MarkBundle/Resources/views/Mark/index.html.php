@@ -77,7 +77,7 @@ $view->extend('::loggedIn.html.php');
     }
 </style>
 
-<div class="container marks">
+<div class="marks">
     <div class="row">
         <div class="col-xs-12 no-wrap">
             <div id="table-students-holder" class="inline">

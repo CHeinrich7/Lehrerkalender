@@ -79,35 +79,36 @@ $view->extend('::loggedIn.html.php');
     }
 </style>
 
-<div class="container">
-    <div class="row date-holder">
-        <div class="col-sm-4 col-xs-3">
-            <h2 id="prevWeek" class="no-margin pull-right pointer">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-                <div class="pull-right week">KW --</div>
-            </h2>
-        </div>
-        <div class="col-sm-4 col-xs-6 pointer">
-            <div class="input-group date" id="calendarViewDatePicker">
-                <input id="datepicker" type="text" class="form-control text-center" autocomplete="off" value="<?php echo date('d.m.Y'); ?>" />
-                <label for="datepicker" class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </label>
-            </div>
-        </div>
-        <div class="col-sm-4 col-xs-3">
-            <h2 id="nextWeek" class="no-margin pull-left pointer">
-                <div class="week pull-left">KW --</div>
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </h2>
+<div class="row date-holder">
+    <div class="col-sm-4 col-xs-2">
+        <h2 id="prevWeek" class="no-margin pull-right pointer">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <div class="pull-right week">KW --</div>
+        </h2>
+    </div>
+    <div class="col-sm-3 col-xs-5 pointer">
+        <div class="input-group date" id="calendarViewDatePicker">
+            <input id="datepicker" type="text" class="form-control text-center" autocomplete="off" value="<?php echo date('d.m.Y'); ?>" />
+            <label for="datepicker" class="input-group-addon hidden-xs">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </label>
         </div>
     </div>
+    <div class="col-sm-4 col-xs-2">
+        <h2 id="nextWeek" class="no-margin pull-left pointer">
+            <div class="week pull-left">KW --</div>
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </h2>
+    </div>
+    <div class="col-xs-3" style="font-size: 25px;margin-top:3px;">
+        <span class="glyphicon glyphicon-filter pull-right no-margin pointer"></span>
+    </div>
+</div>
 
-    <div class="table table-div">
-        <div class="row">
-            <div id="accordion" class="panel-group accordion">
-                <?php echo $tableResponse->getContent(); ?>
-            </div>
+<div class="table table-div">
+    <div class="row">
+        <div id="accordion" class="panel-group accordion">
+            <?php echo $tableResponse->getContent(); ?>
         </div>
     </div>
 </div>

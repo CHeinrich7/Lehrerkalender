@@ -48,13 +48,21 @@ $slotsHelper = $view['slots']; /* @var $slotsHelper SlotsHelper */
     </style>
 </head>
 <body>
-<div class="container" id="header">
-    <div class="row"><?php $slotsHelper->output('header', ''); ?></div>
+<div class="container">
+    <div id="header" class="row">
+        <?php $slotsHelper->output('header', ''); ?>
+    </div>
+
+    <?php $slotsHelper->output('content', ''); ?>
+
+    <div id="footer" class="row" style="width:100%">
+        <div class="container">
+            <div class="row">
+                <?php $slotsHelper->output('footer', '');  ?>
+            </div>
+        </div>
+    </div>
 </div>
-
-<?php $slotsHelper->output('content', ''); ?>
-
-<?php /** $slotsHelper->output('footer', ''); */ ?>
 
 
 <script type="text/javascript">

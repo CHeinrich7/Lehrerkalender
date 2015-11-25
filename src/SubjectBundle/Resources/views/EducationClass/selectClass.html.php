@@ -35,8 +35,7 @@ Klasse auswaehlen
         font-weight: bold;
     }
 </style>
-
-<div class="container">
+<div class="row">
     <div class="panel-group accordion" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingNew>">
@@ -79,10 +78,8 @@ Klasse auswaehlen
             </div>
         </div>
     </div>
-</div>
 
-<div class="container margin-top-30">
-    <div class="list-group">
+    <div class="list-group margin-top-30">
         <?php foreach ($subjectEntities as $subject): ?>
             <a href="<?php echo $routerHelper->generate('mark_overview', ['subject' => $subject->getId()]); ?>"
                class="list-group-item">

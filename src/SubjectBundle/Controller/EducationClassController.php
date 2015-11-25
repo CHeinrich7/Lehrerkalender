@@ -12,6 +12,7 @@ class EducationClassController extends Controller
     {
         $em = $this->get('doctrine.orm.default_entity_manager');
 
+        /** @var SubjectEntity $subjectEntities */
         $subjectEntities = $em->getRepository('SubjectBundle:SubjectEntity')->findAllDistinct();
         $classEntities = $em->getRepository('SubjectBundle:EducationClassEntity')->findAll();
 
