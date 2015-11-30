@@ -75,6 +75,10 @@ $view->extend('::base.html.php');
                 font-size: 20px;
             }
         }
+
+        .chosen-container:not(.chosen-with-drop) .chosen-drop {
+            display: none;
+        }
     </style>
 <?php $slotsHelper->stop(); ?>
 
