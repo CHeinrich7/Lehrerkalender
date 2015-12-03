@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
 
 class EducationClassRepository extends EntityRepository
 {
+    public function findAllOrdered()
+    {
+        $qb = $this->createQueryBuilder('c');
+
+        $qb->addOrderBy('c.name');
+
+        return $qb->getQuery()->getResult();
+    }
 }

@@ -105,6 +105,10 @@
     cursor: pointer;
 }
 
+.full-width {
+    width: 100%;
+}
+
 @media (max-width: 767px) {
     .no-padding-xs {
         padding: 0;

@@ -3,6 +3,7 @@
 namespace UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Role\RoleInterface;
 use Symfony\Component\Validator\Constraints;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -13,7 +14,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @UniqueEntity(fields="role", message="There can not be one Role twice in Database!")
  */
-class Role
+class Role implements RoleInterface
 {
     const ROLE_APPLICANT    = 'ROLE_APPLICANT';
     const ROLE_ADMIN        = 'ROLE_ADMIN';
@@ -61,11 +62,21 @@ class Role
     /**
      * @param string $role
      *
-     * @return Role
+     * @return $this
+     *
+     * @throws \Exception
      */
     public function setRole ( $role )
     {
         $this->role = $role;
+
+        if(!in_array($role, [
+            Role::ROLE_APPLICANT,
+            Role::ROLE_ADMIN
+        ])) {
+            throw new \Exception('Role::role can not be ' . $role);
+        }
+
         return $this;
     }
 
@@ -76,4 +87,11 @@ class Role
     {
         return $this->role;
     }
+
+    function __toString()
+    {
+        return $this->getRole();
+    }
+
+
 }

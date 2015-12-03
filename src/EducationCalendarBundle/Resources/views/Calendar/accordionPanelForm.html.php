@@ -1,7 +1,7 @@
 <?php
-use \EducationCalendarBundle\Entity\TeachingUnit;
+use EducationCalendarBundle\Entity\TeachingUnit;
 /**
- * @var $view           \Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine
+ * @var $view           Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine
  *
  * @var $block          integer
  * @var $day            string
@@ -47,11 +47,12 @@ if($teachingUnit instanceof TeachingUnit === true) {
                 <label>
                     <select class="form-control placeholder chosen-select" name="subject_class" autocomplete="off">
                         <option value="" class="placeholder">Klasse - Fach</option>
-                        <?php foreach($data['subject_class']['choices'] as $index => $value): ?>
+                        <?php foreach($data['subject_class']['choices'] as $index => $subject): ?>
                             <option
+                                data-education-class="<?php echo $subject['class']; ?>"
                                 value="<?php echo $index; ?>"
                                 <?php if($index == $data['subject_class']['selected']): ?>selected="selected"<?php endif; ?>>
-                                <?php echo $value; ?>
+                                <?php echo $subject['name']; ?>
                             </option>
                         <?php endforeach; ?>
                     </select>

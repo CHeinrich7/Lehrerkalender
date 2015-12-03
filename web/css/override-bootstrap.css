@@ -10,3 +10,7 @@
     color: black;
     text-decoration: none;
 }
+
+.glyphicon {
+    top: 3px;
+}

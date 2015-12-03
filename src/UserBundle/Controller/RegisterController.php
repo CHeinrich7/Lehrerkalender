@@ -48,36 +48,4 @@ class RegisterController extends Controller
         $session->invalidate(0);
         $session->clear();
     }
-
-    public function getUser()
-    {
-        if (!$this->container->has('security.context')) {
-            throw new \LogicException('The SecurityBundle is not registered in your application.');
-        }
-
-        if (null === $token = $this->container->get('security.context')->getToken()) {
-            return false;
-        }
-
-        if (!is_object($user = $token->getUser())) {
-            return false;
-        }
-
-        return $user;
-    }
-
-    public function getUserAction()
-    {
-        return $this->getUser();
-    }
-
-    public function getAuthChecker()
-    {
-        return $this->get('security.authorization_checker');
-    }
-
-    public function getAuthCheckerAction()
-    {
-        return $this->getAuthChecker();
-    }
 }

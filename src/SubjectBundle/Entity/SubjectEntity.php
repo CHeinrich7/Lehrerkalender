@@ -40,7 +40,7 @@ class SubjectEntity extends SoftdeletableEntity
      * @var string
      *
      * @ORM\Column(name="name")
-     * @Constraints\Length(max="5")
+     * @Constraints\Length(max="5", min="3")
      * @Constraints\NotBlank()
      */
     protected $name;

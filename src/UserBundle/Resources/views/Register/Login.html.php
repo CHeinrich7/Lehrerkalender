@@ -1,7 +1,7 @@
 <?php
 /**
  * @var $view           Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine
- * @var $slotsHelper    Symfony\Component\Templating\Helper\SlotsHelper
+ * @var $slotsHelper    ToolboxBundle\Helper\SlotsHelper
  * @var $routerHelper   Symfony\Bundle\FrameworkBundle\Templating\Helper\RouterHelper
  * @var $formHelper     Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper
  *

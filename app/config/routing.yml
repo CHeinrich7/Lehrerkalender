@@ -1,3 +1,7 @@
+toolbox:
+    resource: "@ToolboxBundle/Resources/config/routing.yml"
+    prefix:   /
+
 mark:
     resource: "@MarkBundle/Resources/config/routing.yml"
     prefix:   /

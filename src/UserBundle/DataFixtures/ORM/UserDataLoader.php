@@ -9,22 +9,6 @@ use Symfony\Component\Finder\SplFileInfo;
 abstract class UserDataLoader extends AbstractFixture {
 
     /**
-     * @param $entity
-     * @param \stdClass      $data
-     */
-    protected function fillEntity($entity, $data)
-    {
-//        $cout = new ConsoleOutput();
-        foreach($data as $key => $val)
-        {
-            if(method_exists($entity, 'set'.$key)) {
-//                $cout->writeln('set'.$key.'( '.print_r($val, true).' )');
-                $entity->{'set'.$key}($val);
-            }
-        }
-    }
-
-    /**
      * @param string $filename
      *
      * @return string|false

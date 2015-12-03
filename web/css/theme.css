@@ -1,0 +1,63 @@
+html, body {
+    min-height: 100%;
+    padding: 0;
+    margin: 0;
+    height:100%;
+}
+
+body > .container {
+    min-height:100%;
+    position:relative;
+    padding-bottom: 80px;
+}
+
+#footer {
+    position:absolute;
+    bottom: 0;
+}
+
+#header h1 {
+    margin: 0;
+    height: 60px;
+    display: block;
+}
+
+#header a:hover {
+    color: #006100;
+}
+
+#header a:hover .glyphicon-off {
+    color: #bc0000;
+}
+
+#header .glyphicon {
+    margin-top: 10px;
+}
+
+#header a:hover .glyphicon {
+    margin-top: 5px;
+}
+
+#header a:hover .glyphicon::before {
+    font-size: 46px;
+}
+
+@media (max-width: 767px) {
+    #header .glyphicon {
+        font-size: 40px;
+    }
+
+    .date-holder {
+        font-size: 20px;
+    }
+}
+
+#header .row > .col-xs-4,
+#header .row > .col-xs-6 {
+    padding: 0;
+    margin: 0;
+}
+
+.chosen-container:not(.chosen-with-drop) .chosen-drop {
+    display: none;
+}

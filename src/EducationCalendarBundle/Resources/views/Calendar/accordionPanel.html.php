@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $view           \Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine
+ * @var $view           Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine
  *
  * @var $data           array
  * @var $index          integer
@@ -11,7 +11,7 @@ $date = date('d', $data['time']);
 <div class="panel-content panel-content-<?php echo strtolower($data['day']); ?>">
     <div class="panel-heading" role="tab">
         <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-<?php echo $index; ?>" aria-expanded="false" aria-controls="collapse-<?php echo $index; ?>">
-            <h4 class="panel-title"><p class="small pull-left" style="width:35px;margin-bottom:0;margin-top:2px">(<?php echo $date; ?>.)</p><?php echo $data['day']; ?></h4>
+            <h4 class="panel-title"><p class="small pull-left">(<?php echo $date; ?>.)</p><?php echo $data['day']; ?></h4>
         </a>
     </div>
     <div id="collapse-<?php echo $index; ?>" class="panel-collapse collapse" role="tabpanel">

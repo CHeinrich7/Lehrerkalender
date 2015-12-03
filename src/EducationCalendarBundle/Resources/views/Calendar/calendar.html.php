@@ -2,12 +2,13 @@
 /**
  * @var $app            Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables
  * @var $view           Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine
- * @var $slotsHelper    Symfony\Component\Templating\Helper\SlotsHelper
+ * @var $slotsHelper    ToolboxBundle\Helper\SlotsHelper
  * @var $routerHelper   Symfony\Bundle\FrameworkBundle\Templating\Helper\RouterHelper
  *
  * @var $error          Symfony\Component\Security\Core\Exception\AuthenticationServiceException
  *
- * @var $tableResponse  \Symfony\Component\HttpFoundation\Response
+ * @var $tableResponse  Symfony\Component\HttpFoundation\Response
+ * @var $education_classes array
  */
 
 $slotsHelper = $view['slots'];
@@ -19,22 +20,16 @@ $view->extend('::loggedIn.html.php');
 
 <?php $slotsHelper->start('title'); ?>Kalender<?php $slotsHelper->stop(); ?>
 
-<?php $slotsHelper->start('content'); ?>
-
-<?php $days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag']; ?>
-
+<?php $slotsHelper->append('header-css'); ?>
+<link href="/css/table-div.css" rel="stylesheet" />
 <style>
-    .week {
+    .date-holder .week {
         font-size: 20px;
         margin-top: 6px;
     }
 
-    .table-div {
-        margin-top: 40px;
-    }
-
     @media(max-width: 499px) {
-        .week {
+        .date-holder .week {
             display: none;
         }
 
@@ -42,66 +37,126 @@ $view->extend('::loggedIn.html.php');
             text-align: center;
             float: none !important;
         }
+
+        #datepicker {
+            border-radius: 4px;
+        }
+
+        #datepicker + label {
+            display: none;
+        }
     }
 
-    .table-div .placeholder {
-        color: #999 !important;
+    .dropdown-menu {
+        right: 0;
+        left: auto;
     }
 
-    /*
-        OVERRIDE SOME CHOSEN STYLES
-        only for .table-div
-    */
-    .table-div select.form-control + .chosen-container.chosen-container-single .chosen-single > div {
+    .dropdown-menu > li > label {
+        clear: both;
+        color: #333;
+        display: block;
+        font-weight: 400;
+        line-height: 2;
+        padding: 10px;
+        white-space: nowrap;
+    }
+
+    .dropdown-menu > li > label:hover {
+        background-color: #f5f5f5;
+        color: #262626;
+    }
+
+    #filter input:not(:checked) + span::before {
         display: none;
     }
 
-    .table-div select.form-control + .chosen-container.chosen-container-single .chosen-single > span {
-        margin: 0;
+    #filter input + span::before {
+        font-size: 20px;
     }
 
-    .table-div select.form-control + .chosen-container.chosen-container-single .chosen-single,
-    .table-div select.form-control + .chosen-container.chosen-container-single .active-result,
-    .table-div select.form-control + .chosen-container.chosen-container-single .chosen-search input {
-        padding: 6px 0;
-        text-align: center;
-        box-shadow: none;
-        background: transparent;
+    #filter input:not(:checked) + span + span {
+        margin-left: 20px;
     }
 
-    .table-div select.form-control + .chosen-container.chosen-container-single .chosen-single,
-    .table-div select.form-control + .chosen-container.chosen-container-single .active-result {
-        border: 0;
+    .datepicker {
+        right: auto;
     }
 
-    .table-div select.form-control + .chosen-container.chosen-container-single .active-result.highlighted {
-        color: black;
+    .datepicker .datepicker-days td, th {
+        padding: 9px;
+    }
+
+    .filtered {
+        color: green;
+    }
+
+    .date-holder h2:hover,
+    .dropdown .glyphicon-filter:hover,
+    .panel-title:hover {
+        color: #337ab7;
+    }
+
+    .dropdown .glyphicon-filter {
+        font-size: 25px;
+        margin-top: 3px;
+    }
+
+    .panel-title .small {
+        width:35px;
+        margin-bottom:0;
+        margin-top:4px;
     }
 </style>
+<?php $slotsHelper->stop(); ?>
+
+<?php $slotsHelper->start('content'); ?>
+
+<?php $days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag']; ?>
 
 <div class="row date-holder">
-    <div class="col-sm-4 col-xs-2">
+    <div class="col-md-offset-1 col-md-3 col-sm-4 col-xs-3">
         <h2 id="prevWeek" class="no-margin pull-right pointer">
             <span class="glyphicon glyphicon-chevron-left"></span>
-            <div class="pull-right week">KW --</div>
+            <span class="pull-right week">KW --</span>
         </h2>
     </div>
-    <div class="col-sm-3 col-xs-5 pointer">
-        <div class="input-group date" id="calendarViewDatePicker">
+    <div class="col-sm-3 col-xs-4 no-padding">
+        <div class="input-group date full-width" id="calendarViewDatePicker">
             <input id="datepicker" type="text" class="form-control text-center" autocomplete="off" value="<?php echo date('d.m.Y'); ?>" />
-            <label for="datepicker" class="input-group-addon hidden-xs">
+            <label for="datepicker" class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </label>
         </div>
     </div>
-    <div class="col-sm-4 col-xs-2">
+    <div class="col-md-3 col-sm-4 col-xs-3">
         <h2 id="nextWeek" class="no-margin pull-left pointer">
-            <div class="week pull-left">KW --</div>
+            <span class="week pull-left">KW --</span>
             <span class="glyphicon glyphicon-chevron-right"></span>
         </h2>
     </div>
-    <div class="col-xs-3" style="font-size: 25px;margin-top:3px;">
-        <span class="glyphicon glyphicon-filter pull-right no-margin pointer"></span>
+    <div class="col-md-2 col-sm-1 col-xs-2 no-padding text-center">
+        <div class="dropdown">
+            <label class="glyphicon glyphicon-filter pointer full-width" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></label>
+            <ul class="dropdown-menu pointer" id="filter">
+                <li>
+                    <label class="pointer">
+                        <input name="radio-education-class" value="" type="radio" class="hidden" autocomplete="off" checked="checked" />
+                        <span class="glyphicon glyphicon-ok"></span>
+                        <span class="text-holder"><b>&nbsp;nicht Filtern</b></span>
+                    </label>
+                </li>
+                <?php foreach($education_classes as $id => $name) : ?>
+                    <li>
+                        <label class="pointer">
+                            <input name="radio-education-class" value="<?php echo $id; ?>" type="radio" class="hidden" autocomplete="off" />
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span class="text-holder"><b>&nbsp;<?php echo $name; ?></b></span>
+                        </label>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
     </div>
 </div>
 
@@ -115,8 +170,8 @@ $view->extend('::loggedIn.html.php');
 
 <?php $slotsHelper->stop(); ?>
 
-<script>
-    <?php $slotsHelper->start('jQuery'); ?>
+<script type="text/javascript">
+    <?php $slotsHelper->append('jQuery'); ?>
 
     var
         format  = 'dd.mm.yyyy',
@@ -171,6 +226,7 @@ $view->extend('::loggedIn.html.php');
                 $('#accordion').html(response);
                 refreshChosen();
                 $accordion.fadeIn();
+                $('#filter input:checked').trigger('click');
             }
         })
     }
@@ -253,11 +309,11 @@ $view->extend('::loggedIn.html.php');
         $.ajax({
             url: route,
             data: data,
-            success: function(response) {
-                console.log(response);
+            success: function(/*response*/) {
+                //console.log(response);
             },
-            error: function(response) {
-                console.log(response);
+            error: function(/*response*/) {
+                //console.log(response);
             }
         });
     }
@@ -281,7 +337,7 @@ $view->extend('::loggedIn.html.php');
 
         $.ajax({
             url: route,
-            success: function(response) { console.log(response) }
+            success: function(/*response*/) { /*console.log(response)*/ }
         });
     }
 
@@ -300,6 +356,57 @@ $view->extend('::loggedIn.html.php');
     }
 
     $(document).on('change', 'form', sendFormAjax);
+
+    function filter(/*event*/)
+    {
+        var $that       = $(this),
+            filterVal   = $that.val(),
+            $headers    = $(document).find('.panel-heading'),
+            filterClass = 'collapse-filtered',
+            $accordion  = $('#accordion'),
+            $filterIcon = $('#filter').prev();
+
+        $(document)
+            .find('.'+filterClass)
+            .removeClass(filterClass);
+
+        if(filterVal) {
+            $accordion
+                .find('.chosen-select > option:selected')
+                .each(function() {
+
+                    var optionVal   = $(this).data('education-class'),
+                        $td         = $(this).parents('.td-div'),
+                        $header     = $(this).parents('.panel-collapse').prev();
+
+                    if(optionVal == filterVal) {
+                        $td.css('display', 'block');
+
+                        $header.addClass(filterClass);
+                    } else {
+                        $td.css('display', 'none');
+                    }
+                });
+
+            $headers.each(function() {
+                var $a = $(this).find('a');
+                if($(this).hasClass(filterClass) && $a.attr('aria-expanded') === 'false') {
+                    $a.trigger('click');
+                }
+            });
+
+            $filterIcon.addClass('filtered');
+
+        } else {
+            $accordion
+                .find('.td-div')
+                .css('display', 'block');
+
+            $filterIcon.removeClass('filtered');
+        }
+    }
+
+    $('#filter input').on('click', filter);
 
     <?php $slotsHelper->stop(); ?>
 </script>

@@ -5,10 +5,10 @@
     -o-transform: rotate(-45deg);
     transform: rotate(-45deg);
 
-    margin-top: 20px;
-    width:      20px;
-    height:     20px;
-    margin-left:10px;
+    margin-top:  20px;
+    width:       20px;
+    height:      20px;
+    margin-left: 10px;
 }
 
 .marks .inline {
@@ -25,7 +25,7 @@
 }
 
 .marks .inline table tbody td {
-    height: 40px;
+    height:         40px;
     vertical-align: middle;
 }
 
@@ -44,13 +44,13 @@
 }
 
 #table-marks td > span {
-    width:  100%;
-    padding:9px 0;
-    display: inline-block;
+    width:      100%;
+    padding:    9px 0;
+    display:    inline-block;
 }
 
 #table-students-holder {
-    position:relative;
+    position: relative;
 }
 
 .marks .marked {
@@ -75,8 +75,8 @@
 
 #table-marks td:hover > span {
     background-color: #b4b4b4;
-    border-radius: 10px;
-    cursor: pointer;
+    border-radius:    10px;
+    cursor:           pointer;
 }
 
 #table-marks td span:hover * {
@@ -84,13 +84,13 @@
 }
 
 #mark-form-wrapper {
-    position: absolute;
-    border-color: #66afe9;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
-    outline: 0 none;
-    bottom:-200px;
-    display:none;
-    z-index:3;
+    position:       absolute;
+    border-color:   #66afe9;
+    box-shadow:     0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+    outline:        0 none;
+    bottom:         -200px;
+    display:        none;
+    z-index:        3;
 }
 
 #mark-form-wrapper .form-group:last-child {
@@ -103,15 +103,45 @@
 
 #mark-form-wrapper::before {
     -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    width: 0;
-    height: 0;
-    position: absolute;
-    content: "";
-    left: 8px;
-    top: -15px;
-    border: 13px solid rgba(0,0,0,0);
-    border-bottom: 15px solid #ccc;
-    border-top: 0 solid;
+    -moz-box-sizing:    content-box;
+    box-sizing:         content-box;
+    width:      0;
+    height:     0;
+    position:   absolute;
+    content:    "";
+    left:       8px;
+    top:        -15px;
+    border:     13px solid rgba(0,0,0,0);
+    border-bottom:  15px solid #ccc;
+    border-top:     0 solid;
+}
+.marks td:hover .control-label .form-control,
+.marks td .control-label .form-control:focus {
+    border:  1px solid #888;
+    padding: 0;
+}
+
+.marks .control-label .form-control {
+    display:    inline;
+    box-shadow: none;
+    background: transparent;
+    min-width:  50px;
+    border:     0;
+    padding:    1px;
+}
+
+.marks .control-label .form-control:focus {
+    background: white;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+
+#mark-form-wrapper {
+    width: 250px;
+}
+
+.marks .student {
+    white-space: nowrap;
+}
+.marks .student > input {
+    min-width: 75px;
 }

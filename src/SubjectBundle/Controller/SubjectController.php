@@ -7,6 +7,10 @@ use SubjectBundle\Entity\SubjectEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\ConstraintViolation;
+use Symfony\Component\Validator\ConstraintViolationList;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class SubjectController extends Controller
 {
@@ -33,17 +37,45 @@ class SubjectController extends Controller
 
         $subjectEntity->setEducationClass($edClassEntity);
 
-        $em->persist($subjectEntity);
-        $em->persist($edClassEntity);
+        $status = $this->validateEntites([$subjectEntity, $edClassEntity]);
+        if($status === 200) {
+            $em->persist($subjectEntity);
+            $em->persist($edClassEntity);
 
-        $em->flush();
+            $em->flush();
+        }
+
 
         return new JsonResponse([
             'data' => [
                 'subject' => $subject,
                 'edClass' => $edClass,
-                'error'   => '',
-            ]
+            ],
+            $status
         ]);
+    }
+
+    /**
+     * @param array $entities
+     *
+     * @return int
+     *
+     * @throws \Exception
+     */
+    private function validateEntites(array $entities)
+    {
+        /** @var ValidatorInterface $validator */
+        $validator = $this->get('validator');
+
+        $status = 200;
+        foreach($entities as $entity)
+        {
+            $errors = $validator->validate($entity);
+            if($errors->count() > 0) {
+                throw new \Exception('Entity ' . get_class($entity) . ' not Valid!');
+            }
+        }
+
+        return 200;
     }
 }

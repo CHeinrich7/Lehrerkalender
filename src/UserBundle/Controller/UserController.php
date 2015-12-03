@@ -2,6 +2,7 @@
 
 namespace UserBundle\Controller;
 
+use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use UserBundle\Entity\Role;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -9,9 +10,7 @@ use UserBundle\Entity\User;
 use UserBundle\Form\UserType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use UserBundle\Entity\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\HttpKernel\Controller\ControllerReference;
 
 class UserController extends Controller
 {
@@ -19,101 +18,83 @@ class UserController extends Controller
     const EDIT_TEMPLATE = 'UserBundle:User:edit.html.php';
 
     /**
-     * @var UserRepository
-     */
-    private $userRepo;
-
-    /**
      * @var EntityManager
      */
     private $em;
 
-
+    /**
+     * @return Response
+     */
     public function indexAction()
     {
+        if(!$this->isGranted(Role::ROLE_ADMIN)) {
+            return $this->redirectToRoute('user_edit', ['user' => $this->getUser()->getId()]);
+        }
+
+        $em = $this->get('doctrine.orm.default_entity_manager');
+
+        $users = $em->getRepository('UserBundle:User')->findAllDistinct();
+
         return $this->render(self::INDEX_TEMPLATE, array(
-            'currentUser' => $this->getUser()
+            'currentUser'   => $this->getUser(),
+            'users'         => $users
         ));
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse|Response
+     *
+     * @throws \Exception
+     */
     public function newAction(Request $request)
     {
-        $authChecker = $this->get('security.authorization_checker');
-
-        if(!$authChecker->isGranted(Role::ROLE_ADMIN)) {
-            throw new \Exception('Unerlaubtes Territorium');
-        }
-
         $user = new User();
 
-        $form = $this->createForm(new UserType(), $user, array(
-            'method' => 'POST',
-            'action' => $this->generateUrl('user_create_user')
-        ));
-
-        $submitted = $form->isSubmitted();
-
-        $errors = $form->getErrors();
-
-        $message = $errors->current()
-            ? $errors->current()->getMessage()
-            : null;
-
-        if($submitted) {
-            if($form->isValid()) {
-                #$user = new ControllerReference('UserBundle:Default:getUser');
-
-                $this->em->persist($user);
-                $this->em->flush();
-
-                $this->redirectToRoute('user_edit_user',
-                    array('id' => $user->getId())
-                );
-            }
-        }
-
-        $data = array(
-            'userForm'  => $form,
-            'error'     => $message,
-            'user'      => $user,
-            'newUser'   => true,
-        );
-
-        return $this->returnResponse($request, self::EDIT_TEMPLATE, $data);
+        return $this->editUser($request, $user, $this->getUser(), 'user_create', true);
     }
 
 
     /**
      * @param Request $request
-     * @param integer $id
+     * @param User    $user
      *
      * @return JsonResponse|Response
+     *
      * @throws \Exception
      */
-    public function editAction(Request $request, $id)
+    public function editAction(Request $request, User $user)
     {
-        $this->em = $this->get('doctrine.orm.default_entity_manager');
-        $this->userRepo = $this->em->getRepository('UserBundle:User');
-
-        $authChecker = $this->get('security.authorization_checker');
-
         $currentUser = $this->getUser();
 
-        if($authChecker->isGranted(Role::ROLE_ADMIN)) {
-            if($id > 0) {
-                $user = $this->userRepo->find($id);
-            } else {
-                $user = $currentUser;
-            }
-        } else if($currentUser->getId() != $id) {
+
+        return $this->editUser($request, $user, $currentUser, 'user_edit', false);
+    }
+
+    /**
+     * @param Request   $request
+     * @param User      $user
+     * @param User      $currentUser
+     * @param string    $action
+     * @param boolean   $newUser
+     *
+     * @return JsonResponse|Response
+     *
+     * @throws \Exception
+     */
+    protected function editUser(Request $request, User $user, User $currentUser, $action, $newUser)
+    {
+        $entitySecurityService = $this->get('entity.security.service');
+        if(!$entitySecurityService->isEntityGrantedWithAdminRights($user)) {
             throw new \Exception('Unerlaubtes Territorium');
-        } else {
-            $user = $currentUser;
         }
 
-        $form = $this->createForm(new UserType(), $user, array(
+        $this->em = $this->get('doctrine.orm.default_entity_manager');
+
+        $form = $this->createForm('usertype', $user, array(
             'method' => 'POST',
-            'action' => $this->generateUrl('user_edit_user')
+            'action' => $this->generateUrl($action, ['user' => $user->getId()]),
         ));
 
         $form->handleRequest($request);
@@ -126,20 +107,27 @@ class UserController extends Controller
             ? $errors->current()->getMessage()
             : null;
 
-        if($submitted) {
-            if($form->isValid()) {
-                $user = new ControllerReference('UserBundle:Default:getUser');
+        if($submitted && $form->isValid()) {
 
-                $this->em->persist($user);
-                $this->em->flush();
-            }
+            /** @var EncoderFactory $factory */
+            $factory = $this->get('security.encoder_factory');
+            $encoder = $factory->getEncoder($user);
+
+            $user->setSalt(md5(time()));
+            $password = $encoder->encodePassword($user->getPlainPassword(), $user->getSalt());
+            $user->setPlainPassword('');
+            $user->setPassword($password);
+
+            $this->em->persist($user);
+            $this->em->flush();
         }
 
         $data = array(
             'userForm'  => $form,
             'error'     => $message,
             'user'      => $user,
-            'currentUser' => $currentUser
+            'currentUser' => $currentUser,
+            'newUser'   => $newUser
         );
 
         return $this->returnResponse($request, self::EDIT_TEMPLATE, $data);
@@ -166,26 +154,5 @@ class UserController extends Controller
         }
 
         return $response;
-    }
-
-    /**
-     * @return bool|User
-     * @throws \LogicException
-     */
-    public function getUser()
-    {
-        if (!$this->container->has('security.context')) {
-            throw new \LogicException('The SecurityBundle is not registered in your application.');
-        }
-
-        if (null === $token = $this->container->get('security.context')->getToken()) {
-            return false;
-        }
-
-        if (!is_object($user = $token->getUser())) {
-            return false;
-        }
-
-        return $user;
     }
 }

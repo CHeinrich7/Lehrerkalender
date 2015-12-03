@@ -3,9 +3,11 @@
 namespace EducationCalendarBundle\Controller;
 
 use EducationCalendarBundle\Entity\TeachingUnit;
+use SubjectBundle\Entity\EducationClassEntity;
 use SubjectBundle\Entity\SubjectEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use UserBundle\Entity\User;
 
 class CalendarController extends Controller
 {
@@ -14,7 +16,13 @@ class CalendarController extends Controller
         /** @var Response */
         $response = $this->forward('EducationCalendarBundle:Calendar:getAccordionResponse', ['time' => time()]);
 
-        return $this->render('EducationCalendarBundle:Calendar:calendar.html.php',array('tableResponse' => $response));
+        return $this->render(
+            'EducationCalendarBundle:Calendar:calendar.html.php',
+            array(
+                'tableResponse'     => $response,
+                'education_classes' => $this->getUserEducationClasses()
+            )
+        );
     }
 
     /**
@@ -111,13 +119,13 @@ class CalendarController extends Controller
     }
 
     /**
-     * @return array
+     * @return SubjectEntity[]
      */
     private function getUserSubjects()
     {
         $em = $this->get('doctrine.orm.default_entity_manager');
 
-        /** @var $subjectEntities[] $subjects */
+        /** @var SubjectEntity[] $subjects */
         $subjectEntities = $em
             ->getRepository('SubjectBundle:SubjectEntity')
             ->findBy(['createdBy' => $this->getUser()]);
@@ -126,9 +134,34 @@ class CalendarController extends Controller
         $subjects = [];
         foreach($subjectEntities as $subjectEntity)
         {
-            $subjects[$subjectEntity->getId()] = $subjectEntity->getNameWithEducationClassName();
+            $subjects[$subjectEntity->getId()] = [
+                'name'  => $subjectEntity->getNameWithEducationClassName(),
+                'class' => $subjectEntity->getEducationClass()->getId()
+            ];
         }
 
         return $subjects;
+    }
+
+    /**
+     * @return EducationClassEntity[]
+     */
+    private function getUserEducationClasses()
+    {
+        $em = $this->get('doctrine.orm.default_entity_manager');
+
+        /** @var EducationClassEntity[] $subjects */
+        $educationClasses = $em
+            ->getRepository('SubjectBundle:EducationClassEntity')
+            ->findBy(['createdBy' => $this->getUser()]);
+
+        // prepare class names by id
+        $classes = [];
+        foreach($educationClasses as $educationClass)
+        {
+            $classes[$educationClass->getId()] = $educationClass->getName();
+        }
+
+        return $classes;
     }
 }

@@ -15,11 +15,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Entity(repositoryClass="UserBundle\Entity\Repository\UserRepository")
  * @ORM\Table(name="user")
  *
- * @Gedmo\SoftDeleteable(fieldName="deletedAt")
- *
  * @UniqueEntity(fields="username", message="There can not be one User twice in Database!")
  */
-class User implements UserInterface
+class User extends SoftdeletableEntity implements UserInterface
 {
     /**
      * @ORM\Column(type="integer")
@@ -61,11 +59,6 @@ class User implements UserInterface
     protected $isActive  = true;
 
     /**
-     * @ORM\Column(name="is_deleted", type="boolean", options={"default" = 0})
-     */
-    protected $isDeleted = false;
-
-    /**
      * @ORM\Column(name="is_deletable", type="boolean", options={"default" = 1})
      */
     protected $isDeletable = true;
@@ -90,36 +83,6 @@ class User implements UserInterface
     protected $role;
 
     /**
-     * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(name="created_at", type="datetime")
-     */
-    protected $createdAt;
-
-    /**
-     * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(name="modified_at", type="datetime")
-     */
-    protected $modifiedAt;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumn(referencedColumnName="id")
-     * @Gedmo\Blameable(on="update")
-     */
-    protected $changedBy;
-
-    /**
-     * @param integer $id
-     *
-     * @return User
-     */
-    public function setId ( $id )
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
      * @return integer
      */
     public function getId ()
@@ -135,6 +98,7 @@ class User implements UserInterface
     public function setIsActive ( $isActive )
     {
         $this->isActive = $isActive;
+
         return $this;
     }
 
@@ -154,6 +118,7 @@ class User implements UserInterface
     public function setIsDeletable ( $isDeletable )
     {
         $this->isDeletable = $isDeletable;
+
         return $this;
     }
 
@@ -166,25 +131,6 @@ class User implements UserInterface
     }
 
     /**
-     * @param mixed $isDeleted
-     *
-     * @return User
-     */
-    public function setIsDeleted ( $isDeleted )
-    {
-        $this->isDeleted = $isDeleted;
-        return $this;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getIsDeleted ()
-    {
-        return $this->isDeleted;
-    }
-
-    /**
      * @param boolean $isSuperUser
      *
      * @return User
@@ -192,6 +138,7 @@ class User implements UserInterface
     public function setIsSuperUser ( $isSuperUser )
     {
         $this->isSuperUser = $isSuperUser;
+
         return $this;
     }
 
@@ -206,7 +153,7 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getSalt()
+    public function getSalt ()
     {
         return $this->salt;
     }
@@ -214,11 +161,13 @@ class User implements UserInterface
     /**
      * @param string $salt
      *
-     * @return User
+     * @return $this
      */
-    public function setSalt($salt)
+    public function setSalt ($salt)
     {
-        return $this->salt = $salt;
+        $this->salt = $salt;
+
+        return $this;
     }
 
     /**
@@ -229,6 +178,7 @@ class User implements UserInterface
     public function setPassword ( $password )
     {
         $this->password = $password;
+
         return $this;
     }
 
@@ -248,6 +198,7 @@ class User implements UserInterface
     public function setPlainPassword ( $plainPassword )
     {
         $this->plainPassword = $plainPassword;
+
         return $this;
     }
 
@@ -259,25 +210,6 @@ class User implements UserInterface
         return $this->plainPassword;
     }
 
-//    /**
-//     * @param Profile $profile
-//     *
-//     * @return User
-//     */
-//    public function setProfile ( Profile $profile )
-//    {
-//        $this->profile = $profile;
-//        return $this;
-//    }
-//
-//    /**
-//     * @return Profile
-//     */
-//    public function getProfile ()
-//    {
-//        return $this->profile;
-//    }
-
     /**
      * @param string $username
      *
@@ -286,6 +218,7 @@ class User implements UserInterface
     public function setUsername ( $username )
     {
         $this->username = $username;
+
         return $this;
     }
 
@@ -318,14 +251,20 @@ class User implements UserInterface
         return array( $this->role->getRole() );
     }
 
+    public function getRole ()
+    {
+        return $this->role;
+    }
+
     /**
      * @param Role $role
      *
      * @return User
      */
-    public function setRole($role)
+    public function setRole ($role)
     {
         $this->role = $role;
+
         return $this;
     }
 
@@ -338,29 +277,5 @@ class User implements UserInterface
     public function eraseCredentials ()
     {
         // TODO: Implement eraseCredentials() method.
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getModifiedAt()
-    {
-        return $this->modifiedAt;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getChangedBy()
-    {
-        return $this->changedBy;
     }
 }

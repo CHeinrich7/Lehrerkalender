@@ -13,21 +13,19 @@ use Symfony\Component\Validator\Constraints;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @Gedmo\SoftDeleteable(fieldName="deletedAt")
- *
  * @package UserBundle\Entity
  *
  * @Gedmo\SoftDeleteable(fieldName="deletedAt")
  * @Gedmo\SoftDeleteable(fieldName="deletedBy")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt")
  */
-class SoftdeletableEntity
+abstract class SoftdeletableEntity
 {
     /**
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
-     * @Constraints\NotBlank()
      * @Constraints\DateTime
      */
     protected $createdAt;
@@ -38,7 +36,6 @@ class SoftdeletableEntity
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumn(referencedColumnName="id", nullable=false)
      * @Gedmo\Blameable(on="create")
-     * @Constraints\NotBlank()
      */
     protected $createdBy;
 

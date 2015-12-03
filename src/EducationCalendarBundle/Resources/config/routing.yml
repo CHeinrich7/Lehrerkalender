@@ -14,7 +14,6 @@ education_calendar_accordion_response:
     defaults: { _controller: EducationCalendarBundle:Calendar:getAccordionResponse }
 
 
-
 teaching_unit_save:
     path:     /in/calendar/save/{subject}/{block}/{time}
     defaults: { _controller: EducationCalendarBundle:TeachingUnit:saveTeachingUnit }

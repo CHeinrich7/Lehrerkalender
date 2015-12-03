@@ -35,4 +35,4 @@ security:
                     b: { path: null, domain: null }
 
     access_control:
-        - { path: ^/in,               roles: [ ROLE_APPLICANT ] }
+        - { path: ^/in, roles: [ ROLE_APPLICANT ] }

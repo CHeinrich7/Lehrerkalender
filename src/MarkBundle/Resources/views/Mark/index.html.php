@@ -1,36 +1,39 @@
 <?php
-use \MarkBundle\Entity\MarkEntity;
+use MarkBundle\Entity\MarkEntity;
 /**
  * @var $app            Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables
  * @var $view           Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine
- * @var $slotsHelper    Symfony\Component\Templating\Helper\SlotsHelper
+ * @var $slotsHelper    ToolboxBundle\Helper\SlotsHelper
  * @var $routerHelper   Symfony\Bundle\FrameworkBundle\Templating\Helper\RouterHelper
  *
  * @var $error          Symfony\Component\Security\Core\Exception\AuthenticationServiceException
  *
  * @var $data           array
- * @var $teachingUnits  \EducationCalendarBundle\Entity\TeachingUnit[]
- * @var $teachingUnit   \EducationCalendarBundle\Entity\TeachingUnit
- * @var $subject        \SubjectBundle\Entity\SubjectEntity
+ * @var $teachingUnits  EducationCalendarBundle\Entity\TeachingUnit[]
+ * @var $teachingUnit   EducationCalendarBundle\Entity\TeachingUnit
+ * @var $subject        SubjectBundle\Entity\SubjectEntity
  */
 
-$slotsHelper = $view['slots'];
-$routerHelper = $view['router'];
-$formHelper = $view['form'];
+$slotsHelper    = $view['slots'];
+$routerHelper   = $view['router'];
+$formHelper     = $view['form'];
 
 $view->extend('::loggedIn.html.php');
 ?>
 
 <?php $slotsHelper->start('title'); ?>Benotung<?php $slotsHelper->stop(); ?>
 
-<?php $slotsHelper->start('content'); ?>
+<?php $slotsHelper->append('header-css'); ?>
+<link href="/css/marks-div.css" rel="stylesheet" />
+<?php $slotsHelper->stop(); ?>
 
-<div id="mark-form-wrapper" style="width:250px;" class="well">
+<?php $slotsHelper->start('content'); ?>
+<div id="mark-form-wrapper" class="well">
     <form id="mark-form" action="#" class="form-horizontal" autocomplete="off">
         <div class="form-group">
             <label for="mark" class="control-label col-sm-3">Note</label>
             <div class="col-sm-9">
-                <input id="mark" name="mark" class="form-control text-center" type="text" value="100%" autocomplete="off" />
+                <input id="mark" name="mark" class="form-control text-center" type="text" value="----" autocomplete="off" />
             </div>
         </div>
         <div class="form-group">
@@ -56,27 +59,6 @@ $view->extend('::loggedIn.html.php');
     </form>
 </div>
 
-<style>
-    .marks td:hover .control-label .form-control,
-    .marks td .control-label .form-control:focus {
-        border: 1px solid #888;
-        padding: 0;
-    }
-
-    .marks .control-label .form-control {
-        display: inline;
-        box-shadow: none;
-        background: transparent;
-        min-width:50px;
-        border: 0;
-        padding: 1px;
-    }
-    .marks .control-label .form-control:focus {
-        background: white;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-    }
-</style>
-
 <div class="marks">
     <div class="row">
         <div class="col-xs-12 no-wrap">
@@ -95,16 +77,16 @@ $view->extend('::loggedIn.html.php');
                             <td class="no-padding">
                                 <label data-id="<?php echo $studentData['id']; ?>" class="control-label student">
                                     <input name="firstname" type="text" class="form-control" autocomplete="off" value="<?php echo $studentData['firstname']; ?>" />
-                                    <input name="lastname"  type="text" class="form-control" autocomplete="off" value="<?php echo $studentData['lastname']; ?>" min="3" />
+                                    <input name="lastname"  type="text" class="form-control" autocomplete="off" value="<?php echo $studentData['lastname'];  ?>" min="3" />
                                 </label>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                     <tr>
                         <td class="no-padding">
-                            <label data-id="new" class="control-label student" style="white-space: nowrap">
-                                <input name="firstname" type="text" value="" placeholder="Vorname" class="form-control" style="min-width:75px;" autocomplete="off" />
-                                <input name="lastname"  type="text" value="" placeholder="Nachname" class="form-control" style="min-width:75px;" min="3" autocomplete="off" />
+                            <label data-id="new" class="control-label student">
+                                <input name="firstname" type="text" value="" class="form-control" autocomplete="off" placeholder="Vorname" />
+                                <input name="lastname"  type="text" value="" class="form-control" autocomplete="off" placeholder="Nachname" min="3" />
                             </label>
                         </td>
                     </tr>
@@ -141,12 +123,20 @@ $view->extend('::loggedIn.html.php');
 
 
 <script type="text/javascript">
-    <?php $slotsHelper->start('jQuery'); ?>
+    <?php $slotsHelper->append('jQuery'); ?>
 
     $.fn.textWidth = function(){
         var $self = $(this),
             val = $self.val(),
-            $calculator = $('<span style="display: inline-block;position:absolute;width:auto;left:-9999px;font-weight:bold" />'),
+            $calculator = $('<span>', {
+                css: {
+                    'display':      'inline-block',
+                    'position':     'absolute',
+                    'width':        'auto',
+                    'left':         '-9999px',
+                    'font-weight':  'bold'
+                }
+            }),
             width;
 
         $calculator.text(val);

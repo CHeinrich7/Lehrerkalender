@@ -5,3 +5,8 @@ services:
 
     security.access_denied.handler:
         class: UserBundle\Services\Security\AccessDeniedHandler
+
+    usertype:
+        class: UserBundle\Form\UserType
+        tags:
+            - { name: form.type, alias: usertype }

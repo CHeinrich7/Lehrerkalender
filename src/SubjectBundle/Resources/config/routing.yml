@@ -3,9 +3,13 @@ subject_class_new:
     defaults: { _controller: SubjectBundle:Subject:new }
 
 subject_select_class:
-    path:     /in/classes
+    path:     /in/select
     defaults: { _controller: SubjectBundle:EducationClass:select }
 
 student_save:
     path:     /in/student/save/{subject}/{studentId}
     defaults: { _controller: SubjectBundle:Student:save }
+
+education_class:
+    path:     /in/classes
+    defaults: { _controller: SubjectBundle:EducationClass:index }

@@ -2,7 +2,7 @@
 /**
  * @var $app            Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables
  * @var $view           Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine
- * @var $slotsHelper    Symfony\Component\Templating\Helper\SlotsHelper
+ * @var $slotsHelper    ToolboxBundle\Helper\SlotsHelper
  * @var $routerHelper   Symfony\Bundle\FrameworkBundle\Templating\Helper\RouterHelper
  *
  * @var $error          Symfony\Component\Security\Core\Exception\AuthenticationServiceException
@@ -17,14 +17,12 @@ $formHelper = $view['form'];
 $view->extend('::loggedIn.html.php');
 ?>
 
-<?php $slotsHelper->start('title'); ?>
-Kalender
-<?php $slotsHelper->stop(); ?>
+<?php $slotsHelper->start('title'); ?>Kalender<?php $slotsHelper->stop(); ?>
 
 
 <?php $slotsHelper->start('content'); ?>
 
-<div class="row" style="margin-bottom: 20px;">
+<div class="row">
     <div class="col-sm-12"><?php echo 'Hello ' . $name; ?></div>
 </div>
 <div class="row">

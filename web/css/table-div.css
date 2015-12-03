@@ -6,6 +6,10 @@
 .table-div .panel-content-samstag .panel-body   { background-image: url('/img/sa.png'); }
 .table-div .panel-content-sonntag .panel-body   { background-image: url('/img/so.png'); }
 
+.table-div {
+    margin-top: 40px;
+}
+
 .table-div .panel-content {
     position:relative;
     margin-bottom: 20px;
@@ -105,3 +109,36 @@
     .table-div .td-div-4::before { content: '4'; }
     .table-div .td-div-5::before { content: '5'; }
 }
+
+/*
+    OVERRIDE SOME CHOSEN STYLES only for .table-div
+*/
+    .table-div select.form-control + .chosen-container.chosen-container-single .chosen-single > div {
+        display: none;
+    }
+
+    .table-div select.form-control + .chosen-container.chosen-container-single .chosen-single > span {
+        margin: 0;
+    }
+
+    .table-div select.form-control + .chosen-container.chosen-container-single .chosen-single,
+    .table-div select.form-control + .chosen-container.chosen-container-single .active-result,
+    .table-div select.form-control + .chosen-container.chosen-container-single .chosen-search input {
+        padding: 6px 0;
+        text-align: center;
+        box-shadow: none;
+        background: transparent;
+    }
+
+    .table-div select.form-control + .chosen-container.chosen-container-single .chosen-single,
+    .table-div select.form-control + .chosen-container.chosen-container-single .active-result {
+        border: 0;
+    }
+
+    .table-div select.form-control + .chosen-container.chosen-container-single .active-result.highlighted {
+        color: black;
+    }
+
+    .table-div .placeholder {
+        color: #999 !important;
+    }

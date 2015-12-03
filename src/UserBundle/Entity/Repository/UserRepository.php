@@ -5,6 +5,7 @@ namespace UserBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -82,5 +83,23 @@ class UserRepository extends EntityRepository  implements UserProviderInterface 
     {
         return $this->getEntityName() === $class
         || is_subclass_of($class, $this->getEntityName());
+    }
+
+    /**
+     * @return array
+     */
+    public function findAllDistinct()
+    {
+        /** @var QueryBuilder $qb */
+        $qb = $this->createQueryBuilder('u');
+
+        $qb
+            ->select('u.username as name', 'u.id as id', 'r.role as role')
+            ->join('u.role', 'r')
+            ->orderBy('u.username')
+            ->where('u.isSuperUser = false')
+            ->distinct(true);
+
+        return $qb->getQuery()->getResult();
     }
 } 
