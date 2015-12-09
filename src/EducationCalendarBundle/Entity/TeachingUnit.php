@@ -32,9 +32,9 @@ class TeachingUnit extends SoftdeletableEntity
     protected $id;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=false)
      * @Constraints\Date
-     * @Constraints\NotBlank()
+     * @Constraints\NotNull()
      *
      * @var \DateTime
      */

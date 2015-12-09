@@ -2,3 +2,24 @@ services:
 #    class.example:
 #        class: SubjectBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+    subject_repository:
+        class: SubjectBundle\Entity\Repository\SubjectRepository
+        factory_service: doctrine
+        factory_method: getRepository
+        arguments:
+            - SubjectBundle\Entity\Subject
+
+    education_class_repository:
+        class: SubjectBundle\Entity\Repository\EducationClassRepository
+        factory_service: doctrine
+        factory_method: getRepository
+        arguments:
+            - SubjectBundle\Entity\EducationClass
+
+    student_repository:
+        class: SubjectBundle\Entity\Repository\StudentRepository
+        factory_service: doctrine
+        factory_method: getRepository
+        arguments:
+            - SubjectBundle\Entity\Student

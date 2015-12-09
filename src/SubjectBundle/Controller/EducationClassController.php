@@ -8,22 +8,27 @@ use SubjectBundle\Entity\SubjectEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use UserBundle\Entity\Role;
 
+/**
+ * Class EducationClassController
+ * @package SubjectBundle\Controller
+ */
 class EducationClassController extends Controller
 {
+    const INDEX_TEMPLATE  = 'SubjectBundle:EducationClass:index.html.php';
+    const SELECT_TEMPLATE = 'SubjectBundle:EducationClass:select.html.php';
+
     public function selectAction()
     {
-        $em = $this->get('doctrine.orm.default_entity_manager');
-
         /** @var $subjectRepository SubjectRepository */
-        $subjectRepository = $em->getRepository('SubjectBundle:SubjectEntity');
+        $subjectRepository = $this->get('subject_repository');
 
         $userSubjects = $subjectRepository->findAllAsArray($this->getUser());
-        $classEntities = $em->getRepository('SubjectBundle:EducationClassEntity')->findAll();
+        $classEntities = $this->get('education_class_repository')->findAll();
 
         /** @var array $allSubjects */
-        $allSubjects = $em->getRepository('SubjectBundle:SubjectEntity')->findAllDistinct();
+        $allSubjects = $subjectRepository->findAllDistinct();
 
-        return $this->render('SubjectBundle:EducationClass:select.html.php', array(
+        return $this->render(self::SELECT_TEMPLATE, array(
             'userSubjects'  => $userSubjects,
             'classEntities' => $classEntities,
             'allSubjects'   => $allSubjects
@@ -32,13 +37,14 @@ class EducationClassController extends Controller
 
     public function indexAction()
     {
-        $em = $this->get('doctrine.orm.default_entity_manager');
+        return $this->render(
+            self::INDEX_TEMPLATE, [
+                'educationClasses' => $this->get('education_class_repository')->findAllOrdered()
+            ]);
+    }
 
-        $educationClassRepository = $em->getRepository('SubjectBundle:EducationClassEntity');
-
-        /** @var EducationClassEntity[] $educationClasses */
-        $educationClasses = $educationClassRepository->findAllOrdered();
-
-        return $this->render('SubjectBundle:EducationClass:index.html.php', ['educationClasses' => $educationClasses]);
+    private function getEducationClassRepo()
+    {
+        //$this->get('')
     }
 }
