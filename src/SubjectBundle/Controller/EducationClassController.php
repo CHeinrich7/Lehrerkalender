@@ -42,9 +42,4 @@ class EducationClassController extends Controller
                 'educationClasses' => $this->get('education_class_repository')->findAllOrdered()
             ]);
     }
-
-    private function getEducationClassRepo()
-    {
-        //$this->get('')
-    }
 }

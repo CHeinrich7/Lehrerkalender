@@ -115,7 +115,9 @@ class UserRepository extends EntityRepository  implements UserProviderInterface
             ->select('u.username as name', 'u.id as id', 'r.role as role')
             ->join('u.role', 'r')
             ->orderBy('u.username')
-            ->where('u.isSuperUser = false')
+            // ->where('u.isSuperUser = false')
+            ->andWhere('r.role in (:roles)')
+            ->setParameter('roles', $lowerRoles)
             ->distinct(true);
 
         return $qb->getQuery()->getResult();

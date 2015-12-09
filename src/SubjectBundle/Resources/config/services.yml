@@ -8,18 +8,18 @@ services:
         factory_service: doctrine
         factory_method: getRepository
         arguments:
-            - SubjectBundle\Entity\Subject
+            - SubjectBundle\Entity\SubjectEntity
 
     education_class_repository:
         class: SubjectBundle\Entity\Repository\EducationClassRepository
         factory_service: doctrine
         factory_method: getRepository
         arguments:
-            - SubjectBundle\Entity\EducationClass
+            - SubjectBundle\Entity\EducationClassEntity
 
     student_repository:
         class: SubjectBundle\Entity\Repository\StudentRepository
         factory_service: doctrine
         factory_method: getRepository
         arguments:
-            - SubjectBundle\Entity\Student
+            - SubjectBundle\Entity\StudentEntity
