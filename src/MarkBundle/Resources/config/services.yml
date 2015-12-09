@@ -2,3 +2,10 @@ services:
 #    mark.example:
 #        class: MarkBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+    mark_repository:
+        class: MarkBundle\Entity\Repository\MarkRepository
+        factory_service: doctrine
+        factory_method: getRepository
+        arguments:
+            - MarkBundle\Entity\MarkEntity

@@ -335,28 +335,33 @@ $view->extend('::loggedIn.html.php');
                 studentId = $elm.data('id'),
 
                 proto_url = '<?php echo $routerHelper->generate('student_save', [ 'studentId' => '_student_', 'subject'   => $subject->getId() ]); ?>',
-                route     = proto_url.replace('_student_', studentId),
+                route,
 
-                firstname = $elm.find('[name="firstname"]').val(),
-                lastname  = $elm.find('[name="lastname"]').val();
+                data = {
+                    firstname: $elm.find('[name="firstname"]').val(),
+                    lastname:  $elm.find('[name="lastname"]').val()
+                };
 
-            if(studentId === 'new' && (firstname.length <= 0 || lastname.length <= 0)) {
+            if(studentId === 'new' && (data.firstname.length <= 0 || data.lastname.length <= 0)) {
                 return;
+            }
+
+            if(parseInt(studentId)) {
+                route     = proto_url.replace('_student_', studentId);
+            } else {
+                route = '<?php echo $routerHelper->generate('student_new', [ 'subject'   => $subject->getId() ]); ?>';
             }
 
             $.ajax({
                 url : route,
-                data: {
-                    firstname: firstname,
-                    lastname: lastname
-                },
+                data: data,
                 success: function(response) {
                     if(response.new) {
                         location.reload();
                     }
                 },
                 error: function(response) {
-                    that.log(response)
+                    that.log(response);
                 }
             });
 

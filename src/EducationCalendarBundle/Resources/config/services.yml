@@ -1,4 +1,7 @@
 services:
-#    education_calendar.example:
-#        class: EducationCalendarBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    teaching_unit_repository:
+        class: EducationCalendarBundle\Entity\Repository\TeachingUnitRepository
+        factory_service: doctrine
+        factory_method: getRepository
+        arguments:
+            - EducationCalendarBundle\Entity\TeachingUnitEntity

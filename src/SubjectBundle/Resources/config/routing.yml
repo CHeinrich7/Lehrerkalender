@@ -7,8 +7,12 @@ subject_select_class:
     defaults: { _controller: SubjectBundle:EducationClass:select }
 
 student_save:
-    path:     /in/student/save/{subject}/{studentId}
+    path:     /in/student/save/{student}
     defaults: { _controller: SubjectBundle:Student:save }
+
+student_new:
+    path:     /in/student/new/{subject}
+    defaults: { _controller: SubjectBundle:Student:new }
 
 education_class:
     path:     /in/classes

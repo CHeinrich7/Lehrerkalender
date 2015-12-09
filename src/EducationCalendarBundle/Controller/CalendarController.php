@@ -2,13 +2,15 @@
 
 namespace EducationCalendarBundle\Controller;
 
-use EducationCalendarBundle\Entity\TeachingUnit;
-use SubjectBundle\Entity\EducationClassEntity;
-use SubjectBundle\Entity\SubjectEntity;
+use EducationCalendarBundle\Entity\Repository\TeachingUnitRepository;
+use EducationCalendarBundle\Entity\TeachingUnitEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use UserBundle\Entity\User;
 
+/**
+ * Class CalendarController
+ * @package EducationCalendarBundle\Controller
+ */
 class CalendarController extends Controller
 {
     public function calendarAction()
@@ -20,7 +22,7 @@ class CalendarController extends Controller
             'EducationCalendarBundle:Calendar:calendar.html.php',
             array(
                 'tableResponse'     => $response,
-                'education_classes' => $this->getUserEducationClasses()
+                'education_classes' => $this->get('education_class_repository')->findUserClasses($this->getUser())
             )
         );
     }
@@ -32,7 +34,7 @@ class CalendarController extends Controller
      */
     public function getAccordionResponseAction($time)
     {
-        $subjects = $this->getUserSubjects();
+        $subjects = $this->get('subject_repository')->findUserSubjects($this->getUser());
 
         $data = $this->getPreparedTableData($time);
 
@@ -61,17 +63,14 @@ class CalendarController extends Controller
      */
     private function getPreparedTableData($time)
     {
-        $em = $this->get('doctrine.orm.default_entity_manager');
-
-        $teachingUnits = $em
-            ->getRepository('EducationCalendarBundle:TeachingUnit')
+        $teachingUnits = $this->getRepository()
             ->findByUserAndWeek(
                 $this->getUser(),
                 $time
             );
 
         $data = $this->getPreparedDayData($time);
-        foreach($teachingUnits as $teachingUnit)
+        foreach($teachingUnits as $teachingUnit) /** @var TeachingUnitEntity $teachingUnit */
         {
             $day    = $teachingUnit->getDate()->format('w')-1;
             $block  = $teachingUnit->getUnitBlock();
@@ -83,6 +82,8 @@ class CalendarController extends Controller
     }
 
     /**
+     * @param $time
+     *
      * @return array
      */
     private function getPreparedDayData($time)
@@ -119,49 +120,10 @@ class CalendarController extends Controller
     }
 
     /**
-     * @return SubjectEntity[]
+     * @return TeachingUnitRepository
      */
-    private function getUserSubjects()
+    private function getRepository()
     {
-        $em = $this->get('doctrine.orm.default_entity_manager');
-
-        /** @var SubjectEntity[] $subjects */
-        $subjectEntities = $em
-            ->getRepository('SubjectBundle:SubjectEntity')
-            ->findBy(['createdBy' => $this->getUser()]);
-
-        // prepare subject names by id
-        $subjects = [];
-        foreach($subjectEntities as $subjectEntity)
-        {
-            $subjects[$subjectEntity->getId()] = [
-                'name'  => $subjectEntity->getNameWithEducationClassName(),
-                'class' => $subjectEntity->getEducationClass()->getId()
-            ];
-        }
-
-        return $subjects;
-    }
-
-    /**
-     * @return EducationClassEntity[]
-     */
-    private function getUserEducationClasses()
-    {
-        $em = $this->get('doctrine.orm.default_entity_manager');
-
-        /** @var EducationClassEntity[] $subjects */
-        $educationClasses = $em
-            ->getRepository('SubjectBundle:EducationClassEntity')
-            ->findBy(['createdBy' => $this->getUser()]);
-
-        // prepare class names by id
-        $classes = [];
-        foreach($educationClasses as $educationClass)
-        {
-            $classes[$educationClass->getId()] = $educationClass->getName();
-        }
-
-        return $classes;
+        return $this->get('teaching_unit_repository');
     }
 }

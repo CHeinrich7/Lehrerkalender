@@ -6,9 +6,9 @@
  * @var $slotsHelper    ToolboxBundle\Helper\SlotsHelper
  * @var $routerHelper   Symfony\Bundle\FrameworkBundle\Templating\Helper\RouterHelper
  *
- * @var $classEntities  SubjectBundle\Entity\EducationClassEntity[]
- * @var $userSubjects   array
- * @var $allSubjects    array
+ * @var $educationClasses   array
+ * @var $userSubjects       array
+ * @var $allSubjects        array
  */
 
 $slotsHelper = $view['slots'];
@@ -92,7 +92,6 @@ $isAdmin = $app->getSecurity()->isGranted(\UserBundle\Entity\Role::ROLE_ADMIN);
 <?php $slotsHelper->stop(); ?>
 <?php $slotsHelper->start('content'); ?>
 
-
 <div class="row">
     <div class="col-sm-offset-4 col-sm-4 col-xs-offset-2 col-xs-8 no-padding">
         <table id="subject-holder" class="table table-striped table-hover text-center">
@@ -157,11 +156,11 @@ $isAdmin = $app->getSecurity()->isGranted(\UserBundle\Entity\Role::ROLE_ADMIN);
                             <div class="col-sm-10">
                                 <select id="educationClass" name="education_class" class="form-control chosen-select" autocomplete="off">
                                     <?php
-                                    foreach ($classEntities as $class) {
-                                        echo sprintf('<option value="%s">%s</option>', $class->getId(), $class->getName());
+                                    foreach ($educationClasses as $class) {
+                                        echo sprintf('<option value="%s">%s</option>', $class['id'], $class['name']);
                                     }
                                     ?>
-                                    <?php if(!count($classEntities)): ?>
+                                    <?php if(!count($educationClasses)): ?>
                                         <option value="keine Klasse" class="placeholder" selected></option>
                                     <?php endif; ?>
                                 </select>

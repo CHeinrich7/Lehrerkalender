@@ -8,6 +8,7 @@
 namespace SubjectBundle\Controller;
 
 
+use SubjectBundle\Entity\Repository\StudentRepository;
 use SubjectBundle\Entity\StudentEntity;
 use SubjectBundle\Entity\SubjectEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,38 +20,42 @@ class StudentController extends Controller
     /**
      * @param Request       $request
      * @param SubjectEntity $subject
-     * @param string        $studentId
      *
      * @return JsonResponse
      */
-    public function saveAction(Request $request, SubjectEntity $subject, $studentId)
+    public function newAction(Request $request, SubjectEntity $subject)
     {
-        $firstname = $request->get('firstname');
-        $lastname  = $request->get('lastname');
-
-        $em = $this->get('doctrine.orm.default_entity_manager');
-
-        if(is_numeric($studentId)) {
-            $new = false;
-            $student = $em->getRepository('SubjectBundle:StudentEntity')->find($studentId);
-        } else {
-            $new = true;
-            $student = new StudentEntity();
-            $student->setEducationClass($subject->getEducationClass());
-        }
-
-        $student
-            ->setFirstname($firstname)
-            ->setLastname($lastname);
-
-        $em->persist($student);
-        $em->flush();
+        $student = $this->getRepository()->createStudent($request, $subject->getEducationClass());
 
         return new JsonResponse([
             'id'        => $student->getId(),
             'firstname' => $student->getFirstname(),
-            'lastname'  => $student->getLastname(),
-            'new'       => $new
+            'lastname'  => $student->getLastname()
         ]);
+    }
+
+    /**
+     * @param Request       $request
+     * @param StudentEntity $student
+     *
+     * @return JsonResponse
+     */
+    public function saveAction(Request $request, StudentEntity $student)
+    {
+        $this->getRepository()->updatEntityByRequest($request, $student);
+
+        return new JsonResponse([
+            'id'        => $student->getId(),
+            'firstname' => $student->getFirstname(),
+            'lastname'  => $student->getLastname()
+        ]);
+    }
+
+    /**
+     * @return StudentRepository
+     */
+    private function getRepository()
+    {
+        return $this->get('student_repository');
     }
 }

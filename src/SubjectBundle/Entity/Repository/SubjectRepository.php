@@ -17,7 +17,8 @@ class SubjectRepository extends EntityRepository
 {
     /**
      * @param User $user
-     * @return SubjectEntity[]
+     *
+     * @return array
      */
     public function findAllAsArray($user = null)
     {
@@ -26,7 +27,8 @@ class SubjectRepository extends EntityRepository
 
         $qb
             ->select('s.name as name', 's.id as id', 'c.name as class')
-            ->join('s.educationClass', 'c');
+            ->join('s.educationClass', 'c')
+            ->orderBy('s.name');
 
         if($user instanceof User) {
             $qb
@@ -37,6 +39,9 @@ class SubjectRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    /**
+     * @return array
+     */
     public function findAllDistinct()
     {
         /** @var QueryBuilder $qb */
@@ -48,5 +53,23 @@ class SubjectRepository extends EntityRepository
             ->distinct(true);
 
         return $qb->getQuery()->getResult();
+    }
+
+    public function findUserSubjects(User $user)
+    {
+        /** @var SubjectEntity[] $subjects */
+        $subjectEntities = $this->findBy(['createdBy' => $user]);
+
+        // prepare subject names by id
+        $subjects = [];
+        foreach($subjectEntities as $subjectEntity) /** @var SubjectEntity $subjectEntity */
+        {
+            $subjects[$subjectEntity->getId()] = [
+                'name'  => $subjectEntity->getNameWithEducationClassName(),
+                'class' => $subjectEntity->getEducationClass()->getId()
+            ];
+        }
+
+        return $subjects;
     }
 }

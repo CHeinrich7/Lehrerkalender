@@ -4,6 +4,7 @@ namespace MarkBundle\Controller;
 
 use EducationCalendarBundle\Entity\TeachingUnit;
 use MarkBundle\Entity\MarkEntity;
+use MarkBundle\Entity\Repository\MarkRepository;
 use SubjectBundle\Entity\StudentEntity;
 use SubjectBundle\Entity\SubjectEntity as Subject;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -12,6 +13,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MarkController extends Controller
 {
+    const INDEX_TEMPLATE = 'MarkBundle:mark:index.html.php';
+
+    /**
+     * @param Subject $subject
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction(Subject $subject)
     {
         $data = [];
@@ -44,18 +52,22 @@ class MarkController extends Controller
             $data[] = $studentData;
         }
 
-        return $this->render('MarkBundle:mark:index.html.php', [
+        return $this->render(self::INDEX_TEMPLATE, [
             'data'          => $data,
             'teachingUnits' => $teachingUnits,
             'subject'       => $subject
         ]);
     }
 
-    function loadAction($student, $teachingUnit)
+    /**
+     * @param StudentEntity $student
+     * @param TeachingUnit  $teachingUnit
+     *
+     * @return JsonResponse
+     */
+    function loadAction(StudentEntity $student, TeachingUnit $teachingUnit)
     {
-        $em = $this->get('doctrine.orm.default_entity_manager');
-
-        $mark = $em->getRepository('MarkBundle:MarkEntity')->findOneBy([
+        $mark = $this->getRepository()->findOneBy([
             'student'       => $student,
             'teachingUnit'  => $teachingUnit
         ]);
@@ -76,38 +88,19 @@ class MarkController extends Controller
 
     function saveAction(Request $request, StudentEntity $student, TeachingUnit $teachingUnit)
     {
-        $em = $this->get('doctrine.orm.default_entity_manager');
-
-        $markEntity = $em->getRepository('MarkBundle:MarkEntity')->findOneBy([
-            'student'       => $student,
-            'teachingUnit'  => $teachingUnit
-        ]);
-
-        $new = false;
-
-        if($markEntity instanceof MarkEntity !== true) {
-            $markEntity = new MarkEntity();
-            $new = true;
-
-            $markEntity
-                ->setStudent($student)
-                ->setTeachingUnit($teachingUnit);
-        }
-
-        $type = $request->get('type');
-        $mark = $request->get('mark');
-
-        $markEntity
-            ->setType($type)
-            ->setMark($mark);
-
-        $em->persist($markEntity);
-        $em->flush();
+        $markEntity = $this->getRepository()->updateEntityByRequest($request, $student, $teachingUnit);
 
         return new JsonResponse([
             'mark'  => $markEntity->getMark(),
-            'type'  => $markEntity->getType(),
-            'new'   => $new
+            'type'  => $markEntity->getType()
         ]);
+    }
+
+    /**
+     * @return MarkRepository
+     */
+    private function getRepository()
+    {
+        return $this->get('mark_repository');
     }
 }

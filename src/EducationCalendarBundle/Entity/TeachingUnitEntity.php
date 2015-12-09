@@ -20,7 +20,7 @@ use UserBundle\Entity\SoftdeletableEntity;
  *
  * @ORM\Table(name="teaching_unit")
  */
-class TeachingUnit extends SoftdeletableEntity
+class TeachingUnitEntity extends SoftdeletableEntity
 {
     /**
      * @ORM\Column(type="integer")
