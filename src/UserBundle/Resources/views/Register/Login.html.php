@@ -35,7 +35,8 @@ $formHelper->setTheme($loginFormView, ':Form');
         <div class="row">
             <div class="col-sm-offset-3 col-sm-6">
                 <div class="alert alert-danger">
-                    <?php echo $error->getMessage(); ?>
+                    <?php /*echo $error->getMessage();*/ ?>
+                    Login fehlgeschlagen
                 </div>
             </div>
         </div>

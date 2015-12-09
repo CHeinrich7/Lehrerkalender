@@ -3,8 +3,6 @@
 namespace UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\SoftDeleteable\SoftDeleteable;
-use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -20,6 +18,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class User extends SoftdeletableEntity implements UserInterface
 {
     /**
+     * @var integer
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -27,13 +26,15 @@ class User extends SoftdeletableEntity implements UserInterface
     protected $id;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=25)
      * @Constraints\NotBlank()
-     * @Constraints\Length(min = "5")
+     * @Constraints\Length(min = "5", minMessage="Mindestlänge: 5 Zeichen")
      */
     protected $username;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=32, nullable = false)
      */
     protected $salt = null;
@@ -42,31 +43,40 @@ class User extends SoftdeletableEntity implements UserInterface
      * algorithm: sha512
      * encode_as_base64: true
      *
+     * @var string
      * @ORM\Column(type="string", length=128, nullable = false)
-     * @Constraints\Length(min = "5")
-     * @Constraints\NotBlank()
      */
     protected $password;
 
     /**
+     * @var boolean
      * @ORM\Column(name="is_superuser", type="boolean", options={"default" = 0})
      */
     protected $isSuperUser = false;
 
     /**
+     * @var boolean
      * @ORM\Column(name="is_active", type="boolean", options={"default" = 1})
      */
     protected $isActive  = true;
 
     /**
+     * @var boolean
      * @ORM\Column(name="is_deletable", type="boolean", options={"default" = 1})
      */
     protected $isDeletable = true;
 
     /**
      * @var string
+     * @Constraints\Length(min = "5", minMessage="Mindestlänge: 5 Zeichen")
+     * @Constraints\NotBlank(message="Dieses Feld darf nicht leer sein")
      */
-    protected $plainPassword = null;
+    protected $newPassword = null;
+
+    /**
+     * @var string
+     */
+    protected $oldPassword = null;
 
 //    /**
 //     * @ORM\OneToOne(targetEntity="Profile", cascade={"persist", "remove"})
@@ -75,10 +85,10 @@ class User extends SoftdeletableEntity implements UserInterface
 //    protected $profile;
 
     /**
+     * @var Role
      * @ORM\ManyToOne(targetEntity="Role")
      * @ORM\JoinColumn(referencedColumnName="id")
      * @Constraints\Valid
-     * @var Role
      */
     protected $role;
 
@@ -191,26 +201,6 @@ class User extends SoftdeletableEntity implements UserInterface
     }
 
     /**
-     * @param string $plainPassword
-     *
-     * @return User
-     */
-    public function setPlainPassword ( $plainPassword )
-    {
-        $this->plainPassword = $plainPassword;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPlainPassword ()
-    {
-        return $this->plainPassword;
-    }
-
-    /**
      * @param string $username
      *
      * @return User
@@ -251,6 +241,9 @@ class User extends SoftdeletableEntity implements UserInterface
         return array( $this->role->getRole() );
     }
 
+    /**
+     * @return Role
+     */
     public function getRole ()
     {
         return $this->role;
@@ -273,9 +266,61 @@ class User extends SoftdeletableEntity implements UserInterface
      *
      * This is important if, at any given point, sensitive information like
      * the plain-text password is stored on this object.
+     *
+     * @param boolean   $withPasswordAndSalt
+     *
+     * @return $this
      */
-    public function eraseCredentials ()
+    public function eraseCredentials ($withPasswordAndSalt = false)
     {
-        // TODO: Implement eraseCredentials() method.
+        $this->newPassword = null;
+        $this->oldPassword = null;
+
+        if($withPasswordAndSalt === true) {
+            $this->password = null;
+            $this->salt     = null;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOldPassword ()
+    {
+        return $this->oldPassword;
+    }
+
+    /**
+     * @param string $oldPassword
+     *
+     * @return $this
+     */
+    public function setOldPassword ($oldPassword)
+    {
+        $this->oldPassword = $oldPassword;
+
+        return $this;
+    }
+
+    /**
+     * @param string $newPassword
+     *
+     * @return User
+     */
+    public function setNewPassword ( $newPassword )
+    {
+        $this->newPassword = $newPassword;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNewPassword ()
+    {
+        return $this->newPassword;
     }
 }

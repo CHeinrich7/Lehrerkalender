@@ -3,16 +3,32 @@
 namespace UserBundle\Entity\Repository;
 
 
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Component\Form\Form;
+use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use UserBundle\Entity\User;
 
-class UserRepository extends EntityRepository  implements UserProviderInterface {
+/**
+ * Class UserRepository
+ * @package UserBundle\Entity\Repository
+ */
+class UserRepository extends EntityRepository  implements UserProviderInterface
+{
+    /**
+     */
+    public function __construct(EntityManager $em, $classMetadata)
+    {
+        parent::__construct($em, $classMetadata);
+    }
+
+
     /**
      * Loads the user for the given username.
      *
@@ -86,9 +102,11 @@ class UserRepository extends EntityRepository  implements UserProviderInterface 
     }
 
     /**
+     * @param array $lowerRoles
+     *
      * @return array
      */
-    public function findAllDistinct()
+    public function findAllByRoles(array $lowerRoles)
     {
         /** @var QueryBuilder $qb */
         $qb = $this->createQueryBuilder('u');
@@ -101,5 +119,26 @@ class UserRepository extends EntityRepository  implements UserProviderInterface 
             ->distinct(true);
 
         return $qb->getQuery()->getResult();
+    }
+
+    /**
+     *
+     */
+    public function updateUserFromForm(Form $form, EncoderFactoryInterface $encoderFactory)
+    {
+        /** @var User $user */
+        $user = $form->getData();
+
+        $encoder = $encoderFactory->getEncoder($user);
+
+        $user->setSalt(md5(time()));
+        $password = $encoder->encodePassword($user->getNewPassword(), $user->getSalt());
+
+        $user
+            ->eraseCredentials()
+            ->setPassword($password);
+
+        $this->_em->persist($user);
+        $this->_em->flush($user);
     }
 } 

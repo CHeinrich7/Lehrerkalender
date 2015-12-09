@@ -13,8 +13,8 @@ class RegisterController extends Controller
 
     public function loginAction(Request $request)
     {
-        /* @var $helper AuthenticationUtils */
-        $helper = $this->get('security.authentication_utils');
+        /* @var $authenticationUtils AuthenticationUtils */
+        $authenticationUtils = $this->get('security.authentication_utils');
 
         $user = $this->getUser(); /* @var $user User */
 
@@ -25,16 +25,16 @@ class RegisterController extends Controller
             $this->logout($request);
         }
 
-        $loginForm = $this->createForm(new LoginType(), null, array(
+        $loginForm = $this->createForm('logintype', null, array(
             'method' => 'POST',
             'action' => $this->generateUrl('user_check')
-//            'csrf_protection' => false
+            // 'csrf_protection' => false
         ));
 
-        return $this->render('UserBundle:Register:Login.html.php', array(
+        return $this->render('UserBundle:Register:login.html.php', array(
             // last username entered by the user
-            'last_username' => $helper->getLastUsername(),
-            'error'         => $helper->getLastAuthenticationError(),
+            'last_username' => $authenticationUtils->getLastUsername(),
+            'error'         => $authenticationUtils->getLastAuthenticationError(),
             'username'      => $username,
             'loginForm'     => $loginForm
         ));

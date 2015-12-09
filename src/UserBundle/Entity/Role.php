@@ -38,7 +38,7 @@ class Role implements RoleInterface
      * @Constraints\NotBlank()
      * @var string
      */
-    protected $role;
+    protected $role = self::ROLE_APPLICANT;
 
     /**
      * @param $id

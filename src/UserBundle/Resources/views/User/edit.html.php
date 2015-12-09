@@ -9,7 +9,9 @@
  * @var $userForm       Symfony\Component\Form\Form
  * @var $userFormView   Symfony\Component\Form\FormView
  *
- * @var $newUser        boolean
+ * @var $newUser            boolean
+ * @var $insertOldPassword  boolean
+ * @var $save               boolean
  */
 
 $slotsHelper    = $view['slots'];
@@ -30,24 +32,18 @@ User <?php if($newUser): ?>anlegen<?php else: ?>editieren<?php endif; ?>
 <?php $slotsHelper->stop(); ?>
 
 <?php $slotsHelper->start('content') ?>
+<?php if($save === true): ?>
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-7 col-md-6">
+            <div class="alert alert-info">
+                <p><b>Speichern erfolgreich!</b></p>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 <?php
 echo $formHelper->start( $userFormView );
-
-echo $formHelper->row( $userFormView->children['_token'] );
-echo $formHelper->row( $userFormView->children['username'] );
-
-if($isAdmin) {
-    echo $formHelper->row( $userFormView->children['role'] );
-}
-
-if(!isset($newUser) || $newUser == false) {
-    echo $formHelper->row( $userFormView->children['password'] );
-}
-
-echo $formHelper->row( $userFormView->children['plainPassword'] );
-
-echo $formHelper->row( $userFormView->children['save'] );
-
-echo $formHelper->end( $userFormView );
+echo $formHelper->rest(  $userFormView );
+echo $formHelper->end(   $userFormView );
 ?>
 <?php $slotsHelper->stop() ?>

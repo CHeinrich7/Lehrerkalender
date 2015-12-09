@@ -21,7 +21,7 @@ user_create:
     defaults: { _controller: UserBundle:User:new }
 
 user_edit:
-    path:     /in/user/edit/{user}
-    defaults: { _controller: UserBundle:User:edit }
+    path:     /in/user/edit/{user}/{save}
+    defaults: { _controller: UserBundle:User:edit, save: 0 }
     requirements:
         user:  \d+

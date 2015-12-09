@@ -61,3 +61,11 @@ body > .container {
 .chosen-container:not(.chosen-with-drop) .chosen-drop {
     display: none;
 }
+
+form .fieldInfo > .alert-danger {
+    padding:5px;
+}
+
+form .fieldInfo ul {
+    padding-left: 20px;
+}

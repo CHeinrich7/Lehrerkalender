@@ -8,5 +8,25 @@ services:
 
     usertype:
         class: UserBundle\Form\UserType
+        arguments:
+            - @entity.security.service
         tags:
             - { name: form.type, alias: usertype }
+
+    logintype:
+        class: UserBundle\Form\LoginType
+        tags:
+            - { name: form.type, alias: logintype }
+
+
+    user_repository:
+        class: UserBundle\Entity\Repository\UserRepository
+        factory_service: doctrine
+        factory_method: getRepository
+        arguments:
+            - UserBundle\Entity\User
+
+    user_prepersist_listener:
+        class: UserBundle\EventListener\UserPrePersistListener
+        tags:
+            - { name: doctrine.event_subscriber }

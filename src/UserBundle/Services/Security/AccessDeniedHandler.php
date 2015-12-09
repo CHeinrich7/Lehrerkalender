@@ -15,6 +15,7 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface{
         if ($request->isXmlHttpRequest()) {
             return new JsonResponse(array('success' => false, 'message' => $accessDeniedException->getMessage()));
         }
+
         return $accessDeniedException;
     }
 }

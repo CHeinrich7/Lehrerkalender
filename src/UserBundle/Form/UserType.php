@@ -6,6 +6,9 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints;
+use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
+use ToolboxBundle\Services\EntitySecurityService;
 use UserBundle\Entity\Role;
 use UserBundle\Entity\User;
 
@@ -13,6 +16,20 @@ use UserBundle\Entity\User;
 
 class UserType extends AbstractType
 {
+    /**
+     * @var EntitySecurityService
+     */
+    private $entitySecurityService;
+
+    /**
+     * @param EntitySecurityService $entitySecurityService
+     */
+    public function __construct(EntitySecurityService $entitySecurityService)
+    {
+        $this->entitySecurityService = $entitySecurityService;
+    }
+
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -22,10 +39,13 @@ class UserType extends AbstractType
         /** @var User $user */
         $user = $builder->getData();
 
+        $lowerRoles = $this->entitySecurityService->getLowerRoles();
+
         $inputAttr = array(
             'class-label'   => 'col-md-offset-2 col-md-3 col-sm-offset-1 col-sm-4',
             'class'         => 'col-md-3 col-sm-4',
-            'class-widget'  => 'no-chosen'
+            'class-widget'  => 'no-chosen',
+            'minlength'     => 5
         );
 
         $buttonAttr = array(
@@ -33,26 +53,73 @@ class UserType extends AbstractType
         );
 
         $builder
-            ->add('username',       'text',     array('label' => 'Username', 'attr' => $inputAttr))
-            ->add('role',           'entity',   array(
-                'label'     => 'Rolle',
-                'attr'      => $inputAttr,
-                'class'     => 'UserBundle\Entity\Role',
-                'query_builder' => function(EntityRepository $repository) {
-                    $qb = $repository->createQueryBuilder('r');
+            ->add('username',       'text',     array('label' => 'Username', 'attr' => $inputAttr));
 
-                    return $qb
-                        ->where('r.role <> :role')
-                        ->setParameter('role', Role::ROLE_SUPER_ADMIN);
-                },
+        if(count($lowerRoles)) {
+            $builder
+                ->add('role',           'entity',   array(
+                    'label'     => 'Rolle',
+                    'attr'      => $inputAttr,
+                    'class'     => 'UserBundle\Entity\Role',
+                    'query_builder' => function(EntityRepository $repository) use ($lowerRoles) {
+                        $qb = $repository->createQueryBuilder('r');
+
+                        return $qb
+                            ->where('r.role IN (:roles)')
+                            ->setParameter('roles', $lowerRoles);
+                    },
+                ));
+        }
+
+        if($this->entitySecurityService->isEntityGranted($user)) {
+            $builder
+                ->add('old_password', 'password', array(
+                    'label' => 'altes Passwort',
+                    'attr'  => $inputAttr,
+                    'constraints'   => array(
+                        new Constraints\Length([
+                            'min'           => 5,
+                            'minMessage'    => 'Mindestlänge: 5 Zeichen']),
+                        new Constraints\NotBlank([
+                            'message'       => 'Dieses Feld darf nicht leer sein'
+                        ]),
+                        new SecurityAssert\UserPassword([
+                            'message'       => 'Das angegebene Passwort ist falsch'
+                        ])
+                    )
+                ));
+        }
+
+        $builder
+            ->add('new_password',  'repeated', array(
+                'type'              => 'password',
+                'invalid_message'   => 'Die Passwortfelder müssen übereinstimmen',
+                'required'          => true,
+                'first_options'     => array(
+                    'label' => 'neues Passwort',
+                    'attr' => $inputAttr,
+                    'constraints'   => array(
+                        new Constraints\Length([
+                            'min'           => 5,
+                            'minMessage'    => 'Mindestlänge: 5 Zeichen']),
+                        new Constraints\NotBlank([
+                            'message'       => 'Dieses Feld darf nicht leer sein'
+                        ])
+                    )
+                ),
+                'second_options'    => array(
+                    'label' => 'Passwort wiederholen',
+                    'attr' => $inputAttr,
+                    'constraints'   => array(
+                        new Constraints\Length([
+                            'min'           => 5,
+                            'minMessage'    => 'Mindestlänge: 5 Zeichen']),
+                        new Constraints\NotBlank([
+                            'message'       => 'Dieses Feld darf nicht leer sein'
+                        ])
+                    )
+                )
             ))
-            ->add('password', 'password', array(
-                'label' => ( $user->getId() > 0 )
-                                ? 'altes Passwort'
-                                : 'Passwort',
-                'attr'  => $inputAttr
-            ))
-            ->add('plainPassword',  'password', array('label' => 'neues Passwort',  'attr' => $inputAttr))
             ->add('save',           'submit',   array('label' => 'Speichern',       'attr' => $buttonAttr))
         ;
     }
