@@ -2,10 +2,14 @@
 namespace UserBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
-//use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
+/**
+ * Class UserDataLoader to load FileContent of File in Dir of Class
+ *
+ * @package UserBundle\DataFixtures\ORM
+ */
 abstract class UserDataLoader extends AbstractFixture {
 
     /**

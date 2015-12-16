@@ -14,12 +14,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class TeachingUnitController
+ * @package EducationCalendarBundle\Controller
+ */
 class TeachingUnitController extends Controller
 {
     /**
-     * @param Request $request
-     * @param integer $block
-     * @param integer $time
+     * @param Request       $request
+     * @param SubjectEntity $subject
+     * @param integer       $block
+     * @param integer       $time
      *
      * @return JsonResponse
      */
@@ -31,8 +36,8 @@ class TeachingUnitController extends Controller
             $request,           // Request
             $subject,           // Subject
             $this->getUser(),   // User
-            $block,             // TeachingUnit::unitBlock
-            $time               // TeachingUnit::date->getTimestamp
+            $block,             // TeachingUnitEntity::unitBlock
+            $time               // TeachingUnitEntity::date->getTimestamp
         );
 
         return new JsonResponse(['success' => $success]);
@@ -50,8 +55,8 @@ class TeachingUnitController extends Controller
 
         $removed = $repo->removeByData(
             $this->getUser(),   // User
-            $block,             // TeachingUnit::unitBlock
-            $time               // TeachingUnit::date->getTimestamp
+            $block,             // TeachingUnitEntity::unitBlock
+            $time               // TeachingUnitEntity::date->getTimestamp
         );
 
         return new JsonResponse(['success' => true, 'data' => ['removed' => $removed]]);
@@ -62,8 +67,6 @@ class TeachingUnitController extends Controller
      */
     private function getRepository()
     {
-        $em = $this->get('doctrine.orm.default_entity_manager');
-
-        return $em->getRepository('EducationCalendarBundle:TeachingUnit');
+        $em = $this->get('teaching_unit_repository');
     }
 }

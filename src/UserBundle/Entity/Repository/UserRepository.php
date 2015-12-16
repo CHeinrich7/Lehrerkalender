@@ -2,8 +2,6 @@
 
 namespace UserBundle\Entity\Repository;
 
-
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
@@ -22,14 +20,6 @@ use UserBundle\Entity\User;
 class UserRepository extends EntityRepository  implements UserProviderInterface
 {
     /**
-     */
-    public function __construct(EntityManager $em, $classMetadata)
-    {
-        parent::__construct($em, $classMetadata);
-    }
-
-
-    /**
      * Loads the user for the given username.
      *
      * This method must throw UsernameNotFoundException if the user is not
@@ -38,8 +28,6 @@ class UserRepository extends EntityRepository  implements UserProviderInterface
      * @param string $username The username
      *
      * @return UserInterface
-     *
-     * @see UsernameNotFoundException
      *
      * @throws UsernameNotFoundException if the user is not found
      */
@@ -124,7 +112,9 @@ class UserRepository extends EntityRepository  implements UserProviderInterface
     }
 
     /**
+     * @param Form                    $form
      *
+     * @param EncoderFactoryInterface $encoderFactory
      */
     public function updateUserFromForm(Form $form, EncoderFactoryInterface $encoderFactory)
     {

@@ -8,18 +8,22 @@
 namespace EducationCalendarBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use EducationCalendarBundle\Entity\TeachingUnit;
+use EducationCalendarBundle\Entity\TeachingUnitEntity;
 use SubjectBundle\Entity\SubjectEntity;
 use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\User;
 
+/**
+ * Class TeachingUnitRepository
+ * @package EducationCalendarBundle\Entity\Repository
+ */
 class TeachingUnitRepository extends EntityRepository
 {
     /**
      * @param User      $user
      * @param integer   $time
      *
-     * @return TeachingUnit[]
+     * @return TeachingUnitEntity[]
      */
     public function findByUserAndWeek(User $user, $time)
     {
@@ -33,7 +37,7 @@ class TeachingUnitRepository extends EntityRepository
         $firstDayOfWeek = date('d.m.Y 00:00:00', strtotime('last monday', $tomorrow));
         $lastDayOfWeek  = date('d.m.Y 23:59:59', strtotime('next sunday', $yesterday));
 
-        // typeof TeachingUnit::date === \DateTime
+        // typeof TeachingUnitEntity::date === \DateTime
         $firstDate = new \DateTime($firstDayOfWeek);
         $lastDate  = new \DateTime($lastDayOfWeek);
 
@@ -87,9 +91,9 @@ class TeachingUnitRepository extends EntityRepository
                 'createdBy' => $user
             ]);
 
-        if($teachingUnit instanceof TeachingUnit !== true)
+        if($teachingUnit instanceof TeachingUnitEntity !== true)
         {
-            $teachingUnit = new TeachingUnit();
+            $teachingUnit = new TeachingUnitEntity();
             $teachingUnit
                 ->setUnitBlock($block)
                 ->setDate($date);
@@ -143,7 +147,7 @@ class TeachingUnitRepository extends EntityRepository
                 'createdBy' => $user
             ]);
 
-        if($teachingUnit instanceof TeachingUnit === true) {
+        if($teachingUnit instanceof TeachingUnitEntity === true) {
             $this->_em->remove($teachingUnit);
             $this->_em->flush();
 

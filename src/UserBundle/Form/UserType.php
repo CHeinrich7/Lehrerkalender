@@ -12,8 +12,10 @@ use ToolboxBundle\Services\EntitySecurityService;
 use UserBundle\Entity\Role;
 use UserBundle\Entity\User;
 
-//use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
+/**
+ * Class UserType
+ * @package UserBundle\Form
+ */
 class UserType extends AbstractType
 {
     /**

@@ -12,7 +12,10 @@ use Doctrine\ORM\QueryBuilder;
 use SubjectBundle\Entity\EducationClassEntity;
 use UserBundle\Entity\User;
 
-
+/**
+ * Class EducationClassRepository
+ * @package SubjectBundle\Entity\Repository
+ */
 class EducationClassRepository extends EntityRepository
 {
     /**

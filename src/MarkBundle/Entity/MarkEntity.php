@@ -8,7 +8,7 @@
 namespace MarkBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use EducationCalendarBundle\Entity\TeachingUnit;
+use EducationCalendarBundle\Entity\TeachingUnitEntity;
 use SubjectBundle\Entity\StudentEntity;
 use Symfony\Component\Validator\Constraints;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -48,9 +48,9 @@ class MarkEntity
     protected $type = 1;
 
     /**
-     * @var TeachingUnit
+     * @var TeachingUnitEntity
      *
-     * @ORM\ManyToOne(targetEntity="EducationCalendarBundle\Entity\TeachingUnit", inversedBy="marks")
+     * @ORM\ManyToOne(targetEntity="EducationCalendarBundle\Entity\TeachingUnitEntity", inversedBy="marks")
      * @ORM\JoinColumn(referencedColumnName="id", nullable=false)
      * @Constraints\NotNull()
      */
@@ -114,7 +114,7 @@ class MarkEntity
     }
 
     /**
-     * @return TeachingUnit
+     * @return TeachingUnitEntity
      */
     public function getTeachingUnit()
     {
@@ -122,11 +122,11 @@ class MarkEntity
     }
 
     /**
-     * @param TeachingUnit $teachingUnit
+     * @param TeachingUnitEntity $teachingUnit
      *
      * @return $this
      */
-    public function setTeachingUnit(TeachingUnit $teachingUnit)
+    public function setTeachingUnit(TeachingUnitEntity $teachingUnit)
     {
         $this->teachingUnit = $teachingUnit;
 

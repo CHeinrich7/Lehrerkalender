@@ -9,8 +9,8 @@ use MarkBundle\Entity\MarkEntity;
  * @var $error          Symfony\Component\Security\Core\Exception\AuthenticationServiceException
  *
  * @var $data           array
- * @var $teachingUnits  EducationCalendarBundle\Entity\TeachingUnit[]
- * @var $teachingUnit   EducationCalendarBundle\Entity\TeachingUnit
+ * @var $teachingUnits  EducationCalendarBundle\Entity\TeachingUnitEntity[]
+ * @var $teachingUnit   EducationCalendarBundle\Entity\TeachingUnitEntity
  * @var $subject        SubjectBundle\Entity\SubjectEntity
  */
 

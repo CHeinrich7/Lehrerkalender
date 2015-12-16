@@ -2,7 +2,7 @@
 
 namespace MarkBundle\Controller;
 
-use EducationCalendarBundle\Entity\TeachingUnit;
+use EducationCalendarBundle\Entity\TeachingUnitEntity;
 use MarkBundle\Entity\MarkEntity;
 use MarkBundle\Entity\Repository\MarkRepository;
 use SubjectBundle\Entity\StudentEntity;
@@ -11,6 +11,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class MarkController
+ * @package MarkBundle\Controller
+ */
 class MarkController extends Controller
 {
     const INDEX_TEMPLATE = 'MarkBundle:mark:index.html.php';
@@ -37,7 +41,7 @@ class MarkController extends Controller
 
             $marks = $student->getMarks();
 
-            foreach($teachingUnits as $teachingUnit) { /** @var $teachingUnit TeachingUnit */
+            foreach($teachingUnits as $teachingUnit) { /** @var $teachingUnit TeachingUnitEntity */
                 $studentData['teachingUnits'][$teachingUnit->getId()] = null;
             }
 
@@ -60,12 +64,12 @@ class MarkController extends Controller
     }
 
     /**
-     * @param StudentEntity $student
-     * @param TeachingUnit  $teachingUnit
+     * @param StudentEntity      $student
+     * @param TeachingUnitEntity $teachingUnit
      *
      * @return JsonResponse
      */
-    function loadAction(StudentEntity $student, TeachingUnit $teachingUnit)
+    function loadAction(StudentEntity $student, TeachingUnitEntity $teachingUnit)
     {
         $mark = $this->getRepository()->findOneBy([
             'student'       => $student,
@@ -86,7 +90,7 @@ class MarkController extends Controller
         ]);
     }
 
-    function saveAction(Request $request, StudentEntity $student, TeachingUnit $teachingUnit)
+    function saveAction(Request $request, StudentEntity $student, TeachingUnitEntity $teachingUnit)
     {
         $markEntity = $this->getRepository()->updateEntityByRequest($request, $student, $teachingUnit);
 

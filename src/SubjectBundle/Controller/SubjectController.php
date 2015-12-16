@@ -7,19 +7,25 @@ use SubjectBundle\Entity\SubjectEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Constraint;
-use Symfony\Component\Validator\ConstraintViolation;
-use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+/**
+ * Class SubjectController
+ * @package SubjectBundle\Controller
+ */
 class SubjectController extends Controller
 {
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     *
+     * @throws \Exception
+     */
     public function newAction(Request $request)
     {
         $subject = $request->get('education_subject');
         $edClass = $request->get('education_class');
-
-        $em = $this->get('doctrine.orm.default_entity_manager');
 
         $subjectEntity = new SubjectEntity();
         $subjectEntity->setName($subject['key']);
@@ -27,7 +33,7 @@ class SubjectController extends Controller
         $edClassEntity = null;
 
         if(!empty($edClass['val'])) {
-            $edClassEntity = $em->getRepository('SubjectBundle:EducationClassEntity')->find($edClass['val']);
+            $edClassEntity = $this->get('education_class_repository')->find($edClass['val']);
         }
 
         if ($edClassEntity instanceof EducationClassEntity !== true) {
@@ -39,6 +45,7 @@ class SubjectController extends Controller
 
         $status = $this->validateEntites([$subjectEntity, $edClassEntity]);
         if($status === 200) {
+            $em = $this->get('doctrine.orm.default_entity_manager');
             $em->persist($subjectEntity);
             $em->persist($edClassEntity);
 
@@ -58,7 +65,7 @@ class SubjectController extends Controller
     /**
      * @param array $entities
      *
-     * @return int
+     * @return integer
      *
      * @throws \Exception
      */
@@ -67,7 +74,6 @@ class SubjectController extends Controller
         /** @var ValidatorInterface $validator */
         $validator = $this->get('validator');
 
-        $status = 200;
         foreach($entities as $entity)
         {
             $errors = $validator->validate($entity);

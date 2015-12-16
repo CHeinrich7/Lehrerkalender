@@ -26,6 +26,13 @@ services:
         arguments:
             - UserBundle\Entity\User
 
+    role_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine
+        factory_method: getRepository
+        arguments:
+            - UserBundle\Entity\Role
+
     user_prepersist_listener:
         class: UserBundle\EventListener\UserPrePersistListener
         tags:

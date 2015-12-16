@@ -13,6 +13,10 @@ use Doctrine\ORM\QueryBuilder;
 use SubjectBundle\Entity\SubjectEntity;
 use UserBundle\Entity\User;
 
+/**
+ * Class SubjectRepository
+ * @package SubjectBundle\Entity\Repository
+ */
 class SubjectRepository extends EntityRepository
 {
     /**

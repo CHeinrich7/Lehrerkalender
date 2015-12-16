@@ -1,5 +1,5 @@
 <?php
-use EducationCalendarBundle\Entity\TeachingUnit;
+use EducationCalendarBundle\Entity\TeachingUnitEntity;
 /**
  * @var $view           Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine
  *
@@ -7,7 +7,7 @@ use EducationCalendarBundle\Entity\TeachingUnit;
  * @var $day            string
  * @var $time           integer
  * @var $data           array
- * @var $teachingUnit   TeachingUnit|null
+ * @var $teachingUnit   TeachingUnitEntity|null
  * @var $subjects       array
  */
 
@@ -22,7 +22,7 @@ $data = [
     'notice'    => ''
 ];
 
-if($teachingUnit instanceof TeachingUnit === true) {
+if($teachingUnit instanceof TeachingUnitEntity === true) {
     $data['room']    = $teachingUnit->getRoom();
     $data['content'] = $teachingUnit->getContent();
     $data['notice']  = $teachingUnit->getNotice();

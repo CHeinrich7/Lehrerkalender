@@ -8,7 +8,7 @@
 namespace MarkBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use EducationCalendarBundle\Entity\TeachingUnit;
+use EducationCalendarBundle\Entity\TeachingUnitEntity;
 use MarkBundle\Entity\MarkEntity;
 use SubjectBundle\Entity\StudentEntity;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,11 +22,11 @@ class MarkRepository extends EntityRepository
     /**
      * @param Request       $request
      * @param StudentEntity $student
-     * @param TeachingUnit  $teachingUnit
+     * @param TeachingUnitEntity  $teachingUnit
      *
      * @return MarkEntity
      */
-    public function updateEntityByRequest(Request $request, StudentEntity $student, TeachingUnit $teachingUnit)
+    public function updateEntityByRequest(Request $request, StudentEntity $student, TeachingUnitEntity $teachingUnit)
     {
         $markEntity = $this->findOneBy([
             'student'       => $student,

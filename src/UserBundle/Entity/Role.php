@@ -9,7 +9,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
 /**
- * @ORM\Entity(repositoryClass="UserBundle\Entity\Repository\RoleRepository")
+ * @ORM\Entity(repositoryClass="Doctrine\ORM\EntityRepository")
  * @ORM\Table(name="userrole")
  *
  * @UniqueEntity(fields="role", message="There can not be one Role twice in Database!")
@@ -20,7 +20,9 @@ class Role implements RoleInterface
     const ROLE_ADMIN        = 'ROLE_ADMIN';
     const ROLE_SUPER_ADMIN  = 'ROLE_SUPER_ADMIN';
 
-
+    /**
+     * @param $role
+     */
     public function __construct ( $role )
     {
         $this->role = $role;
@@ -88,6 +90,9 @@ class Role implements RoleInterface
         return $this->role;
     }
 
+    /**
+     * @return string
+     */
     function __toString()
     {
         return $this->getRole();

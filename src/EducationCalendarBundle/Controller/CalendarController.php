@@ -13,18 +13,21 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class CalendarController extends Controller
 {
+    const CALENDAR_TEMPLATE  = 'EducationCalendarBundle:Calendar:calendar.html.php';
+    const ACCORDION_TEMPLATE = 'EducationCalendarBundle:Calendar:accordionPanel.html.php';
+
+    /**
+     * @return Response
+     */
     public function calendarAction()
     {
         /** @var Response */
         $response = $this->forward('EducationCalendarBundle:Calendar:getAccordionResponse', ['time' => time()]);
 
-        return $this->render(
-            'EducationCalendarBundle:Calendar:calendar.html.php',
-            array(
-                'tableResponse'     => $response,
-                'education_classes' => $this->get('education_class_repository')->findUserClasses($this->getUser())
-            )
-        );
+        return $this->render(self::CALENDAR_TEMPLATE, [
+            'tableResponse'     => $response,
+            'education_classes' => $this->get('education_class_repository')->findUserClasses($this->getUser())
+        ]);
     }
 
     /**
@@ -45,7 +48,7 @@ class CalendarController extends Controller
 
             $response .=
                 $this
-                    ->render('EducationCalendarBundle:Calendar:accordionPanel.html.php', [
+                    ->render(self::ACCORDION_TEMPLATE, [
                         'data'      => $dayData,
                         'index'     => $index,
                         'subjects'  => $subjects,

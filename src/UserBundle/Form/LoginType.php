@@ -4,8 +4,11 @@ namespace UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-//use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Class LoginType
+ * @package UserBundle\Form
+ */
 class LoginType extends AbstractType
 {
     /**

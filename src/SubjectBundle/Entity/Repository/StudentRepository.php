@@ -13,6 +13,10 @@ use SubjectBundle\Entity\EducationClassEntity;
 use SubjectBundle\Entity\StudentEntity;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class StudentRepository
+ * @package SubjectBundle\Entity\Repository
+ */
 class StudentRepository extends EntityRepository
 {
     /**

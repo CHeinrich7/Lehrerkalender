@@ -3,8 +3,11 @@ namespace UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-//use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Class ProfileType
+ * @package UserBundle\Form
+ */
 class ProfileType extends AbstractType
 {
     /**

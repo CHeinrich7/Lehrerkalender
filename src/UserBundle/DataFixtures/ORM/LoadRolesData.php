@@ -6,7 +6,10 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 
-
+/**
+ * Class LoadRolesData
+ * @package UserBundle\DataFixtures\ORM
+ */
 class LoadRolesData extends UserDataLoader implements OrderedFixtureInterface {
 
     private $filename = 'roles.json';

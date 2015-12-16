@@ -226,7 +226,7 @@ $view->extend('::loggedIn.html.php');
                 $('#accordion').html(response);
                 refreshChosen();
                 $accordion.fadeIn();
-                $('#filter input:checked').trigger('click');
+                $('#filter').find('input:checked').trigger('click');
             }
         })
     }
@@ -406,7 +406,7 @@ $view->extend('::loggedIn.html.php');
         }
     }
 
-    $('#filter input').on('click', filter);
+    $('#filter').find('input').on('click', filter);
 
     <?php $slotsHelper->stop(); ?>
 </script>
